@@ -8,42 +8,41 @@
 import Foundation
 import XCTest
 @testable import FlexboxSwiftUI
-import StretchKit
 import SwiftUI
 import SnapshotTesting
 
 class FlexSizeTests: XCTestCase {
     func testHalfHeight() {
-        let view = FlexView(
-            style: Style(flexDirection: .column, size: Size(width: .percent(1), height: .percent(0.5))),
-            children: [
-                (
-                    Style(
-                        flexGrow: 1
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(50)),
+                children: [
+                    Node(
+                        size: Size(width: .auto, height: .auto),
+                        flexGrow: 1,
+                        view: AnyView(Color.blue)
                     ),
-                    AnyView(Color.blue)
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                ]
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
-    
+
     func testHalfWidth() {
-        let view = FlexView(
-            style: Style(flexDirection: .column, size: Size(width: .percent(0.5), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        flexGrow: 1
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(50), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .auto, height: .auto),
+                        flexGrow: 1,
+                        view: AnyView(Color.blue)
                     ),
-                    AnyView(Color.blue)
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                ]
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
 }

@@ -8,44 +8,43 @@
 import Foundation
 import XCTest
 @testable import FlexboxSwiftUI
-import StretchKit
 import SwiftUI
 import SnapshotTesting
 
 class FlexPaddingTests: XCTestCase {
     func testPadding() {
-        let view = FlexView(
-            style: Style(flexDirection: .row, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        padding: .init(start: .points(50), end: .points(50), top: .auto, bottom: .auto),
-                        flexGrow: 1
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .fixed(1), height: .auto),
+                        flexGrow: 1,
+                        padding: Edges(leading: .fixed(50), trailing: .fixed(50), top: .auto, bottom: .auto),
+                        view: AnyView(
+                            ZStack {
+                                Text("Padding")
+                            }
+                            .frame(maxWidth: .infinity)
+                            .background(Color.red)
+                        )
                     ),
-                    AnyView(
-                        ZStack {
-                            Text("Padding")
-                        }
-                        .frame(maxWidth: .infinity)
-                        .background(Color.red)
-                    )
-                ),
-                (
-                    Style(
-                        flexGrow: 1
+                    Node(
+                        size: Size(width: .fixed(1), height: .auto),
+                        flexGrow: 1,
+                        view: AnyView(
+                            ZStack {
+                                Text("Padding")
+                            }
+                            .frame(maxWidth: .infinity)
+                            .background(Color.red)
+                        )
                     ),
-                    AnyView(
-                        ZStack {
-                            Text("Padding")
-                        }
-                        .frame(maxWidth: .infinity)
-                        .background(Color.red)
-                    )
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                ],
+                flexDirection: .row
+            )
+        ), size: nil)
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
 }

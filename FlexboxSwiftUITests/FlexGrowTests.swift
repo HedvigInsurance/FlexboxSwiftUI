@@ -7,94 +7,60 @@
 
 import XCTest
 @testable import FlexboxSwiftUI
-import StretchKit
 import SwiftUI
 import SnapshotTesting
 
 class FlexGrowTests: XCTestCase {
     func testEqual() {
-        let view = FlexView(
-            style: Style(justifyContent: .center, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        flexGrow: 1
-                    ),
-                    AnyView(Color.red)
-                ),
-                (
-                    Style(
-                        flexGrow: 1
-                    ),
-                    AnyView(Color.blue)
-                ),
-                (
-                    Style(
-                        flexGrow: 1
-                    ),
-                    AnyView(Color.green)
-                ),
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+        let exp = assertFlexView(
+            FlexView(
+                node: Node(
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    children: [
+                        Node(size: Size(width: .fixed(10), height: .auto), flexGrow: 1, flexShrink: 1, view: AnyView(Color.red)),
+                        Node(size: Size(width: .fixed(10), height: .auto), flexGrow: 1, flexShrink: 1, view: AnyView(Color.blue)),
+                        Node(size: Size(width: .fixed(10), height: .auto), flexGrow: 1, flexShrink: 1, view: AnyView(Color.green)),
+                    ],
+                    justifyContent: .center
+                )
+            )
+        )
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
     
     func testNonEqual() {
-        let view = FlexView(
-            style: Style(justifyContent: .center, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        flexGrow: 2
-                    ),
-                    AnyView(Color.red)
+        let exp = assertFlexView(
+            FlexView(
+                node: Node(
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    children: [
+                        Node(size: Size(width: .fixed(10), height: .auto), flexGrow: 2, flexShrink: 1, view: AnyView(Color.red)),
+                        Node(size: Size(width: .fixed(10), height: .auto), flexGrow: 1, flexShrink: 1, view: AnyView(Color.blue)),
+                        Node(size: Size(width: .fixed(10), height: .auto), flexGrow: 1, flexShrink: 1, view: AnyView(Color.green)),
+                    ],
+                    justifyContent: .center
                 ),
-                (
-                    Style(
-                        flexGrow: 1
-                    ),
-                    AnyView(Color.blue)
-                ),
-                (
-                    Style(
-                        flexGrow: 1
-                    ),
-                    AnyView(Color.green)
-                ),
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                maxSize: assertSize
+            )
+        )
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
     
     func testNonEqualTwo() {
         let view = FlexView(
-            style: Style(justifyContent: .center, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        flexGrow: 2
-                    ),
-                    AnyView(Color.red)
-                ),
-                (
-                    Style(
-                        flexGrow: 1
-                    ),
-                    AnyView(Color.blue)
-                ),
-                (
-                    Style(
-                        flexGrow: 2
-                    ),
-                    AnyView(Color.green)
-                ),
-            ],
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(size: Size(width: .fixed(10), height: .auto), flexGrow: 2, view: AnyView(Color.red)),
+                    Node(size: Size(width: .fixed(10), height: .auto), flexGrow: 1, view: AnyView(Color.blue)),
+                    Node(size: Size(width: .fixed(10), height: .auto), flexGrow: 2, view: AnyView(Color.green)),
+                ],
+                justifyContent: .center
+            ),
             maxSize: assertSize
-        ).frame(size: assertSize)
+        ).frame(assertSize)
         
         assertSnapshot(matching: view, as: .image)
     }

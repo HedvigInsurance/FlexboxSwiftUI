@@ -7,59 +7,58 @@
 
 import XCTest
 @testable import FlexboxSwiftUI
-import StretchKit
 import SwiftUI
 import SnapshotTesting
 
 class FlexJustifyContentTests: XCTestCase {    
     func testCenter() {
-        let view = FlexView(
-            style: Style(justifyContent: .center, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        size: Size(width: .percent(0.2), height: .percent(1))
-                    ),
-                    AnyView(Color.red)
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(20), height: .percent(100)),
+                        view: AnyView(Color.red)
+                    )
+                ],
+                justifyContent: .center
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
-    
+
     func testStart() {
-        let view = FlexView(
-            style: Style(justifyContent: .flexStart, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        size: Size(width: .percent(0.2), height: .percent(1))
-                    ),
-                    AnyView(Color.red)
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(20), height: .percent(100)),
+                        view: AnyView(Color.red)
+                    )
+                ],
+                justifyContent: .flexStart
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
-    
+
     func testEnd() {
-        let view = FlexView(
-            style: Style(justifyContent: .flexEnd, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        size: Size(width: .percent(0.2), height: .percent(1))
-                    ),
-                    AnyView(Color.red)
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(20), height: .percent(100)),
+                        view: AnyView(Color.red)
+                    )
+                ],
+                justifyContent: .flexEnd
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
 }

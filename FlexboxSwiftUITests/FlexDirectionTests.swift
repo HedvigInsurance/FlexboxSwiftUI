@@ -8,88 +8,72 @@
 import Foundation
 import XCTest
 @testable import FlexboxSwiftUI
-import StretchKit
 import SwiftUI
 import SnapshotTesting
 
 class FlexDirectionTests: XCTestCase {
     func testColumn() {
-        let view = FlexView(
-            style: Style(
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(100), height: .fixed(10)),
+                        view: AnyView(Color.red)
+                    ),
+                    Node(
+                        size: Size(width: .percent(100), height: .fixed(40)),
+                        view: AnyView(Color.blue)
+                    )
+                ],
                 flexDirection: .column,
-                justifyContent: .center,
-                size: Size(width: .percent(1), height: .percent(1))
-            ),
-            children: [
-                (
-                    Style(
-                        size: Size(width: .percent(1), height: .points(10))
-                    ),
-                    AnyView(Color.red)
-                ),
-                (
-                    Style(
-                        size: Size(width: .percent(1), height: .points(40))
-                    ),
-                    AnyView(Color.blue)
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                justifyContent: .center
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
     
     func testColumnJustify() {
-        let view = FlexView(
-            style: Style(
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(100), height: .fixed(10)),
+                        view: AnyView(Color.red)
+                    ),
+                    Node(
+                        size: Size(width: .percent(100), height: .fixed(40)),
+                        view: AnyView(Color.blue)
+                    )
+                ],
                 flexDirection: .column,
-                justifyContent: .flexStart,
-                size: Size(
-                    width: .percent(1),
-                    height: .percent(1)
-                )
-            ),
-            children: [
-                (
-                    Style(
-                        size: Size(width: .percent(1), height: .points(10))
-                    ),
-                    AnyView(Color.red)
-                ),
-                (
-                    Style(
-                        size: Size(width: .percent(1), height: .points(40))
-                    ),
-                    AnyView(Color.blue)
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                justifyContent: .flexStart
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
     
     func testRow() {
-        let view = FlexView(
-            style: Style(flexDirection: .row, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        size: Size(width: .percent(0.5), height: .auto)
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(50), height: .fixed(40)),
+                        view: AnyView(Color.red)
                     ),
-                    AnyView(Color.red.frame(height: 10))
-                ),
-                (
-                    Style(
-                        size: Size(width: .percent(0.5), height: .auto)
-                    ),
-                    AnyView(Color.blue.frame(height: 40))
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                    Node(
+                        size: Size(width: .percent(50), height: .auto),
+                        view: AnyView(Color.blue)
+                    )
+                ],
+                flexDirection: .row
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
 }

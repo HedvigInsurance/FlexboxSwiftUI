@@ -8,32 +8,36 @@
 import Foundation
 import XCTest
 @testable import FlexboxSwiftUI
-import StretchKit
 import SwiftUI
 import SnapshotTesting
 
 class FlexMarginTests: XCTestCase {
     func testMargins() {
-        let view = FlexView(
-            style: Style(flexDirection: .column, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        margin: Rect(start: .undefined, end: .points(10), top: .points(10), bottom: .points(10)),
-                        flexGrow: 1
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .auto, height: .fixed(1)),
+                        flexGrow: 1,
+                        margin: Edges(
+                            leading: .undefined,
+                            trailing: .fixed(10),
+                            top: .fixed(10),
+                            bottom: .fixed(10)
+                        ),
+                        view: AnyView(Color.red)
                     ),
-                    AnyView(Color.red)
-                ),
-                (
-                    Style(
-                        flexGrow: 1
-                    ),
-                    AnyView(Color.blue)
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                    Node(
+                        size: Size(width: .auto, height: .fixed(1)),
+                        flexGrow: 1,
+                        view: AnyView(Color.blue)
+                    )
+                ],
+                flexDirection: .column
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
 }

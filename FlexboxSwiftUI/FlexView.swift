@@ -6,219 +6,75 @@
 //
 
 import SwiftUI
-import StretchKit
 
-extension Size where T == Float {
-    var cgSize: CGSize {
-        CGSize(width: CGFloat(width), height: CGFloat(height))
-    }
-}
-
-extension Size where T == Float? {
-    var cgSize: CGSize {
-        CGSize(width: CGFloat(width ?? 0), height: CGFloat(height ?? 0))
-    }
-}
-
-extension CGSize {
-    var size: Size<Float> {
-        Size(width: Float(width), height: Float(height))
-    }
+struct LayoutViewModifier: ViewModifier {
+    var layout: Layout
+    var applyPosition: Bool
     
-    var sizeOptional: Size<Float?> {
-        Size(width: width == 0 ? nil : Float(width), height: height == 0 ? nil : Float(height))
-    }
-}
-
-extension StretchKit.Dimension {
-    var pointsValue: CGFloat? {
-        switch self {
-        case let .points(float):
-            return CGFloat(float)
-        default:
-            return nil
+    func body(content: Content) -> some View {
+        let paddedContent = content
+            .padding(.leading, layout.padding.left)
+            .padding(.trailing, layout.padding.right)
+            .padding(.top, layout.padding.top)
+            .padding(.bottom, layout.padding.bottom)
+        
+        if applyPosition {
+            paddedContent
+                .frame(width: layout.frame.width, height: layout.frame.height)
+                .clipped()
+                .position(
+                    x: layout.frame.origin.x + (layout.frame.width / 2),
+                    y: layout.frame.origin.y + (layout.frame.height / 2)
+                )
+        } else {
+            paddedContent
+                .frame(width: layout.frame.width, height: layout.frame.height)
+                .clipped()
         }
     }
 }
 
-
-struct FlexContainer: View {
-    internal init(
-        sizeThatFits: Size<Float?>,
-        style: Style,
-        children: [(style: Style, view: AnyView)]
-    ) {
-        self.sizeThatFits = sizeThatFits
-        self.style = style
-        self.children = children
-        self.node = Self.makeNode(style: style, calculatedChildSizes: [:], children: children)
-    }
+struct LayoutRenderer: View {
+    var layout: Layout
+    var applyPosition: Bool
     
-    static func makeNode(
-        style: Style,
-        calculatedChildSizes: [Int: CGSize],
-        children: [(style: Style, view: AnyView)]
-    ) -> Node {
-        Node(style: style, children: children.enumerated().map { offset, child in
-            Node(
-                style: child.style
-            ) { suggestedSize in
-                if let childSize = calculatedChildSizes[offset] {
-                    return childSize.size
+    var body: some View {
+        ZStack {
+            if let view = layout.view {
+                view
+            } else {
+                ForEach(Array(layout.children.enumerated()), id: \.offset) { offset, childLayout in
+                    LayoutRenderer(layout: childLayout, applyPosition: true)
                 }
-                
-                let hostingView = HostingView(
-                    rootView: child.view
-                )
-            
-                var width: CGFloat {
-                    if let width = suggestedSize.width {
-                        return CGFloat(width)
-                    } else {
-                        return UIView.layoutFittingCompressedSize.width
-                    }
-                }
-                
-                var height: CGFloat {
-                    if let height = suggestedSize.height {
-                        return CGFloat(height)
-                    } else {
-                        return UIView.layoutFittingExpandedSize.height
-                    }
-                }
-                                    
-                let sizeThatFits = hostingView.systemLayoutSizeFitting(
-                    CGSize(
-                        width: width,
-                        height: height
-                    ),
-                    withHorizontalFittingPriority: suggestedSize.width != nil ? .defaultHigh : .defaultLow,
-                    verticalFittingPriority: .defaultLow
-                )
-                                                                                            
-                return sizeThatFits.size
             }
-        })
+        }
+        .modifier(LayoutViewModifier(layout: layout, applyPosition: applyPosition))
     }
+}
+
+
+struct FlexView: View {
+    var node: Node
     
-    var sizeThatFits: Size<Float?>
-    var style: Style
-    var children: [(style: Style, view: AnyView)]
+    @State var maxSize: CGSize? = nil
     
-    @ViewBuilder static func applyPadding(child: (style: Style, view: AnyView)) -> some View {
-        child.view
-            .padding(.leading, child.style.padding.start.pointsValue ?? 0)
-            .padding(.trailing, child.style.padding.end.pointsValue ?? 0)
-            .padding(.top, child.style.padding.top.pointsValue ?? 0)
-            .padding(.bottom, child.style.padding.bottom.pointsValue ?? 0)
-    }
-    
-    @State var calculatedChildSizes: [Int: CGSize] = [:]
-    @State var node: Node
-    
-    func useProxy(offset: Int, _ proxy: GeometryProxy) -> some View {
+    func readMaxSize(_ proxy: GeometryProxy) -> some View {
         DispatchQueue.main.async {
-            calculatedChildSizes[offset] = proxy.size
-            self.node = Self.makeNode(
-                style: style,
-                calculatedChildSizes: calculatedChildSizes,
-                children: children
-            )
+            self.maxSize = proxy.size
         }
         
         return Color.clear
     }
     
     var body: some View {
-        let layout = node.computeLayout(thatFits: sizeThatFits)
+        let layout = node.layout(maxSize: maxSize)
         
         return ZStack {
-            ForEach(Array(layout.children.enumerated()), id: \.offset) { offset, layout in
-                FlexChild(
-                    layout: layout
-                ) {
-                    Self.applyPadding(child: children[offset]).background(
-                        GeometryReader { proxy in
-                            useProxy(offset: offset, proxy)
-                        }
-                    )
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            }
-        }
-        .frame(width: CGFloat(layout.width), height: CGFloat(layout.height))
-    }
-}
-
-struct FlexChild<Content: View>: View {
-    var layout: Layout
-    var content: () -> Content
-    
-    var body: some View {
-        ZStack {
-            content()
-        }
-        .frame(width: CGFloat(layout.width), height: CGFloat(layout.height))
-        .clipped()
-        .position(x: CGFloat(layout.x + (layout.width / 2)), y: CGFloat(layout.y + (layout.height / 2)))
-    }
-}
-
-struct ViewWithState: View {
-    @State var increment = 0
-    
-    var body: some View {
-        VStack {
-            Text(String(increment))
+            // Read max available intrinsic size
+            Color.clear.background(GeometryReader(content: readMaxSize))
             
-            Color.cyan.frame(width: CGFloat(increment * 10))
-            
-            Button("A button", action: {
-                increment = increment + 1
-            }).fixedSize(horizontal: true, vertical: false)
-        }.frame(maxWidth: .infinity)
-    }
-}
-
-public struct FlexView: View {
-    public init(
-        style: Style,
-        children: [(style: Style, view: AnyView)],
-        maxSize: Size<Float?>? = nil
-    ) {
-        self.style = style
-        self.children = children
-        self._maxSize = State(initialValue: maxSize)
-    }
-    
-    @State private var maxSize: Size<Float?>? = nil
-    var style: Style
-    var children: [(style: Style, view: AnyView)]
-    
-    private func useProxy(_ geometry: GeometryProxy) -> some View {
-        DispatchQueue.main.async {
-            if (geometry.size != maxSize?.cgSize) {
-                maxSize = geometry.size.sizeOptional
-            }
-        }
-
-        return Color.clear
-    }
-    
-    public var body: some View {
-        ZStack {
-            Color.clear.background(
-                GeometryReader { geometry in
-                    useProxy(geometry)
-                }
-            )
-            
-            if let maxSize = maxSize {
-                FlexContainer(
-                    sizeThatFits: maxSize,
-                    style: style,
-                    children: children
-                )
+            if maxSize != nil {
+                LayoutRenderer(layout: layout, applyPosition: false)
             }
         }
     }

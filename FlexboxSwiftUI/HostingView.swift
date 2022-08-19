@@ -87,7 +87,7 @@ public class HostingView<Content: View>: UIView {
     }
 
     override open func sizeThatFits(_ size: CGSize) -> CGSize {
-        systemLayoutSizeFitting(size)
+        rootViewHostingController.view.sizeThatFits(size)
     }
 
     override open func sizeToFit() {

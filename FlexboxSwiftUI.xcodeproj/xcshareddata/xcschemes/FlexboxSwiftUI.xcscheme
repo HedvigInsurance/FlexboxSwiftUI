@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EBA0BEFC28AE40BB00D1E1CB"
+               BlueprintIdentifier = "EBA0BF2B28AE5FC000D1E1CB"
                BuildableName = "FlexboxSwiftUITests.xctest"
                BlueprintName = "FlexboxSwiftUITests"
                ReferencedContainer = "container:FlexboxSwiftUI.xcodeproj">

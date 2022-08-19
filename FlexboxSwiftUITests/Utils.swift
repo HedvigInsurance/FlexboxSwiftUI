@@ -8,8 +8,9 @@
 import Foundation
 import SwiftUI
 import ViewInspector
-import StretchKit
 @testable import FlexboxSwiftUI
+import XCTest
+import SnapshotTesting
 
 struct InspectionEnabledView<Content: View>: View, Inspectable {
     var view: Content
@@ -22,11 +23,46 @@ struct InspectionEnabledView<Content: View>: View, Inspectable {
 }
 
 extension View {
-    func frame(size: Size<Float?>) -> some View {
-        self.frame(width: CGFloat(size.width ?? 0), height: CGFloat(size.height ?? 0))
+    @ViewBuilder func frame(_ size: CGSize?) -> some View {
+        if let size = size {
+            self.frame(width: size.width, height: size.height)
+        } else {
+            self
+        }
     }
 }
 
-var assertSize: Size<Float?> {
-    CGSize(width: 300, height: 300).sizeOptional
+var assertSize: CGSize {
+    CGSize(width: 300, height: 300)
+}
+
+func assertFlexView(
+    _ view: FlexView,
+    size: CGSize? = assertSize,
+    file: StaticString = #file,
+    testName: String = #function,
+    line: UInt = #line
+) -> XCTestExpectation {
+    let vc = UIHostingController(rootView: view.frame(size))
+    
+    let exp = XCTestExpectation(description: "Wait for screen to render")
+
+    let window: UIWindow
+    
+    if let size = size {
+        window = UIWindow(frame: .init(origin: .zero, size: size))
+    } else {
+        window = UIWindow(frame: UIScreen.main.bounds)
+    }
+    
+    window.rootViewController = vc
+    window.makeKeyAndVisible()
+    window.layoutIfNeeded()
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        assertSnapshot(matching: vc, as: .image, file: file, testName: testName, line: line)
+        exp.fulfill()
+    }
+
+    return exp
 }

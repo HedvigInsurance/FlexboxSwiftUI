@@ -8,35 +8,31 @@
 import Foundation
 import XCTest
 @testable import FlexboxSwiftUI
-import StretchKit
 import SwiftUI
 import SnapshotTesting
 
 class FlexButtonTests: XCTestCase {
     func testButtonContent() {
-        let view = FlexView(
-            style: Style(flexDirection: .row, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        flexGrow: 1
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        flexGrow: 1,
+                        view: AnyView(Button("Some button text", role: .destructive, action: {
+                            
+                        }))
                     ),
-                    AnyView(Button("Some button text", role: .destructive, action: {
-                        
-                    }))
-                ),
-                (
-                    Style(
-                        flexGrow: 1
+                    Node(
+                        flexGrow: 1,
+                        view: AnyView(Button("Some other text", role: .cancel, action: {
+                            
+                        }))
                     ),
-                    AnyView(Button("Some other text", role: .cancel, action: {
-                        
-                    }))
-                )
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                ]
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
 }

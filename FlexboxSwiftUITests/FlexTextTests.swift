@@ -8,7 +8,6 @@
 import Foundation
 import XCTest
 @testable import FlexboxSwiftUI
-import StretchKit
 import SwiftUI
 import SnapshotTesting
 
@@ -20,45 +19,43 @@ class FlexTextTests: XCTestCase {
     """
     
     func testTextContent() {
-        let view = FlexView(
-            style: Style(flexDirection: .row, size: Size(width: .percent(1), height: .percent(1))),
-            children: [
-                (
-                    Style(
-                        flexGrow: 1
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(50), height: .auto),
+                        flexGrow: 1,
+                        view: AnyView(Text(loremIpsum))
                     ),
-                    AnyView(Text(loremIpsum))
-                ),
-                (
-                    Style(
-                        flexGrow: 2
+                    Node(
+                        size: Size(width: .percent(50), height: .auto),
+                        flexGrow: 1,
+                        view: AnyView(Text(loremIpsum))
                     ),
-                    AnyView(Text(loremIpsum))
-                ),
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                ],
+                flexDirection: .row
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
     
     func testTextContentMaxHeight() {
-        let view = FlexView(
-            style: Style(
-                flexDirection: .row,
-                size: Size(width: .percent(1), height: .percent(1))
-            ),
-            children: [
-                (
-                    Style(
-                        maxSize: .init(width: .auto, height: .points(30))
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        maxSize: Size(width: .auto, height: .fixed(30)),
+                        flexGrow: 1,
+                        view: AnyView(Text(loremIpsum))
                     ),
-                    AnyView(Text(loremIpsum))
-                ),
-            ],
-            maxSize: assertSize
-        ).frame(size: assertSize)
+                ],
+                flexDirection: .row
+            )
+        ))
         
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
 }

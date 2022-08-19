@@ -8,7 +8,6 @@
 import Foundation
 import XCTest
 @testable import FlexboxSwiftUI
-import StretchKit
 import SwiftUI
 import SnapshotTesting
 import ViewInspector
@@ -21,34 +20,20 @@ class FlexDynamicSizingTests: XCTestCase {
     """
     
     func testDynamicHeight() {
-        let view = FlexView(
-            style: Style(flexDirection: .column, size: Size(width: .percent(1), height: .auto)),
-            children: [
-                (
-                    Style(
+        let exp = assertFlexView(FlexView(
+            node: Node(
+                size: Size(width: .percent(100), height: .auto),
+                children: [
+                    Node(
+                        size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1,
-                        size: Size(width: .percent(1), height: .auto)
+                        view: AnyView(Text(loremIpsum))
                     ),
-                    AnyView(Text(loremIpsum))
-                )
-            ]
-        )
-                
-        let vc = UIHostingController(rootView: view)
+                ],
+                flexDirection: .column
+            )
+        ), size: nil)
         
-        let exp = expectation(description: "Wait for screen")
-        
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = vc
-        window.rootViewController?.view.translatesAutoresizingMaskIntoConstraints = false
-        window.makeKeyAndVisible()
-        window.layoutIfNeeded()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            assertSnapshot(matching: vc, as: .image)
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 2)
+        wait(for: [exp], timeout: 1)
     }
 }
