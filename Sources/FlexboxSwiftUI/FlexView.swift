@@ -53,8 +53,12 @@ struct LayoutRenderer: View {
 }
 
 
-struct FlexView: View {
+public struct FlexView: View {
     var node: Node
+    
+    public init(node: Node) {
+        self.node = node
+    }
     
     @State var maxSize: CGSize? = nil
     
@@ -66,7 +70,7 @@ struct FlexView: View {
         return Color.clear
     }
     
-    var body: some View {
+    public var body: some View {
         let layout = node.layout(maxSize: maxSize)
         
         return ZStack {

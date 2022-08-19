@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "swift-snapshot-testing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-snapshot-testing.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "567c66adf318612f9482fdaf62c09df1aa57ee87"
+      }
+    },
+    {
+      "identity" : "viewinspector",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nalexn/ViewInspector.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "6b88c4ec1fa20cf38f2138052e63c8e79df5d76e"
+      }
+    },
+    {
+      "identity" : "yoga",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ZupIT/yoga",
+      "state" : {
+        "revision" : "ed609289e4351f5e809d165989d1c607874a5151",
+        "version" : "1.19.0"
+      }
+    }
+  ],
+  "version" : 2
+}

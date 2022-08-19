@@ -1,0 +1,1144 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EB60548828AFA162006AFE77 /* InOutMutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547928AFA162006AFE77 /* InOutMutable.swift */; };
+		EB60548928AFA162006AFE77 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547A28AFA162006AFE77 /* Helpers.swift */; };
+		EB60548A28AFA162006AFE77 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547B28AFA162006AFE77 /* Size.swift */; };
+		EB60548B28AFA162006AFE77 /* Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547C28AFA162006AFE77 /* Edges.swift */; };
+		EB60548C28AFA162006AFE77 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547D28AFA162006AFE77 /* Style.swift */; };
+		EB60548D28AFA162006AFE77 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547E28AFA162006AFE77 /* Layout.swift */; };
+		EB60548E28AFA162006AFE77 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547F28AFA162006AFE77 /* Node.swift */; };
+		EB60548F28AFA162006AFE77 /* FlexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60548028AFA162006AFE77 /* FlexView.swift */; };
+		EB60549028AFA162006AFE77 /* HostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60548128AFA162006AFE77 /* HostingView.swift */; };
+		EB6054C728AFA166006AFE77 /* testTextContent.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054A328AFA166006AFE77 /* testTextContent.1.png */; };
+		EB6054C828AFA166006AFE77 /* testTextContentMaxHeight.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054A428AFA166006AFE77 /* testTextContentMaxHeight.1.png */; };
+		EB6054C928AFA166006AFE77 /* testNonEqualTwo.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054A628AFA166006AFE77 /* testNonEqualTwo.1.png */; };
+		EB6054CA28AFA166006AFE77 /* testEqual.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054A728AFA166006AFE77 /* testEqual.1.png */; };
+		EB6054CB28AFA166006AFE77 /* testNonEqual.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054A828AFA166006AFE77 /* testNonEqual.1.png */; };
+		EB6054CC28AFA166006AFE77 /* testHalfWidth.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054AA28AFA166006AFE77 /* testHalfWidth.1.png */; };
+		EB6054CD28AFA166006AFE77 /* testHalfHeight.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054AB28AFA166006AFE77 /* testHalfHeight.1.png */; };
+		EB6054CE28AFA166006AFE77 /* testButtonContent.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054AD28AFA166006AFE77 /* testButtonContent.1.png */; };
+		EB6054CF28AFA166006AFE77 /* testCenter.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054AF28AFA166006AFE77 /* testCenter.1.png */; };
+		EB6054D028AFA166006AFE77 /* testEnd.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B028AFA166006AFE77 /* testEnd.1.png */; };
+		EB6054D128AFA166006AFE77 /* testStart.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B128AFA166006AFE77 /* testStart.1.png */; };
+		EB6054D228AFA166006AFE77 /* testDynamicHeight.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B328AFA166006AFE77 /* testDynamicHeight.1.png */; };
+		EB6054D328AFA166006AFE77 /* testPadding.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B528AFA166006AFE77 /* testPadding.1.png */; };
+		EB6054D428AFA166006AFE77 /* testRow.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B728AFA166006AFE77 /* testRow.1.png */; };
+		EB6054D528AFA166006AFE77 /* testColumnJustify.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B828AFA166006AFE77 /* testColumnJustify.1.png */; };
+		EB6054D628AFA166006AFE77 /* testColumn.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B928AFA166006AFE77 /* testColumn.1.png */; };
+		EB6054D728AFA166006AFE77 /* testMargins.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054BB28AFA166006AFE77 /* testMargins.1.png */; };
+		EB6054E028AFA183006AFE77 /* FlexboxSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */; platformFilter = ios; };
+		EB6054ED28AFA1A5006AFE77 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6054EC28AFA1A5006AFE77 /* DemoApp.swift */; };
+		EB6054F128AFA1A5006AFE77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB6054F028AFA1A5006AFE77 /* Assets.xcassets */; };
+		EB6054F428AFA1A5006AFE77 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB6054F328AFA1A5006AFE77 /* Preview Assets.xcassets */; };
+		EB6054FA28AFA1BE006AFE77 /* FlexDirectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60549A28AFA166006AFE77 /* FlexDirectionTests.swift */; };
+		EB6054FB28AFA1BE006AFE77 /* FlexGrowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60549E28AFA166006AFE77 /* FlexGrowTests.swift */; };
+		EB6054FC28AFA1BE006AFE77 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60549B28AFA166006AFE77 /* Utils.swift */; };
+		EB6054FD28AFA1BE006AFE77 /* FlexButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60549F28AFA166006AFE77 /* FlexButtonTests.swift */; };
+		EB6054FE28AFA1BE006AFE77 /* Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60549D28AFA166006AFE77 /* Inspection.swift */; };
+		EB6054FF28AFA1BE006AFE77 /* FlexTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6054A028AFA166006AFE77 /* FlexTextTests.swift */; };
+		EB60550028AFA1BE006AFE77 /* FlexMarginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60549C28AFA166006AFE77 /* FlexMarginTests.swift */; };
+		EB60550128AFA1BE006AFE77 /* FlexSizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60549628AFA166006AFE77 /* FlexSizeTests.swift */; };
+		EB60550228AFA1BE006AFE77 /* FlexPaddingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60549828AFA166006AFE77 /* FlexPaddingTests.swift */; };
+		EB60550328AFA1BE006AFE77 /* FlexDynamicSizingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60549928AFA166006AFE77 /* FlexDynamicSizingTests.swift */; };
+		EB60550428AFA1BE006AFE77 /* FlexJustifyContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60549728AFA166006AFE77 /* FlexJustifyContentTests.swift */; };
+		EB60550728AFA1DC006AFE77 /* YogaKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB60550628AFA1DC006AFE77 /* YogaKit */; };
+		EB60551028AFA212006AFE77 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = EB60550F28AFA212006AFE77 /* SnapshotTesting */; };
+		EB60551228AFA214006AFE77 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = EB60551128AFA214006AFE77 /* ViewInspector */; };
+		EB60552928AFA272006AFE77 /* FlexboxSwiftUIObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */; };
+		EB60552A28AFA272006AFE77 /* FlexboxSwiftUIObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EB60552F28AFA27D006AFE77 /* NodeImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = EB60548328AFA162006AFE77 /* NodeImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EB60553028AFA280006AFE77 /* NodeImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EB60548728AFA162006AFE77 /* NodeImpl.m */; };
+		EB60553128AFA287006AFE77 /* FlexboxSwiftUIObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = EB60548528AFA162006AFE77 /* FlexboxSwiftUIObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EB60553328AFA2A0006AFE77 /* YogaKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB60553228AFA2A0006AFE77 /* YogaKit */; };
+		EB60553528AFA2B7006AFE77 /* FlexboxSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */; };
+		EB60553928AFA365006AFE77 /* FlexboxSwiftUIObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */; };
+		EB60553A28AFA365006AFE77 /* FlexboxSwiftUIObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EB6054E128AFA183006AFE77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB60546328AFA146006AFE77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB60546B28AFA146006AFE77;
+			remoteInfo = FlexboxSwiftUI;
+		};
+		EB6054F828AFA1B0006AFE77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB60546328AFA146006AFE77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB6054E928AFA1A5006AFE77;
+			remoteInfo = Demo;
+		};
+		EB60552728AFA272006AFE77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB60546328AFA146006AFE77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB60552228AFA272006AFE77;
+			remoteInfo = FlexboxSwiftUIObjC;
+		};
+		EB60553728AFA35E006AFE77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB60546328AFA146006AFE77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB60552228AFA272006AFE77;
+			remoteInfo = FlexboxSwiftUIObjC;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EB60552E28AFA272006AFE77 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EB60552A28AFA272006AFE77 /* FlexboxSwiftUIObjC.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB60553B28AFA365006AFE77 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EB60553A28AFA365006AFE77 /* FlexboxSwiftUIObjC.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexboxSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB60547928AFA162006AFE77 /* InOutMutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InOutMutable.swift; sourceTree = "<group>"; };
+		EB60547A28AFA162006AFE77 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		EB60547B28AFA162006AFE77 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		EB60547C28AFA162006AFE77 /* Edges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edges.swift; sourceTree = "<group>"; };
+		EB60547D28AFA162006AFE77 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		EB60547E28AFA162006AFE77 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		EB60547F28AFA162006AFE77 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		EB60548028AFA162006AFE77 /* FlexView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexView.swift; sourceTree = "<group>"; };
+		EB60548128AFA162006AFE77 /* HostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostingView.swift; sourceTree = "<group>"; };
+		EB60548328AFA162006AFE77 /* NodeImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeImpl.h; sourceTree = "<group>"; };
+		EB60548528AFA162006AFE77 /* FlexboxSwiftUIObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexboxSwiftUIObjC.h; sourceTree = "<group>"; };
+		EB60548628AFA162006AFE77 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		EB60548728AFA162006AFE77 /* NodeImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeImpl.m; sourceTree = "<group>"; };
+		EB60549628AFA166006AFE77 /* FlexSizeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexSizeTests.swift; sourceTree = "<group>"; };
+		EB60549728AFA166006AFE77 /* FlexJustifyContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexJustifyContentTests.swift; sourceTree = "<group>"; };
+		EB60549828AFA166006AFE77 /* FlexPaddingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexPaddingTests.swift; sourceTree = "<group>"; };
+		EB60549928AFA166006AFE77 /* FlexDynamicSizingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexDynamicSizingTests.swift; sourceTree = "<group>"; };
+		EB60549A28AFA166006AFE77 /* FlexDirectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexDirectionTests.swift; sourceTree = "<group>"; };
+		EB60549B28AFA166006AFE77 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		EB60549C28AFA166006AFE77 /* FlexMarginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexMarginTests.swift; sourceTree = "<group>"; };
+		EB60549D28AFA166006AFE77 /* Inspection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inspection.swift; sourceTree = "<group>"; };
+		EB60549E28AFA166006AFE77 /* FlexGrowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexGrowTests.swift; sourceTree = "<group>"; };
+		EB60549F28AFA166006AFE77 /* FlexButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexButtonTests.swift; sourceTree = "<group>"; };
+		EB6054A028AFA166006AFE77 /* FlexTextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexTextTests.swift; sourceTree = "<group>"; };
+		EB6054A328AFA166006AFE77 /* testTextContent.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testTextContent.1.png; sourceTree = "<group>"; };
+		EB6054A428AFA166006AFE77 /* testTextContentMaxHeight.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testTextContentMaxHeight.1.png; sourceTree = "<group>"; };
+		EB6054A628AFA166006AFE77 /* testNonEqualTwo.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testNonEqualTwo.1.png; sourceTree = "<group>"; };
+		EB6054A728AFA166006AFE77 /* testEqual.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testEqual.1.png; sourceTree = "<group>"; };
+		EB6054A828AFA166006AFE77 /* testNonEqual.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testNonEqual.1.png; sourceTree = "<group>"; };
+		EB6054AA28AFA166006AFE77 /* testHalfWidth.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testHalfWidth.1.png; sourceTree = "<group>"; };
+		EB6054AB28AFA166006AFE77 /* testHalfHeight.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testHalfHeight.1.png; sourceTree = "<group>"; };
+		EB6054AD28AFA166006AFE77 /* testButtonContent.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testButtonContent.1.png; sourceTree = "<group>"; };
+		EB6054AF28AFA166006AFE77 /* testCenter.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testCenter.1.png; sourceTree = "<group>"; };
+		EB6054B028AFA166006AFE77 /* testEnd.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testEnd.1.png; sourceTree = "<group>"; };
+		EB6054B128AFA166006AFE77 /* testStart.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testStart.1.png; sourceTree = "<group>"; };
+		EB6054B328AFA166006AFE77 /* testDynamicHeight.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testDynamicHeight.1.png; sourceTree = "<group>"; };
+		EB6054B528AFA166006AFE77 /* testPadding.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testPadding.1.png; sourceTree = "<group>"; };
+		EB6054B728AFA166006AFE77 /* testRow.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testRow.1.png; sourceTree = "<group>"; };
+		EB6054B828AFA166006AFE77 /* testColumnJustify.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testColumnJustify.1.png; sourceTree = "<group>"; };
+		EB6054B928AFA166006AFE77 /* testColumn.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testColumn.1.png; sourceTree = "<group>"; };
+		EB6054BB28AFA166006AFE77 /* testMargins.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testMargins.1.png; sourceTree = "<group>"; };
+		EB6054DC28AFA183006AFE77 /* FlexboxSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexboxSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB6054EA28AFA1A5006AFE77 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB6054EC28AFA1A5006AFE77 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
+		EB6054F028AFA1A5006AFE77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB6054F328AFA1A5006AFE77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexboxSwiftUIObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB60546928AFA146006AFE77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB60553928AFA365006AFE77 /* FlexboxSwiftUIObjC.framework in Frameworks */,
+				EB60550728AFA1DC006AFE77 /* YogaKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB6054D928AFA183006AFE77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB6054E028AFA183006AFE77 /* FlexboxSwiftUI.framework in Frameworks */,
+				EB60551028AFA212006AFE77 /* SnapshotTesting in Frameworks */,
+				EB60551228AFA214006AFE77 /* ViewInspector in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB6054E728AFA1A5006AFE77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB60553528AFA2B7006AFE77 /* FlexboxSwiftUI.framework in Frameworks */,
+				EB60552928AFA272006AFE77 /* FlexboxSwiftUIObjC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB60552028AFA272006AFE77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB60553328AFA2A0006AFE77 /* YogaKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EB60546228AFA146006AFE77 = {
+			isa = PBXGroup;
+			children = (
+				EB60549428AFA166006AFE77 /* Tests */,
+				EB60547628AFA162006AFE77 /* Sources */,
+				EB6054EB28AFA1A5006AFE77 /* Demo */,
+				EB60546D28AFA146006AFE77 /* Products */,
+				EB60550E28AFA212006AFE77 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EB60546D28AFA146006AFE77 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */,
+				EB6054DC28AFA183006AFE77 /* FlexboxSwiftUITests.xctest */,
+				EB6054EA28AFA1A5006AFE77 /* Demo.app */,
+				EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB60547628AFA162006AFE77 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				EB60547728AFA162006AFE77 /* FlexboxSwiftUI */,
+				EB60548228AFA162006AFE77 /* FlexboxSwiftUIObjC */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		EB60547728AFA162006AFE77 /* FlexboxSwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				EB60547828AFA162006AFE77 /* Utils */,
+				EB60548028AFA162006AFE77 /* FlexView.swift */,
+				EB60548128AFA162006AFE77 /* HostingView.swift */,
+			);
+			path = FlexboxSwiftUI;
+			sourceTree = "<group>";
+		};
+		EB60547828AFA162006AFE77 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EB60547928AFA162006AFE77 /* InOutMutable.swift */,
+				EB60547A28AFA162006AFE77 /* Helpers.swift */,
+				EB60547B28AFA162006AFE77 /* Size.swift */,
+				EB60547C28AFA162006AFE77 /* Edges.swift */,
+				EB60547D28AFA162006AFE77 /* Style.swift */,
+				EB60547E28AFA162006AFE77 /* Layout.swift */,
+				EB60547F28AFA162006AFE77 /* Node.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		EB60548228AFA162006AFE77 /* FlexboxSwiftUIObjC */ = {
+			isa = PBXGroup;
+			children = (
+				EB60548328AFA162006AFE77 /* NodeImpl.h */,
+				EB60548528AFA162006AFE77 /* FlexboxSwiftUIObjC.h */,
+				EB60548628AFA162006AFE77 /* module.modulemap */,
+				EB60548728AFA162006AFE77 /* NodeImpl.m */,
+			);
+			path = FlexboxSwiftUIObjC;
+			sourceTree = "<group>";
+		};
+		EB60549428AFA166006AFE77 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EB60549528AFA166006AFE77 /* FlexboxSwiftUITests */,
+			);
+			path = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		EB60549528AFA166006AFE77 /* FlexboxSwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EB60549628AFA166006AFE77 /* FlexSizeTests.swift */,
+				EB60549728AFA166006AFE77 /* FlexJustifyContentTests.swift */,
+				EB60549828AFA166006AFE77 /* FlexPaddingTests.swift */,
+				EB60549928AFA166006AFE77 /* FlexDynamicSizingTests.swift */,
+				EB60549A28AFA166006AFE77 /* FlexDirectionTests.swift */,
+				EB60549B28AFA166006AFE77 /* Utils.swift */,
+				EB60549C28AFA166006AFE77 /* FlexMarginTests.swift */,
+				EB60549D28AFA166006AFE77 /* Inspection.swift */,
+				EB60549E28AFA166006AFE77 /* FlexGrowTests.swift */,
+				EB60549F28AFA166006AFE77 /* FlexButtonTests.swift */,
+				EB6054A028AFA166006AFE77 /* FlexTextTests.swift */,
+				EB6054A128AFA166006AFE77 /* __Snapshots__ */,
+			);
+			path = FlexboxSwiftUITests;
+			sourceTree = "<group>";
+		};
+		EB6054A128AFA166006AFE77 /* __Snapshots__ */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054A228AFA166006AFE77 /* FlexTextTests */,
+				EB6054A528AFA166006AFE77 /* FlexGrowTests */,
+				EB6054A928AFA166006AFE77 /* FlexSizeTests */,
+				EB6054AC28AFA166006AFE77 /* FlexButtonTests */,
+				EB6054AE28AFA166006AFE77 /* FlexJustifyContentTests */,
+				EB6054B228AFA166006AFE77 /* FlexDynamicSizingTests */,
+				EB6054B428AFA166006AFE77 /* FlexPaddingTests */,
+				EB6054B628AFA166006AFE77 /* FlexDirectionTests */,
+				EB6054BA28AFA166006AFE77 /* FlexMarginTests */,
+			);
+			path = __Snapshots__;
+			sourceTree = "<group>";
+		};
+		EB6054A228AFA166006AFE77 /* FlexTextTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054A328AFA166006AFE77 /* testTextContent.1.png */,
+				EB6054A428AFA166006AFE77 /* testTextContentMaxHeight.1.png */,
+			);
+			path = FlexTextTests;
+			sourceTree = "<group>";
+		};
+		EB6054A528AFA166006AFE77 /* FlexGrowTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054A628AFA166006AFE77 /* testNonEqualTwo.1.png */,
+				EB6054A728AFA166006AFE77 /* testEqual.1.png */,
+				EB6054A828AFA166006AFE77 /* testNonEqual.1.png */,
+			);
+			path = FlexGrowTests;
+			sourceTree = "<group>";
+		};
+		EB6054A928AFA166006AFE77 /* FlexSizeTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054AA28AFA166006AFE77 /* testHalfWidth.1.png */,
+				EB6054AB28AFA166006AFE77 /* testHalfHeight.1.png */,
+			);
+			path = FlexSizeTests;
+			sourceTree = "<group>";
+		};
+		EB6054AC28AFA166006AFE77 /* FlexButtonTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054AD28AFA166006AFE77 /* testButtonContent.1.png */,
+			);
+			path = FlexButtonTests;
+			sourceTree = "<group>";
+		};
+		EB6054AE28AFA166006AFE77 /* FlexJustifyContentTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054AF28AFA166006AFE77 /* testCenter.1.png */,
+				EB6054B028AFA166006AFE77 /* testEnd.1.png */,
+				EB6054B128AFA166006AFE77 /* testStart.1.png */,
+			);
+			path = FlexJustifyContentTests;
+			sourceTree = "<group>";
+		};
+		EB6054B228AFA166006AFE77 /* FlexDynamicSizingTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054B328AFA166006AFE77 /* testDynamicHeight.1.png */,
+			);
+			path = FlexDynamicSizingTests;
+			sourceTree = "<group>";
+		};
+		EB6054B428AFA166006AFE77 /* FlexPaddingTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054B528AFA166006AFE77 /* testPadding.1.png */,
+			);
+			path = FlexPaddingTests;
+			sourceTree = "<group>";
+		};
+		EB6054B628AFA166006AFE77 /* FlexDirectionTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054B728AFA166006AFE77 /* testRow.1.png */,
+				EB6054B828AFA166006AFE77 /* testColumnJustify.1.png */,
+				EB6054B928AFA166006AFE77 /* testColumn.1.png */,
+			);
+			path = FlexDirectionTests;
+			sourceTree = "<group>";
+		};
+		EB6054BA28AFA166006AFE77 /* FlexMarginTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054BB28AFA166006AFE77 /* testMargins.1.png */,
+			);
+			path = FlexMarginTests;
+			sourceTree = "<group>";
+		};
+		EB6054EB28AFA1A5006AFE77 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054EC28AFA1A5006AFE77 /* DemoApp.swift */,
+				EB6054F028AFA1A5006AFE77 /* Assets.xcassets */,
+				EB6054F228AFA1A5006AFE77 /* Preview Content */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		EB6054F228AFA1A5006AFE77 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EB6054F328AFA1A5006AFE77 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EB60550E28AFA212006AFE77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EB60546728AFA146006AFE77 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB60551E28AFA272006AFE77 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB60552F28AFA27D006AFE77 /* NodeImpl.h in Headers */,
+				EB60553128AFA287006AFE77 /* FlexboxSwiftUIObjC.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EB60546B28AFA146006AFE77 /* FlexboxSwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB60547328AFA146006AFE77 /* Build configuration list for PBXNativeTarget "FlexboxSwiftUI" */;
+			buildPhases = (
+				EB60546728AFA146006AFE77 /* Headers */,
+				EB60546828AFA146006AFE77 /* Sources */,
+				EB60546928AFA146006AFE77 /* Frameworks */,
+				EB60546A28AFA146006AFE77 /* Resources */,
+				EB60553B28AFA365006AFE77 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB60553828AFA35E006AFE77 /* PBXTargetDependency */,
+			);
+			name = FlexboxSwiftUI;
+			packageProductDependencies = (
+				EB60550628AFA1DC006AFE77 /* YogaKit */,
+			);
+			productName = FlexboxSwiftUI;
+			productReference = EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EB6054DB28AFA183006AFE77 /* FlexboxSwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB6054E328AFA183006AFE77 /* Build configuration list for PBXNativeTarget "FlexboxSwiftUITests" */;
+			buildPhases = (
+				EB6054D828AFA183006AFE77 /* Sources */,
+				EB6054D928AFA183006AFE77 /* Frameworks */,
+				EB6054DA28AFA183006AFE77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB6054E228AFA183006AFE77 /* PBXTargetDependency */,
+				EB6054F928AFA1B0006AFE77 /* PBXTargetDependency */,
+			);
+			name = FlexboxSwiftUITests;
+			packageProductDependencies = (
+				EB60550F28AFA212006AFE77 /* SnapshotTesting */,
+				EB60551128AFA214006AFE77 /* ViewInspector */,
+			);
+			productName = FlexboxSwiftUITests;
+			productReference = EB6054DC28AFA183006AFE77 /* FlexboxSwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EB6054E928AFA1A5006AFE77 /* Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB6054F528AFA1A5006AFE77 /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildPhases = (
+				EB6054E628AFA1A5006AFE77 /* Sources */,
+				EB6054E728AFA1A5006AFE77 /* Frameworks */,
+				EB6054E828AFA1A5006AFE77 /* Resources */,
+				EB60552E28AFA272006AFE77 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB60552828AFA272006AFE77 /* PBXTargetDependency */,
+			);
+			name = Demo;
+			productName = Demo;
+			productReference = EB6054EA28AFA1A5006AFE77 /* Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EB60552228AFA272006AFE77 /* FlexboxSwiftUIObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB60552B28AFA272006AFE77 /* Build configuration list for PBXNativeTarget "FlexboxSwiftUIObjC" */;
+			buildPhases = (
+				EB60551E28AFA272006AFE77 /* Headers */,
+				EB60551F28AFA272006AFE77 /* Sources */,
+				EB60552028AFA272006AFE77 /* Frameworks */,
+				EB60552128AFA272006AFE77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlexboxSwiftUIObjC;
+			packageProductDependencies = (
+				EB60553228AFA2A0006AFE77 /* YogaKit */,
+			);
+			productName = FlexboxSwiftUIObjC;
+			productReference = EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB60546328AFA146006AFE77 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					EB60546B28AFA146006AFE77 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					EB6054DB28AFA183006AFE77 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = EB6054E928AFA1A5006AFE77;
+					};
+					EB6054E928AFA1A5006AFE77 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					EB60552228AFA272006AFE77 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = EB60546628AFA146006AFE77 /* Build configuration list for PBXProject "FlexboxSwiftUI" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EB60546228AFA146006AFE77;
+			packageReferences = (
+				EB60550528AFA1DC006AFE77 /* XCRemoteSwiftPackageReference "yoga" */,
+				EB60550828AFA1EA006AFE77 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+				EB60550B28AFA1F4006AFE77 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
+			productRefGroup = EB60546D28AFA146006AFE77 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB60546B28AFA146006AFE77 /* FlexboxSwiftUI */,
+				EB6054DB28AFA183006AFE77 /* FlexboxSwiftUITests */,
+				EB6054E928AFA1A5006AFE77 /* Demo */,
+				EB60552228AFA272006AFE77 /* FlexboxSwiftUIObjC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB60546A28AFA146006AFE77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB6054D628AFA166006AFE77 /* testColumn.1.png in Resources */,
+				EB6054D028AFA166006AFE77 /* testEnd.1.png in Resources */,
+				EB6054D428AFA166006AFE77 /* testRow.1.png in Resources */,
+				EB6054D528AFA166006AFE77 /* testColumnJustify.1.png in Resources */,
+				EB6054CE28AFA166006AFE77 /* testButtonContent.1.png in Resources */,
+				EB6054D128AFA166006AFE77 /* testStart.1.png in Resources */,
+				EB6054D228AFA166006AFE77 /* testDynamicHeight.1.png in Resources */,
+				EB6054D728AFA166006AFE77 /* testMargins.1.png in Resources */,
+				EB6054CC28AFA166006AFE77 /* testHalfWidth.1.png in Resources */,
+				EB6054C928AFA166006AFE77 /* testNonEqualTwo.1.png in Resources */,
+				EB6054CD28AFA166006AFE77 /* testHalfHeight.1.png in Resources */,
+				EB6054D328AFA166006AFE77 /* testPadding.1.png in Resources */,
+				EB6054CA28AFA166006AFE77 /* testEqual.1.png in Resources */,
+				EB6054CF28AFA166006AFE77 /* testCenter.1.png in Resources */,
+				EB6054C728AFA166006AFE77 /* testTextContent.1.png in Resources */,
+				EB6054CB28AFA166006AFE77 /* testNonEqual.1.png in Resources */,
+				EB6054C828AFA166006AFE77 /* testTextContentMaxHeight.1.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB6054DA28AFA183006AFE77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB6054E828AFA1A5006AFE77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB6054F428AFA1A5006AFE77 /* Preview Assets.xcassets in Resources */,
+				EB6054F128AFA1A5006AFE77 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB60552128AFA272006AFE77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB60546828AFA146006AFE77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB60548828AFA162006AFE77 /* InOutMutable.swift in Sources */,
+				EB60549028AFA162006AFE77 /* HostingView.swift in Sources */,
+				EB60548A28AFA162006AFE77 /* Size.swift in Sources */,
+				EB60548B28AFA162006AFE77 /* Edges.swift in Sources */,
+				EB60548F28AFA162006AFE77 /* FlexView.swift in Sources */,
+				EB60548928AFA162006AFE77 /* Helpers.swift in Sources */,
+				EB60548C28AFA162006AFE77 /* Style.swift in Sources */,
+				EB60548D28AFA162006AFE77 /* Layout.swift in Sources */,
+				EB60548E28AFA162006AFE77 /* Node.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB6054D828AFA183006AFE77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB6054FA28AFA1BE006AFE77 /* FlexDirectionTests.swift in Sources */,
+				EB6054FF28AFA1BE006AFE77 /* FlexTextTests.swift in Sources */,
+				EB6054FB28AFA1BE006AFE77 /* FlexGrowTests.swift in Sources */,
+				EB60550128AFA1BE006AFE77 /* FlexSizeTests.swift in Sources */,
+				EB60550028AFA1BE006AFE77 /* FlexMarginTests.swift in Sources */,
+				EB6054FD28AFA1BE006AFE77 /* FlexButtonTests.swift in Sources */,
+				EB60550228AFA1BE006AFE77 /* FlexPaddingTests.swift in Sources */,
+				EB6054FE28AFA1BE006AFE77 /* Inspection.swift in Sources */,
+				EB60550428AFA1BE006AFE77 /* FlexJustifyContentTests.swift in Sources */,
+				EB60550328AFA1BE006AFE77 /* FlexDynamicSizingTests.swift in Sources */,
+				EB6054FC28AFA1BE006AFE77 /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB6054E628AFA1A5006AFE77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB6054ED28AFA1A5006AFE77 /* DemoApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB60551F28AFA272006AFE77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB60553028AFA280006AFE77 /* NodeImpl.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EB6054E228AFA183006AFE77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = EB60546B28AFA146006AFE77 /* FlexboxSwiftUI */;
+			targetProxy = EB6054E128AFA183006AFE77 /* PBXContainerItemProxy */;
+		};
+		EB6054F928AFA1B0006AFE77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB6054E928AFA1A5006AFE77 /* Demo */;
+			targetProxy = EB6054F828AFA1B0006AFE77 /* PBXContainerItemProxy */;
+		};
+		EB60552828AFA272006AFE77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB60552228AFA272006AFE77 /* FlexboxSwiftUIObjC */;
+			targetProxy = EB60552728AFA272006AFE77 /* PBXContainerItemProxy */;
+		};
+		EB60553828AFA35E006AFE77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB60552228AFA272006AFE77 /* FlexboxSwiftUIObjC */;
+			targetProxy = EB60553728AFA35E006AFE77 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EB60547128AFA146006AFE77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EB60547228AFA146006AFE77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EB60547428AFA146006AFE77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.FlexboxSwiftUI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB60547528AFA146006AFE77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.FlexboxSwiftUI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EB6054E428AFA183006AFE77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.FlexboxSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
+			};
+			name = Debug;
+		};
+		EB6054E528AFA183006AFE77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.FlexboxSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
+			};
+			name = Release;
+		};
+		EB6054F628AFA1A5006AFE77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Demo/Preview Content\"";
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB6054F728AFA1A5006AFE77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Demo/Preview Content\"";
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EB60552C28AFA272006AFE77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.FlexboxSwiftUIObjC;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB60552D28AFA272006AFE77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.FlexboxSwiftUIObjC;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB60546628AFA146006AFE77 /* Build configuration list for PBXProject "FlexboxSwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB60547128AFA146006AFE77 /* Debug */,
+				EB60547228AFA146006AFE77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB60547328AFA146006AFE77 /* Build configuration list for PBXNativeTarget "FlexboxSwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB60547428AFA146006AFE77 /* Debug */,
+				EB60547528AFA146006AFE77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB6054E328AFA183006AFE77 /* Build configuration list for PBXNativeTarget "FlexboxSwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB6054E428AFA183006AFE77 /* Debug */,
+				EB6054E528AFA183006AFE77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB6054F528AFA1A5006AFE77 /* Build configuration list for PBXNativeTarget "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB6054F628AFA1A5006AFE77 /* Debug */,
+				EB6054F728AFA1A5006AFE77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB60552B28AFA272006AFE77 /* Build configuration list for PBXNativeTarget "FlexboxSwiftUIObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB60552C28AFA272006AFE77 /* Debug */,
+				EB60552D28AFA272006AFE77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EB60550528AFA1DC006AFE77 /* XCRemoteSwiftPackageReference "yoga" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ZupIT/yoga";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		EB60550828AFA1EA006AFE77 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		EB60550B28AFA1F4006AFE77 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EB60550628AFA1DC006AFE77 /* YogaKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB60550528AFA1DC006AFE77 /* XCRemoteSwiftPackageReference "yoga" */;
+			productName = YogaKit;
+		};
+		EB60550F28AFA212006AFE77 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB60550B28AFA1F4006AFE77 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+		EB60551128AFA214006AFE77 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB60550828AFA1EA006AFE77 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+		EB60553228AFA2A0006AFE77 /* YogaKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB60550528AFA1DC006AFE77 /* XCRemoteSwiftPackageReference "yoga" */;
+			productName = YogaKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = EB60546328AFA146006AFE77 /* Project object */;
+}
