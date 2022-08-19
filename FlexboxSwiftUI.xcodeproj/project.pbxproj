@@ -131,7 +131,6 @@
 		EB60548128AFA162006AFE77 /* HostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostingView.swift; sourceTree = "<group>"; };
 		EB60548328AFA162006AFE77 /* NodeImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeImpl.h; sourceTree = "<group>"; };
 		EB60548528AFA162006AFE77 /* FlexboxSwiftUIObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexboxSwiftUIObjC.h; sourceTree = "<group>"; };
-		EB60548628AFA162006AFE77 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		EB60548728AFA162006AFE77 /* NodeImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeImpl.m; sourceTree = "<group>"; };
 		EB60549628AFA166006AFE77 /* FlexSizeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexSizeTests.swift; sourceTree = "<group>"; };
 		EB60549728AFA166006AFE77 /* FlexJustifyContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexJustifyContentTests.swift; sourceTree = "<group>"; };
@@ -269,7 +268,6 @@
 			children = (
 				EB60548328AFA162006AFE77 /* NodeImpl.h */,
 				EB60548528AFA162006AFE77 /* FlexboxSwiftUIObjC.h */,
-				EB60548628AFA162006AFE77 /* module.modulemap */,
 				EB60548728AFA162006AFE77 /* NodeImpl.m */,
 			);
 			path = FlexboxSwiftUIObjC;
