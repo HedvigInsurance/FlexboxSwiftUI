@@ -78,10 +78,8 @@ public struct Node
 
     /// facebook/yoga implementation that mostly works as same as `padding`.
     public var border: Edges
-
-    public var measure: ((CGSize) -> CGSize)?
     
-    public var view: AnyView?
+    public var view: FlexChild?
 
     /// - Note: See `gYGNodeDefaults.style`.
     public init(
@@ -111,11 +109,8 @@ public struct Node
         margin: Edges = .undefined,
         padding: Edges = .undefined,
         border: Edges = .undefined,
-
-        measure: ((CGSize) -> CGSize)? = nil,
         
-        view: AnyView? = nil
-
+        view: FlexChild? = nil
     )
             
     {
@@ -145,16 +140,18 @@ public struct Node
         self.margin = margin
         self.padding = padding
         self.border = border
-
-        self.measure = measure
         
         self.view = view
     }
 
     /// Lay out the receiver and all its children with an optional `maxSize`.
-    public func layout(maxSize: CGSize? = nil) -> Layout
+    func layout(
+        maxSize: CGSize? = nil,
+        store: HostingViewStore
+    ) -> Layout
     {
-        let node = _createUnderlyingNode()
+        let node = _createUnderlyingNode(store: store)
+        
         if let maxSize = maxSize {
             node.layout(withMaxSize: maxSize)
         } else {
@@ -175,11 +172,12 @@ public struct Node
         }
 
         let children = createLayoutsFromChildren(node)
+        
         return Layout(frame: node.frame, padding: node.padding, children: children, view: self.view)
     }
 
     // MARK: Private
-    private func _createUnderlyingNode() -> NodeImpl
+    private func _createUnderlyingNode(store: HostingViewStore) -> NodeImpl
     {
         let node = NodeImpl()
         
@@ -209,18 +207,16 @@ public struct Node
         border.applyToNode(node, kind: .border)
 
         if let view = self.view {
+            let hostingView = store.getOrCreate(view)
+
             node.measure = { suggestedSize, widthMode, heightMode in
                 let constrainedWidth = widthMode == .undefined ?
-                    CGFloat.greatestFiniteMagnitude
+                UIView.layoutFittingExpandedSize.width
                     : suggestedSize.width
                 let constrainedHeight = heightMode == .undefined ?
-                    CGFloat.greatestFiniteMagnitude
+                UIView.layoutFittingExpandedSize.height
                     : suggestedSize.width
-                
-                let hostingView = HostingView(
-                    rootView: view
-                )
-                
+                                            
                 func sanitize(constrainedSize: CGFloat, measuredSize: CGFloat, mode: YGMeasureMode) -> CGFloat {
                     if mode == .exactly {
                         return constrainedSize
@@ -230,8 +226,8 @@ public struct Node
                         return measuredSize
                     }
                 }
-               
-                let sizeThatFits = hostingView.sizeThatFits(
+                
+                let sizeThatFits = hostingView.systemLayoutSizeFitting(
                     CGSize(width: constrainedWidth, height: constrainedHeight)
                 )
                 
@@ -256,7 +252,7 @@ public struct Node
             node.children = []
         }
         else {
-            node.children = children.map { $0._createUnderlyingNode() }
+            node.children = children.map { $0._createUnderlyingNode(store: store) }
         }
 
         return node

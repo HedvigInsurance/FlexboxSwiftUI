@@ -11,11 +11,11 @@ import SwiftUI
 import UIKit
 
 class HostingView<Content: View>: UIView {
-    let rootViewHostingController: AdjustableHostingController<AnyView>
+    var rootViewHostingController: AdjustableHostingController<AnyView>
 
     public var swiftUIRootView: Content {
         didSet {
-            self.rootViewHostingController.rootView = AnyView(swiftUIRootView.edgesIgnoringSafeArea(.all))
+            self.rootViewHostingController.rootView = AnyView(swiftUIRootView)
         }
     }
 
@@ -23,25 +23,22 @@ class HostingView<Content: View>: UIView {
         rootView: Content
     ) {
         self.swiftUIRootView = rootView
-        self.rootViewHostingController = .init(rootView: AnyView(rootView.edgesIgnoringSafeArea(.all)))
+        self.rootViewHostingController = .init(
+            rootView: AnyView(rootView)
+        )
 
         super.init(frame: .zero)
 
         rootViewHostingController.view.backgroundColor = .clear
 
-        addSubview(rootViewHostingController.view)
-
-        let superView = rootViewHostingController.view.superview!
-
-        rootViewHostingController.view.translatesAutoresizingMaskIntoConstraints = false
-
-        rootViewHostingController.view.topAnchor.constraint(equalTo: superView.topAnchor, constant: 0).isActive = true
-        rootViewHostingController.view.bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: 0).isActive =
-            true
-        rootViewHostingController.view.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: 0).isActive =
-            true
-        rootViewHostingController.view.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: 0)
-            .isActive = true
+        addSubview(rootViewHostingController.view)                
+        self.backgroundColor = UIColor.clear
+    }
+    
+    override var frame: CGRect {
+        didSet {
+            rootViewHostingController.view.frame = frame
+        }
     }
 
     public override func willMove(toSuperview newSuperview: UIView?) {
@@ -59,19 +56,11 @@ class HostingView<Content: View>: UIView {
     }
 
     public override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
-        rootViewHostingController.view.sizeThatFits(targetSize)
+        rootViewHostingController.view.systemLayoutSizeFitting(targetSize)
     }
 
     public override var intrinsicContentSize: CGSize {
-        if let superview = superview {
-            if let scrollView = superview as? UIScrollView {
-                return rootViewHostingController.view.sizeThatFits(scrollView.contentSize)
-            }
-
-            return rootViewHostingController.view.sizeThatFits(.zero)
-        } else {
-            return rootViewHostingController.view.sizeThatFits(.zero)
-        }
+        return rootViewHostingController.view.intrinsicContentSize
     }
 
     override open func systemLayoutSizeFitting(
@@ -91,11 +80,7 @@ class HostingView<Content: View>: UIView {
     }
 
     override open func sizeToFit() {
-        if let superview = superview {
-            frame.size = rootViewHostingController.sizeThatFits(in: superview.frame.size)
-        } else {
-            frame.size = rootViewHostingController.sizeThatFits(in: .zero)
-        }
+        frame.size = rootViewHostingController.sizeThatFits(in: .zero)
     }
 }
 
@@ -104,7 +89,6 @@ class AdjustableHostingController<Content: View>: UIHostingController<Content> {
         rootView: Content
     ) {
         super.init(rootView: rootView)
-
         view.backgroundColor = .clear
     }
 
@@ -113,10 +97,6 @@ class AdjustableHostingController<Content: View>: UIHostingController<Content> {
     ) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    public override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        self.view.invalidateIntrinsicContentSize()
-    }
+    
+    var previousSize: CGSize = .zero
 }

@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) CGSize (^measure)(CGSize size, YGMeasureMode widthMode, YGMeasureMode heightMode);
 
+- (void)markDirty;
+
 - (void)layout;
 
 - (void)layoutWithMaxSize:(CGSize)maxSize;

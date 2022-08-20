@@ -26,12 +26,12 @@ class FlexTextTests: XCTestCase {
                     Node(
                         size: Size(width: .percent(50), height: .auto),
                         flexGrow: 1,
-                        view: AnyView(Text(loremIpsum))
+                        view: FlexChild(Text(loremIpsum))
                     ),
                     Node(
                         size: Size(width: .percent(50), height: .auto),
                         flexGrow: 1,
-                        view: AnyView(Text(loremIpsum))
+                        view: FlexChild(Text(loremIpsum))
                     ),
                 ],
                 flexDirection: .row
@@ -49,7 +49,7 @@ class FlexTextTests: XCTestCase {
                     Node(
                         maxSize: Size(width: .auto, height: .fixed(30)),
                         flexGrow: 1,
-                        view: AnyView(Text(loremIpsum))
+                        view: FlexChild(Text(loremIpsum))
                     ),
                 ],
                 flexDirection: .row

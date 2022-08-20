@@ -16,13 +16,13 @@ public struct Layout
     public let frame: CGRect
     public let padding: UIEdgeInsets
     public let children: [Layout]
-    public let view: AnyView?
+    public let view: FlexChild?
 
     internal init(
         frame: CGRect,
         padding: UIEdgeInsets,
         children: [Layout],
-        view: AnyView?
+        view: FlexChild?
     )
     {
         self.frame = frame

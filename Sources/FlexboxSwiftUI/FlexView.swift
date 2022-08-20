@@ -34,17 +34,39 @@ struct LayoutViewModifier: ViewModifier {
     }
 }
 
+struct HostedChild: UIViewRepresentable {
+    var store: HostingViewStore
+    var layout: Layout
+    var child: FlexChild
+    
+    func makeUIView(context: Context) -> some UIView {
+        store.views[child]!.swiftUIRootView = AnyView(
+            child.view.modifier(TransferEnvironment(environment: context.environment))
+        )
+        
+        return store.views[child]!.rootViewHostingController.view
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {}
+}
+
 struct LayoutRenderer: View {
+    var store: HostingViewStore
     var layout: Layout
     var applyPosition: Bool
     
     var body: some View {
-        ZStack {
+        return ZStack {
             if let view = layout.view {
-                view
+                HostedChild(store: store, layout: layout, child: view).environment(\.withFlexAnimation) { animation, body in
+                    withAnimation(animation) {
+                        store.forceUpdate()
+                        body()
+                    }
+                }
             } else {
                 ForEach(Array(layout.children.enumerated()), id: \.offset) { offset, childLayout in
-                    LayoutRenderer(layout: childLayout, applyPosition: true)
+                    LayoutRenderer(store: store, layout: childLayout, applyPosition: true)
                 }
             }
         }
@@ -54,32 +76,49 @@ struct LayoutRenderer: View {
 
 
 public struct FlexView: View {
-    var node: Node
+    @StateObject var store: HostingViewStore
     
     public init(node: Node) {
-        self.node = node
+        self._store = StateObject(wrappedValue: HostingViewStore(node: node))
     }
-    
-    @State var maxSize: CGSize? = nil
     
     func readMaxSize(_ proxy: GeometryProxy) -> some View {
         DispatchQueue.main.async {
-            self.maxSize = proxy.size
+            store.setMaxSize(CGSize(
+                width: proxy.size.width == 0 ? .nan : min(proxy.size.width, store.screenMaxWidth),
+                height: .nan
+            ))
         }
         
-        return Color.clear
+        return ZStack {
+            Color.clear
+        }
     }
     
     public var body: some View {
-        let layout = node.layout(maxSize: maxSize)
+        let layout = store.node.layout(
+            maxSize: store.maxSize,
+            store: store
+        )
+        
+        print(store.count)
+        
+        if #available(iOS 15.0, *) {
+            print(Self._printChanges())
+        }
         
         return ZStack {
-            // Read max available intrinsic size
-            Color.clear.background(GeometryReader(content: readMaxSize))
+            Color.clear
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(GeometryReader(content: readMaxSize))
             
-            if maxSize != nil {
-                LayoutRenderer(layout: layout, applyPosition: false)
+            ZStack {
+                LayoutRenderer(store: store, layout: layout, applyPosition: false)
             }
+        }
+        .frame(maxWidth: store.screenMaxWidth)
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+            store.screenMaxWidth = UIScreen.main.bounds.width
         }
     }
 }

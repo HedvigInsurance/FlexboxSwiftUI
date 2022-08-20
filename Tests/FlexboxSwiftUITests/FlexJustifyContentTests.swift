@@ -18,7 +18,7 @@ class FlexJustifyContentTests: XCTestCase {
                 children: [
                     Node(
                         size: Size(width: .percent(20), height: .percent(100)),
-                        view: AnyView(Color.red)
+                        view: FlexChild(Color.red)
                     )
                 ],
                 justifyContent: .center
@@ -35,7 +35,7 @@ class FlexJustifyContentTests: XCTestCase {
                 children: [
                     Node(
                         size: Size(width: .percent(20), height: .percent(100)),
-                        view: AnyView(Color.red)
+                        view: FlexChild(Color.red)
                     )
                 ],
                 justifyContent: .flexStart
@@ -52,7 +52,7 @@ class FlexJustifyContentTests: XCTestCase {
                 children: [
                     Node(
                         size: Size(width: .percent(20), height: .percent(100)),
-                        view: AnyView(Color.red)
+                        view: FlexChild(Color.red)
                     )
                 ],
                 justifyContent: .flexEnd

@@ -60,6 +60,11 @@
 		EB60553528AFA2B7006AFE77 /* FlexboxSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */; };
 		EB60553928AFA365006AFE77 /* FlexboxSwiftUIObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */; };
 		EB60553A28AFA365006AFE77 /* FlexboxSwiftUIObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EB60553D28AFAD68006AFE77 /* ViewThatChangesHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */; };
+		EB60554028AFB158006AFE77 /* HostingViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60553E28AFB138006AFE77 /* HostingViewStore.swift */; };
+		EB60554328AFB398006AFE77 /* FlexChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554128AFB35B006AFE77 /* FlexChild.swift */; };
+		EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554428B00B68006AFE77 /* FlexAnimation.swift */; };
+		EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554728B00E15006AFE77 /* TransferEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +171,11 @@
 		EB6054F028AFA1A5006AFE77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB6054F328AFA1A5006AFE77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexboxSwiftUIObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewThatChangesHeight.swift; sourceTree = "<group>"; };
+		EB60553E28AFB138006AFE77 /* HostingViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingViewStore.swift; sourceTree = "<group>"; };
+		EB60554128AFB35B006AFE77 /* FlexChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexChild.swift; sourceTree = "<group>"; };
+		EB60554428B00B68006AFE77 /* FlexAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexAnimation.swift; sourceTree = "<group>"; };
+		EB60554728B00E15006AFE77 /* TransferEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +255,10 @@
 				EB60547828AFA162006AFE77 /* Utils */,
 				EB60548028AFA162006AFE77 /* FlexView.swift */,
 				EB60548128AFA162006AFE77 /* HostingView.swift */,
+				EB60553E28AFB138006AFE77 /* HostingViewStore.swift */,
+				EB60554128AFB35B006AFE77 /* FlexChild.swift */,
+				EB60554428B00B68006AFE77 /* FlexAnimation.swift */,
+				EB60554728B00E15006AFE77 /* TransferEnvironment.swift */,
 			);
 			path = FlexboxSwiftUI;
 			sourceTree = "<group>";
@@ -402,6 +416,7 @@
 				EB6054EC28AFA1A5006AFE77 /* DemoApp.swift */,
 				EB6054F028AFA1A5006AFE77 /* Assets.xcassets */,
 				EB6054F228AFA1A5006AFE77 /* Preview Content */,
+				EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -642,7 +657,11 @@
 				EB60548F28AFA162006AFE77 /* FlexView.swift in Sources */,
 				EB60548928AFA162006AFE77 /* Helpers.swift in Sources */,
 				EB60548C28AFA162006AFE77 /* Style.swift in Sources */,
+				EB60554028AFB158006AFE77 /* HostingViewStore.swift in Sources */,
 				EB60548D28AFA162006AFE77 /* Layout.swift in Sources */,
+				EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */,
+				EB60554328AFB398006AFE77 /* FlexChild.swift in Sources */,
+				EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */,
 				EB60548E28AFA162006AFE77 /* Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,6 +688,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB60553D28AFAD68006AFE77 /* ViewThatChangesHeight.swift in Sources */,
 				EB6054ED28AFA1A5006AFE77 /* DemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -841,7 +861,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -871,7 +891,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -995,6 +1015,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1023,6 +1045,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

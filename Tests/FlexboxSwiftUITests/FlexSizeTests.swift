@@ -20,7 +20,7 @@ class FlexSizeTests: XCTestCase {
                     Node(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1,
-                        view: AnyView(Color.blue)
+                        view: FlexChild(Color.blue)
                     ),
                 ]
             )
@@ -37,7 +37,7 @@ class FlexSizeTests: XCTestCase {
                     Node(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1,
-                        view: AnyView(Color.blue)
+                        view: FlexChild(Color.blue)
                     ),
                 ]
             )

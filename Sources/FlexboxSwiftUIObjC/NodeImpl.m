@@ -37,9 +37,12 @@ static void YGRemoveAllChildren(const YGNodeRef node)
 {
     self = [super init];
     if (self == nil) return nil;
-
+    
     _node = YGNodeNew();
     YGNodeSetContext(_node, (__bridge void *)self);
+    
+    YGConfigSetLogger(YGConfigGetDefault(), LogCallback);
+    //YGConfigSetPrintTreeFlag(YGConfigGetDefault(), true);
 
     return self;
 }
@@ -60,12 +63,20 @@ static void YGRemoveAllChildren(const YGNodeRef node)
     [self layoutWithMaxSize:CGSizeMake(NAN, NAN)];
 }
 
+- (void)markDirty
+{
+    YGNodeMarkDirty(_node);
+}
+
+static int LogCallback(YGConfigRef config, YGNodeRef node, YGLogLevel level, const char* format, va_list args) {
+    printf("[YOGA]: ");
+    vprintf(format, args);
+    return 0;
+}
+
 - (void)layoutWithMaxSize:(CGSize)maxSize
 {
-    YGNodeCalculateLayout(_node,
-                          maxSize.width,
-                          maxSize.height,
-                          YGNodeStyleGetDirection(_node));
+    YGNodeCalculateLayout(_node, maxSize.width, maxSize.height, YGNodeStyleGetDirection(_node));
 }
 
 - (CGRect)frame
@@ -97,7 +108,7 @@ static void YGRemoveAllChildren(const YGNodeRef node)
 - (void)setMeasure:(CGSize (^)(CGSize, YGMeasureMode, YGMeasureMode))measure
 {
     _measure = [measure copy];
-
+    
     YGNodeSetMeasureFunc(_node, (_measure != nil ? measureNode : NULL));
 }
 

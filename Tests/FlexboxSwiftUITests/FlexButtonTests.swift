@@ -19,13 +19,13 @@ class FlexButtonTests: XCTestCase {
                 children: [
                     Node(
                         flexGrow: 1,
-                        view: AnyView(Button("Some button text", action: {
+                        view: FlexChild(Button("Some button text", action: {
                             
                         }))
                     ),
                     Node(
                         flexGrow: 1,
-                        view: AnyView(Button("Some other text", action: {
+                        view: FlexChild(Button("Some other text", action: {
                             
                         }))
                     ),
