@@ -29,7 +29,7 @@ struct ShowHide: View {
                             view: FlexChild(ViewThatChangesHeight())
                         )
                     ],
-                    justifyContent: .center
+                    justifyContent: .flexStart
                 )
             )
         }

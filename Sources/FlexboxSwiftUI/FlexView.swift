@@ -20,7 +20,7 @@ struct LayoutViewModifier: ViewModifier {
         
         if applyPosition {
             paddedContent
-                .frame(width: layout.frame.width, height: layout.frame.height)
+                .frame(width: layout.frame.width, height: layout.frame.height * 2)
                 .clipped()
                 .position(
                     x: layout.frame.origin.x + (layout.frame.width / 2),
@@ -34,31 +34,84 @@ struct LayoutViewModifier: ViewModifier {
     }
 }
 
+extension UIView {
+    var parentViewController: UIViewController? {
+        // Starts from next (As we know self is not a UIViewController).
+        var parentResponder: UIResponder? = self.next
+        while parentResponder != nil {
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+            parentResponder = parentResponder?.next
+        }
+        return nil
+    }
+}
+
 struct HostedChild: UIViewRepresentable {
-    var store: HostingViewStore
+    @EnvironmentObject var store: HostingViewStore
     var layout: Layout
     var child: FlexChild
     
+    class Coordinator {
+        var hostingController: UIHostingController<AnyView>
+        var hasAddedChildController = false
+        
+        func addChildController(_ uiView: UIView) {
+            guard let parentController = uiView.parentViewController else {
+                return
+            }
+            
+            let requiresControllerMove = hostingController.parent != parentController
+            if requiresControllerMove {
+                parentController.addChild(hostingController)
+            }
+
+            if requiresControllerMove {
+                hostingController.didMove(toParent: parentController)
+            }
+        }
+        
+        init(hostingController: UIHostingController<AnyView>) {
+            self.hostingController = hostingController
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(hostingController: store.views[child]!.rootViewHostingController)
+    }
+    
     func makeUIView(context: Context) -> some UIView {
         store.views[child]!.swiftUIRootView = AnyView(
-            child.view.modifier(TransferEnvironment(environment: context.environment))
+            child.view.modifier(
+                TransferEnvironment(environment: context.environment)
+            )
         )
         
-        return store.views[child]!.rootViewHostingController.view
+        let view = store.views[child]!.rootViewHostingController.view!
+        
+        DispatchQueue.main.async {
+            context.coordinator.addChildController(view.superview!)
+        }
+        
+        return view
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {}
 }
 
 struct LayoutRenderer: View {
-    var store: HostingViewStore
+    @EnvironmentObject var store: HostingViewStore
     var layout: Layout
     var applyPosition: Bool
     
     var body: some View {
         return ZStack {
             if let view = layout.view {
-                HostedChild(store: store, layout: layout, child: view).environment(\.withFlexAnimation) { animation, body in
+                HostedChild(
+                    layout: layout,
+                    child: view
+                ).environment(\.withFlexAnimation) { animation, body in
                     withAnimation(animation) {
                         store.forceUpdate()
                         body()
@@ -66,7 +119,7 @@ struct LayoutRenderer: View {
                 }
             } else {
                 ForEach(Array(layout.children.enumerated()), id: \.offset) { offset, childLayout in
-                    LayoutRenderer(store: store, layout: childLayout, applyPosition: true)
+                    LayoutRenderer(layout: childLayout, applyPosition: true)
                 }
             }
         }
@@ -78,8 +131,11 @@ struct LayoutRenderer: View {
 public struct FlexView: View {
     @StateObject var store: HostingViewStore
     
+    var node: Node
+    
     public init(node: Node) {
-        self._store = StateObject(wrappedValue: HostingViewStore(node: node))
+        self.node = node
+        self._store = StateObject(wrappedValue: HostingViewStore())
     }
     
     func readMaxSize(_ proxy: GeometryProxy) -> some View {
@@ -96,25 +152,18 @@ public struct FlexView: View {
     }
     
     public var body: some View {
-        let layout = store.node.layout(
+        let layout = node.layout(
             maxSize: store.maxSize,
             store: store
         )
-        
-        print(store.count)
-        
-        if #available(iOS 15.0, *) {
-            print(Self._printChanges())
-        }
         
         return ZStack {
             Color.clear
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(GeometryReader(content: readMaxSize))
             
-            ZStack {
-                LayoutRenderer(store: store, layout: layout, applyPosition: false)
-            }
+            LayoutRenderer(layout: layout, applyPosition: false)
+                .environmentObject(store)
         }
         .frame(maxWidth: store.screenMaxWidth)
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
