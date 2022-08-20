@@ -6,33 +6,46 @@
 //
 
 import Foundation
-import XCTest
-@testable import FlexboxSwiftUI
-import SwiftUI
 import SnapshotTesting
+import SwiftUI
+import XCTest
+
+@testable import FlexboxSwiftUI
 
 class FlexButtonTests: XCTestCase {
     func testButtonContent() {
-        let exp = assertFlexView(FlexView(
-            node: Node(
-                size: Size(width: .percent(100), height: .percent(100)),
-                children: [
-                    Node(
-                        flexGrow: 1,
-                        view: FlexChild(Button("Some button text", action: {
-                            
-                        }))
-                    ),
-                    Node(
-                        flexGrow: 1,
-                        view: FlexChild(Button("Some other text", action: {
-                            
-                        }))
-                    ),
-                ]
+        let exp = assertFlexView(
+            FlexView(
+                node: Node(
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    children: [
+                        Node(
+                            flexGrow: 1,
+                            view: FlexChild(
+                                Button(
+                                    "Some button text",
+                                    action: {
+
+                                    }
+                                )
+                            )
+                        ),
+                        Node(
+                            flexGrow: 1,
+                            view: FlexChild(
+                                Button(
+                                    "Some other text",
+                                    action: {
+
+                                    }
+                                )
+                            )
+                        ),
+                    ]
+                )
             )
-        ))
-        
+        )
+
         wait(for: [exp], timeout: 1)
     }
 }

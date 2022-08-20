@@ -6,19 +6,20 @@
 //
 
 import Foundation
+import SnapshotTesting
 import SwiftUI
 import ViewInspector
-@testable import FlexboxSwiftUI
 import XCTest
-import SnapshotTesting
+
+@testable import FlexboxSwiftUI
 
 struct InspectionEnabledView<Content: View>: View, Inspectable {
     var view: Content
     internal let inspection = Inspection<Self>()
-    
+
     var body: some View {
         view
-            .onReceive(inspection.notice) { self.inspection.visit(self, $0) } 
+            .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
 }
 
@@ -44,17 +45,17 @@ func assertFlexView(
     line: UInt = #line
 ) -> XCTestExpectation {
     let vc = UIHostingController(rootView: view.frame(size))
-    
+
     let exp = XCTestExpectation(description: "Wait for screen to render")
 
     let window: UIWindow
-    
+
     if let size = size {
         window = UIWindow(frame: .init(origin: .zero, size: size))
     } else {
         window = UIWindow(frame: UIScreen.main.bounds)
     }
-    
+
     window.rootViewController = vc
     window.makeKeyAndVisible()
     window.layoutIfNeeded()

@@ -5,8 +5,8 @@
 //  Created by Sam Pettersson on 2022-08-18.
 //
 
-import Foundation
 import Combine
+import Foundation
 import SwiftUI
 import ViewInspector
 
@@ -22,4 +22,4 @@ internal final class Inspection<V> {
     }
 }
 
-extension Inspection: InspectionEmissary { }
+extension Inspection: InspectionEmissary {}

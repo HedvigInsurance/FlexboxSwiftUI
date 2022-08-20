@@ -5,10 +5,10 @@
 //  Created by Sam Pettersson on 2022-08-18.
 //
 
+import FlexboxSwiftUIObjC
 import Foundation
 import UIKit
 import YogaKit
-import FlexboxSwiftUIObjC
 
 public enum EdgeKind {
     case margin
@@ -18,8 +18,7 @@ public enum EdgeKind {
 }
 
 /// Container for 4-direction `SizeType` values.
-public struct Edges: Equatable
-{
+public struct Edges: Equatable {
     public let leading: SizeType
     public let trailing: SizeType
     public let top: SizeType
@@ -36,11 +35,11 @@ public struct Edges: Equatable
         self.top = top
         self.bottom = bottom
     }
-    
+
     public static var undefined: Edges {
         .init()
     }
-    
+
     func applyToNode(_ node: NodeImpl, kind: EdgeKind) {
         switch kind {
         case .margin:
@@ -54,7 +53,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch trailing {
             case .fixed(let fixed):
                 YGNodeStyleSetMargin(node.node, YGEdge.right, Float(fixed))
@@ -65,7 +64,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch top {
             case .fixed(let fixed):
                 YGNodeStyleSetMargin(node.node, YGEdge.top, Float(fixed))
@@ -76,7 +75,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch bottom {
             case .fixed(let fixed):
                 YGNodeStyleSetMargin(node.node, YGEdge.bottom, Float(fixed))
@@ -94,11 +93,11 @@ public struct Edges: Equatable
             case .percent(let percent):
                 YGNodeStyleSetPositionPercent(node.node, YGEdge.left, Float(percent))
             case .auto:
-               break
+                break
             case .undefined:
                 break
             }
-            
+
             switch trailing {
             case .fixed(let fixed):
                 YGNodeStyleSetPosition(node.node, YGEdge.right, Float(fixed))
@@ -109,7 +108,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch top {
             case .fixed(let fixed):
                 YGNodeStyleSetPosition(node.node, YGEdge.top, Float(fixed))
@@ -120,7 +119,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch bottom {
             case .fixed(let fixed):
                 YGNodeStyleSetPosition(node.node, YGEdge.bottom, Float(fixed))
@@ -142,7 +141,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch trailing {
             case .fixed(let fixed):
                 YGNodeStyleSetPadding(node.node, YGEdge.right, Float(fixed))
@@ -153,7 +152,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch top {
             case .fixed(let fixed):
                 YGNodeStyleSetPadding(node.node, YGEdge.top, Float(fixed))
@@ -164,7 +163,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch bottom {
             case .fixed(let fixed):
                 YGNodeStyleSetPadding(node.node, YGEdge.bottom, Float(fixed))
@@ -186,7 +185,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch trailing {
             case .fixed(let fixed):
                 YGNodeStyleSetBorder(node.node, YGEdge.right, Float(fixed))
@@ -197,7 +196,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch top {
             case .fixed(let fixed):
                 YGNodeStyleSetBorder(node.node, YGEdge.top, Float(fixed))
@@ -208,7 +207,7 @@ public struct Edges: Equatable
             case .undefined:
                 break
             }
-            
+
             switch bottom {
             case .fixed(let fixed):
                 YGNodeStyleSetBorder(node.node, YGEdge.bottom, Float(fixed))
@@ -220,6 +219,6 @@ public struct Edges: Equatable
                 break
             }
         }
-        
+
     }
 }

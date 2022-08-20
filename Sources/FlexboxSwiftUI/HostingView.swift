@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Foundation
 import SwiftUI
 import UIKit
 
@@ -31,10 +30,10 @@ class HostingView<Content: View>: UIView {
 
         rootViewHostingController.view.backgroundColor = .clear
 
-        addSubview(rootViewHostingController.view)                
+        addSubview(rootViewHostingController.view)
         self.backgroundColor = UIColor.clear
     }
-    
+
     override var frame: CGRect {
         didSet {
             rootViewHostingController.view.frame = frame
@@ -97,6 +96,6 @@ class AdjustableHostingController<Content: View>: UIHostingController<Content> {
     ) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     var previousSize: CGSize = .zero
 }

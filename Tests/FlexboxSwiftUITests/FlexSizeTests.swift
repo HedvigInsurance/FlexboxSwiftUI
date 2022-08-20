@@ -6,43 +6,48 @@
 //
 
 import Foundation
-import XCTest
-@testable import FlexboxSwiftUI
-import SwiftUI
 import SnapshotTesting
+import SwiftUI
+import XCTest
+
+@testable import FlexboxSwiftUI
 
 class FlexSizeTests: XCTestCase {
     func testHalfHeight() {
-        let exp = assertFlexView(FlexView(
-            node: Node(
-                size: Size(width: .percent(100), height: .percent(50)),
-                children: [
-                    Node(
-                        size: Size(width: .auto, height: .auto),
-                        flexGrow: 1,
-                        view: FlexChild(Color.blue)
-                    ),
-                ]
+        let exp = assertFlexView(
+            FlexView(
+                node: Node(
+                    size: Size(width: .percent(100), height: .percent(50)),
+                    children: [
+                        Node(
+                            size: Size(width: .auto, height: .auto),
+                            flexGrow: 1,
+                            view: FlexChild(Color.blue)
+                        )
+                    ]
+                )
             )
-        ))
-        
+        )
+
         wait(for: [exp], timeout: 1)
     }
 
     func testHalfWidth() {
-        let exp = assertFlexView(FlexView(
-            node: Node(
-                size: Size(width: .percent(50), height: .percent(100)),
-                children: [
-                    Node(
-                        size: Size(width: .auto, height: .auto),
-                        flexGrow: 1,
-                        view: FlexChild(Color.blue)
-                    ),
-                ]
+        let exp = assertFlexView(
+            FlexView(
+                node: Node(
+                    size: Size(width: .percent(50), height: .percent(100)),
+                    children: [
+                        Node(
+                            size: Size(width: .auto, height: .auto),
+                            flexGrow: 1,
+                            view: FlexChild(Color.blue)
+                        )
+                    ]
+                )
             )
-        ))
-        
+        )
+
         wait(for: [exp], timeout: 1)
     }
 }

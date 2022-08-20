@@ -5,17 +5,16 @@
 //  Created by Sam Pettersson on 2022-08-18.
 //
 
+import FlexboxSwiftUIObjC
 import Foundation
+import SwiftUI
 import UIKit
 import YogaKit
-import SwiftUI
-import FlexboxSwiftUIObjC
 
 /// Flexbox node.
 /// - https://www.w3.org/TR/css-flexbox/
 /// - https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout
-public struct Node
-{
+public struct Node {
     public var size: Size
     public var minSize: Size
     public var maxSize: Size
@@ -78,7 +77,7 @@ public struct Node
 
     /// facebook/yoga implementation that mostly works as same as `padding`.
     public var border: Edges
-    
+
     public var view: FlexChild?
 
     /// - Note: See `gYGNodeDefaults.style`.
@@ -96,9 +95,9 @@ public struct Node
         alignContent: Style.AlignContent = .stretch,
         alignSelf: Style.AlignSelf = .auto,
 
-        flex: CGFloat = .nan,       // CSS default = 0
-        flexGrow: CGFloat = .nan,   // CSS default = 0
-        flexShrink: CGFloat = .nan, // CSS default = 1
+        flex: CGFloat = .nan,  // CSS default = 0
+        flexGrow: CGFloat = .nan,  // CSS default = 0
+        flexShrink: CGFloat = .nan,  // CSS default = 1
         flexBasis: CGFloat = .nan,  // CSS default = .auto
 
         direction: Style.Direction = .inherit,
@@ -109,11 +108,9 @@ public struct Node
         margin: Edges = .undefined,
         padding: Edges = .undefined,
         border: Edges = .undefined,
-        
+
         view: FlexChild? = nil
-    )
-            
-    {
+    ) {
         self.size = size
         self.minSize = minSize
         self.maxSize = maxSize
@@ -140,7 +137,7 @@ public struct Node
         self.margin = margin
         self.padding = padding
         self.border = border
-        
+
         self.view = view
     }
 
@@ -148,44 +145,45 @@ public struct Node
     func layout(
         maxSize: CGSize? = nil,
         store: HostingViewStore
-    ) -> Layout
-    {
+    ) -> Layout {
         let node = _createUnderlyingNode(store: store)
-        
+
         if let maxSize = maxSize {
             node.layout(withMaxSize: maxSize)
         } else {
             node.layout()
         }
 
-        func createLayoutsFromChildren(_ node: NodeImpl) -> [Layout]
-        {
-            return node.children.enumerated().map { offset, childNode in
-                let child = childNode as! NodeImpl
-                return Layout(
-                    frame: child.frame,
-                    padding: child.padding,
-                    children: createLayoutsFromChildren(child),
-                    view: self.children[offset].view
-                )
-            }
+        func createLayoutsFromChildren(_ node: NodeImpl) -> [Layout] {
+            return node.children.enumerated()
+                .map { offset, childNode in
+                    let child = childNode as! NodeImpl
+                    return Layout(
+                        frame: child.frame,
+                        padding: child.padding,
+                        children: createLayoutsFromChildren(child),
+                        view: self.children[offset].view
+                    )
+                }
         }
 
         let children = createLayoutsFromChildren(node)
-        
+
         return Layout(frame: node.frame, padding: node.padding, children: children, view: self.view)
     }
 
     // MARK: Private
-    private func _createUnderlyingNode(store: HostingViewStore) -> NodeImpl
-    {
+    private func _createUnderlyingNode(store: HostingViewStore) -> NodeImpl {
         let node = NodeImpl()
-        
+
         size.applyToNode(node, kind: .normal)
         maxSize.applyToNode(node, kind: .max)
         minSize.applyToNode(node, kind: .min)
 
-        YGNodeStyleSetFlexDirection(node.node, YGFlexDirection(rawValue: Int32(flexDirection.rawValue))!)
+        YGNodeStyleSetFlexDirection(
+            node.node,
+            YGFlexDirection(rawValue: Int32(flexDirection.rawValue))!
+        )
         YGNodeStyleSetFlexWrap(node.node, YGWrap(rawValue: Int32(flexWrap.rawValue))!)
         YGNodeStyleSetJustifyContent(node.node, YGJustify(rawValue: Int32(justifyContent.rawValue))!)
         YGNodeStyleSetAlignContent(node.node, YGAlign(rawValue: Int32(alignContent.rawValue))!)
@@ -200,7 +198,7 @@ public struct Node
         YGNodeStyleSetDirection(node.node, YGDirection(rawValue: Int32(direction.rawValue))!)
         YGNodeStyleSetOverflow(node.node, YGOverflow(rawValue: Int32(overflow.rawValue))!)
         YGNodeStyleSetPositionType(node.node, YGPositionType(rawValue: Int32(positionType.rawValue))!)
-        
+
         position.applyToNode(node, kind: .position)
         margin.applyToNode(node, kind: .margin)
         padding.applyToNode(node, kind: .padding)
@@ -210,14 +208,22 @@ public struct Node
             let hostingView = store.getOrCreate(view)
 
             node.measure = { suggestedSize, widthMode, heightMode in
-                let constrainedWidth = widthMode == .undefined ?
-                UIView.layoutFittingExpandedSize.width
+                let constrainedWidth =
+                    widthMode == .undefined
+                    ? UIView.layoutFittingExpandedSize.width
                     : suggestedSize.width
-                let constrainedHeight = heightMode == .undefined ?
-                UIView.layoutFittingExpandedSize.height
+                let constrainedHeight =
+                    heightMode == .undefined
+                    ? UIView.layoutFittingExpandedSize.height
                     : suggestedSize.width
-                                            
-                func sanitize(constrainedSize: CGFloat, measuredSize: CGFloat, mode: YGMeasureMode) -> CGFloat {
+
+                func sanitize(
+                    constrainedSize: CGFloat,
+                    measuredSize: CGFloat,
+                    mode: YGMeasureMode
+                )
+                    -> CGFloat
+                {
                     if mode == .exactly {
                         return constrainedSize
                     } else if mode == .atMost {
@@ -226,11 +232,11 @@ public struct Node
                         return measuredSize
                     }
                 }
-                
+
                 let sizeThatFits = hostingView.systemLayoutSizeFitting(
                     CGSize(width: constrainedWidth, height: constrainedHeight)
                 )
-                
+
                 let result = CGSize(
                     width: sanitize(
                         constrainedSize: constrainedWidth,
@@ -243,15 +249,14 @@ public struct Node
                         mode: heightMode
                     )
                 )
-                                                                                            
+
                 return result
             }
 
             // Cannot add child: Nodes with measure functions cannot have children
             // (All children will be ignored).
             node.children = []
-        }
-        else {
+        } else {
             node.children = children.map { $0._createUnderlyingNode(store: store) }
         }
 
@@ -259,18 +264,14 @@ public struct Node
     }
 }
 
-extension Node: InoutMutable
-{
-    public static func emptyInit() -> Node
-    {
+extension Node: InoutMutable {
+    public static func emptyInit() -> Node {
         return self.init()
     }
 }
 
-extension Node: Equatable
-{
-    public static func == (l: Node, r: Node) -> Bool
-    {
+extension Node: Equatable {
+    public static func == (l: Node, r: Node) -> Bool {
         if l.size != r.size { return false }
         if l.minSize != r.minSize { return false }
         if l.maxSize != r.maxSize { return false }

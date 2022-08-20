@@ -5,9 +5,9 @@
 //  Created by Sam Pettersson on 2022-08-19.
 //
 
+import FlexboxSwiftUIObjC
 import Foundation
 import YogaKit
-import FlexboxSwiftUIObjC
 
 /// Size types
 public enum SizeType: Equatable {
@@ -24,14 +24,17 @@ public enum SizeKind {
 }
 
 public struct Size: Equatable {
-    public init(width: SizeType, height: SizeType) {
+    public init(
+        width: SizeType,
+        height: SizeType
+    ) {
         self.width = width
         self.height = height
     }
-    
+
     var width: SizeType
     var height: SizeType
-    
+
     func applyToNode(_ node: NodeImpl, kind: SizeKind) {
         switch kind {
         case .normal:
@@ -45,7 +48,7 @@ public struct Size: Equatable {
             case .undefined:
                 break
             }
-            
+
             switch height {
             case .fixed(let height):
                 YGNodeStyleSetHeight(node.node, Float(height))
@@ -67,7 +70,7 @@ public struct Size: Equatable {
             case .undefined:
                 break
             }
-            
+
             switch height {
             case .fixed(let height):
                 YGNodeStyleSetMaxHeight(node.node, Float(height))
@@ -89,7 +92,7 @@ public struct Size: Equatable {
             case .undefined:
                 break
             }
-            
+
             switch height {
             case .fixed(let height):
                 YGNodeStyleSetMinHeight(node.node, Float(height))

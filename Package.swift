@@ -20,20 +20,20 @@ let package = Package(
         .package(
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
             from: "1.9.0"
-        )
+        ),
     ],
     targets: [
         .target(
             name: "FlexboxSwiftUI",
             dependencies: [
                 .product(name: "YogaKit", package: "Yoga"),
-                "FlexboxSwiftUIObjC"
+                "FlexboxSwiftUIObjC",
             ]
         ),
         .target(
             name: "FlexboxSwiftUIObjC",
             dependencies: [
-                .product(name: "YogaKit", package: "Yoga"),
+                .product(name: "YogaKit", package: "Yoga")
             ],
             cxxSettings: [
                 .headerSearchPath("Sources/FlexboxSwiftUIObjC")
@@ -48,7 +48,7 @@ let package = Package(
                 .product(name: "ViewInspector", package: "ViewInspector"),
             ],
             exclude: ["__Snapshots__"]
-        )
+        ),
     ],
     cxxLanguageStandard: .cxx14
 )
