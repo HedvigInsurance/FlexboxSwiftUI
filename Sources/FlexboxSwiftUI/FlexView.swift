@@ -55,14 +55,18 @@ struct HostedChild: UIViewRepresentable {
     var child: FlexChild
 
     class Coordinator {
-        var hostingController: UIHostingController<AnyView>
+        var hostingController: AdjustableHostingController
         var hasAddedChildController = false
+        var heightConstraint: NSLayoutConstraint? = nil
+        var widthConstraint: NSLayoutConstraint? = nil
 
         func addChildController(_ uiView: UIView) {
-            guard let parentController = uiView.parentViewController else {
+            guard
+                let parentController = uiView.parentViewController
+            else {
                 return
             }
-
+            
             let requiresControllerMove = hostingController.parent != parentController
             if requiresControllerMove {
                 parentController.addChild(hostingController)
@@ -74,33 +78,37 @@ struct HostedChild: UIViewRepresentable {
         }
 
         init(
-            hostingController: UIHostingController<AnyView>
+            hostingController: AdjustableHostingController
         ) {
             self.hostingController = hostingController
         }
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(hostingController: store.views[child]!.rootViewHostingController)
+        Coordinator(hostingController: store.views[child]!)
     }
 
     func makeUIView(context: Context) -> some UIView {
-        store.views[child]!.swiftUIRootView = AnyView(
-            child.view.modifier(
-                TransferEnvironment(environment: context.environment)
-            )
-        )
+        let hostingController = store.views[child]!
+        hostingController.setEnvironment(context.environment)
+        
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = true
 
-        let view = store.views[child]!.rootViewHostingController.view!
-
-        DispatchQueue.main.async {
-            context.coordinator.addChildController(view.superview!)
-        }
-
-        return view
+        return hostingController.view
     }
 
-    func updateUIView(_ uiView: UIViewType, context: Context) {}
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        let hostingController = store.views[child]!
+        
+        let view = hostingController.view!
+        
+        DispatchQueue.main.async {
+            guard let superview = view.superview else {
+                return
+            }
+            context.coordinator.addChildController(superview)
+        }
+    }
 }
 
 struct LayoutRenderer: View {
@@ -115,12 +123,6 @@ struct LayoutRenderer: View {
                     layout: layout,
                     child: view
                 )
-                .environment(\.withFlexAnimation) { animation, body in
-                    withAnimation(animation) {
-                        store.forceUpdate()
-                        body()
-                    }
-                }
             } else {
                 ForEach(Array(layout.children.enumerated()), id: \.offset) { offset, childLayout in
                     LayoutRenderer(layout: childLayout, applyPosition: true)
@@ -140,7 +142,9 @@ public struct FlexView: View {
         node: Node
     ) {
         self.node = node
-        self._store = StateObject(wrappedValue: HostingViewStore())
+        let store = HostingViewStore()
+        store.node = node.createUnderlyingNode(store: store)
+        self._store = StateObject(wrappedValue: store)
     }
 
     func readMaxSize(_ proxy: GeometryProxy) -> some View {
@@ -160,13 +164,14 @@ public struct FlexView: View {
 
     public var body: some View {
         let layout = node.layout(
+            node: store.node!,
             maxSize: store.maxSize,
             store: store
         )
-
+        
         return ZStack {
             Color.clear
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: 10)
                 .background(GeometryReader(content: readMaxSize))
 
             LayoutRenderer(layout: layout, applyPosition: false)

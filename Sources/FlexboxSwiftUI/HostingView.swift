@@ -8,87 +8,57 @@
 import Foundation
 import SwiftUI
 import UIKit
+import FlexboxSwiftUIObjC
 
-class HostingView<Content: View>: UIView {
-    var rootViewHostingController: AdjustableHostingController<AnyView>
-
-    public var swiftUIRootView: Content {
-        didSet {
-            self.rootViewHostingController.rootView = AnyView(swiftUIRootView)
-        }
-    }
-
-    public required init(
-        rootView: Content
-    ) {
-        self.swiftUIRootView = rootView
-        self.rootViewHostingController = .init(
-            rootView: AnyView(rootView)
+class AdjustableHostingController: UIHostingController<AnyView> {
+    private var node: NodeImpl
+    private var store: HostingViewStore
+    private var content: AnyView
+    private var environment: EnvironmentValues? = nil
+    
+    func setRootView() {
+        let base = AnyView(
+            content.environment(\.markDirty) {
+                self.node.markDirty()
+                self.store.forceUpdate()
+                self.environment?.markDirty()
+            }
         )
-
-        super.init(frame: .zero)
-
-        rootViewHostingController.view.backgroundColor = .clear
-
-        addSubview(rootViewHostingController.view)
-        self.backgroundColor = UIColor.clear
-    }
-
-    override var frame: CGRect {
-        didSet {
-            rootViewHostingController.view.frame = frame
+        
+        let withEnvironment: AnyView
+        
+        if let environment = environment {
+            withEnvironment = AnyView(
+                base.modifier(TransferEnvironment(environment: environment))
+            )
+        } else {
+            withEnvironment = base
         }
-    }
-
-    public override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-    }
-
-    deinit {
-        rootViewHostingController.removeFromParent()
-    }
-
-    required init?(
-        coder: NSCoder
-    ) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    public override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
-        rootViewHostingController.view.systemLayoutSizeFitting(targetSize)
-    }
-
-    public override var intrinsicContentSize: CGSize {
-        return rootViewHostingController.view.intrinsicContentSize
-    }
-
-    override open func systemLayoutSizeFitting(
-        _ targetSize: CGSize,
-        withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
-        verticalFittingPriority: UILayoutPriority
-    ) -> CGSize {
-        rootViewHostingController.view.systemLayoutSizeFitting(
-            targetSize,
-            withHorizontalFittingPriority: horizontalFittingPriority,
-            verticalFittingPriority: verticalFittingPriority
+        
+        rootView = AnyView(
+            withEnvironment
         )
     }
-
-    override open func sizeThatFits(_ size: CGSize) -> CGSize {
-        rootViewHostingController.view.sizeThatFits(size)
+    
+    func setEnvironment(_ environment: EnvironmentValues) {
+        self.environment = environment
+        setRootView()
     }
-
-    override open func sizeToFit() {
-        frame.size = rootViewHostingController.sizeThatFits(in: .zero)
-    }
-}
-
-class AdjustableHostingController<Content: View>: UIHostingController<Content> {
-    public override init(
-        rootView: Content
+    
+    public init(
+        rootView: AnyView,
+        store: HostingViewStore,
+        node: NodeImpl
     ) {
+        self.store = store
+        self.content = rootView
+        self.node = node
         super.init(rootView: rootView)
         view.backgroundColor = .clear
+    }
+    
+    func measure(targetSize: CGSize) -> CGSize {
+        return self.view.systemLayoutSizeFitting(targetSize)
     }
 
     @MainActor @objc required dynamic init?(
@@ -96,6 +66,4 @@ class AdjustableHostingController<Content: View>: UIHostingController<Content> {
     ) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    var previousSize: CGSize = .zero
 }

@@ -143,11 +143,10 @@ public struct Node {
 
     /// Lay out the receiver and all its children with an optional `maxSize`.
     func layout(
+        node: NodeImpl,
         maxSize: CGSize? = nil,
         store: HostingViewStore
     ) -> Layout {
-        let node = _createUnderlyingNode(store: store)
-
         if let maxSize = maxSize {
             node.layout(withMaxSize: maxSize)
         } else {
@@ -172,8 +171,7 @@ public struct Node {
         return Layout(frame: node.frame, padding: node.padding, children: children, view: self.view)
     }
 
-    // MARK: Private
-    private func _createUnderlyingNode(store: HostingViewStore) -> NodeImpl {
+    public func createUnderlyingNode(store: HostingViewStore) -> NodeImpl {
         let node = NodeImpl()
 
         size.applyToNode(node, kind: .normal)
@@ -205,7 +203,7 @@ public struct Node {
         border.applyToNode(node, kind: .border)
 
         if let view = self.view {
-            let hostingView = store.getOrCreate(view)
+            let hostingView = store.add(view, node: node)
 
             node.measure = { suggestedSize, widthMode, heightMode in
                 let constrainedWidth =
@@ -232,9 +230,9 @@ public struct Node {
                         return measuredSize
                     }
                 }
-
-                let sizeThatFits = hostingView.systemLayoutSizeFitting(
-                    CGSize(width: constrainedWidth, height: constrainedHeight)
+                
+                let sizeThatFits = hostingView.measure(
+                    targetSize: CGSize(width: constrainedWidth, height: constrainedHeight)
                 )
 
                 let result = CGSize(
@@ -257,7 +255,7 @@ public struct Node {
             // (All children will be ignored).
             node.children = []
         } else {
-            node.children = children.map { $0._createUnderlyingNode(store: store) }
+            node.children = children.map { $0.createUnderlyingNode(store: store) }
         }
 
         return node

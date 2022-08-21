@@ -65,6 +65,8 @@
 		EB60554328AFB398006AFE77 /* FlexChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554128AFB35B006AFE77 /* FlexChild.swift */; };
 		EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554428B00B68006AFE77 /* FlexAnimation.swift */; };
 		EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554728B00E15006AFE77 /* TransferEnvironment.swift */; };
+		EBE2849928B0E2A80047815A /* MarkDirty.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2849828B0E2A80047815A /* MarkDirty.swift */; };
+		EBE2849B28B2194D0047815A /* FlexScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2849A28B2194D0047815A /* FlexScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +178,8 @@
 		EB60554128AFB35B006AFE77 /* FlexChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexChild.swift; sourceTree = "<group>"; };
 		EB60554428B00B68006AFE77 /* FlexAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexAnimation.swift; sourceTree = "<group>"; };
 		EB60554728B00E15006AFE77 /* TransferEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEnvironment.swift; sourceTree = "<group>"; };
+		EBE2849828B0E2A80047815A /* MarkDirty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDirty.swift; sourceTree = "<group>"; };
+		EBE2849A28B2194D0047815A /* FlexScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +263,8 @@
 				EB60554128AFB35B006AFE77 /* FlexChild.swift */,
 				EB60554428B00B68006AFE77 /* FlexAnimation.swift */,
 				EB60554728B00E15006AFE77 /* TransferEnvironment.swift */,
+				EBE2849828B0E2A80047815A /* MarkDirty.swift */,
+				EBE2849A28B2194D0047815A /* FlexScrollView.swift */,
 			);
 			path = FlexboxSwiftUI;
 			sourceTree = "<group>";
@@ -651,6 +657,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB60548828AFA162006AFE77 /* InOutMutable.swift in Sources */,
+				EBE2849928B0E2A80047815A /* MarkDirty.swift in Sources */,
 				EB60549028AFA162006AFE77 /* HostingView.swift in Sources */,
 				EB60548A28AFA162006AFE77 /* Size.swift in Sources */,
 				EB60548B28AFA162006AFE77 /* Edges.swift in Sources */,
@@ -658,6 +665,7 @@
 				EB60548928AFA162006AFE77 /* Helpers.swift in Sources */,
 				EB60548C28AFA162006AFE77 /* Style.swift in Sources */,
 				EB60554028AFB158006AFE77 /* HostingViewStore.swift in Sources */,
+				EBE2849B28B2194D0047815A /* FlexScrollView.swift in Sources */,
 				EB60548D28AFA162006AFE77 /* Layout.swift in Sources */,
 				EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */,
 				EB60554328AFB398006AFE77 /* FlexChild.swift in Sources */,

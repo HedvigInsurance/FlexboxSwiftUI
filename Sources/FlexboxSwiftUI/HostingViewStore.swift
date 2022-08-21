@@ -7,10 +7,11 @@
 
 import Foundation
 import SwiftUI
+import FlexboxSwiftUIObjC
 
-class HostingViewStore: ObservableObject {
-    var views: [FlexChild: HostingView<AnyView>] = [:]
-    var count = 0
+public class HostingViewStore: ObservableObject {
+    var node: NodeImpl? = nil
+    var views: [FlexChild: AdjustableHostingController] = [:]
 
     var maxSize: CGSize? = nil
     var screenMaxWidth: CGFloat = UIScreen.main.bounds.width
@@ -24,17 +25,16 @@ class HostingViewStore: ObservableObject {
         }
     }
 
-    func forceUpdate() {
-        self.count = self.count + 1
+    public func forceUpdate() {
         self.objectWillChange.send()
     }
 
-    func getOrCreate(_ child: FlexChild) -> HostingView<AnyView> {
-        if let hostingView = views[child] {
-            return hostingView
-        }
-
-        let hostingView = HostingView(rootView: child.view)
+    func add(_ child: FlexChild, node: NodeImpl) -> AdjustableHostingController {
+        let hostingView = AdjustableHostingController(
+            rootView: child.view,
+            store: self,
+            node: node
+        )
         views[child] = hostingView
 
         return hostingView

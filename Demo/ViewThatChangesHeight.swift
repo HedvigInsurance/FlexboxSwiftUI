@@ -10,14 +10,16 @@ import Foundation
 import SwiftUI
 
 struct ViewThatChangesHeight: View {
-    @Environment(\.withFlexAnimation) var withFlexAnimation
+    @Environment(\.markDirty) var markDirty
     @State var isOpen = false
 
     var body: some View {
         VStack {
             Button("Toggle") {
-                withFlexAnimation(Animation.spring()) {
+                //isOpen.toggle()
+                withAnimation(.easeInOut(duration: 0.5)) {
                     isOpen.toggle()
+                    markDirty()
                 }
             }
 

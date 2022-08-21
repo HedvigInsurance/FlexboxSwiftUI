@@ -18,7 +18,7 @@ struct ShowHide: View {
             ViewThatChangesHeight()
 
             Text("With flex")
-
+            
             FlexView(
                 node: Node(
                     size: Size(width: .percent(100), height: .auto),
@@ -26,7 +26,23 @@ struct ShowHide: View {
                         Node(
                             size: Size(width: .percent(100), height: .auto),
                             flexGrow: 1,
-                            view: FlexChild(ViewThatChangesHeight())
+                            view: FlexChild(VStack {
+                                
+                                FlexView(
+                                    node: Node(
+                                        size: Size(width: .percent(100), height: .auto),
+                                        children: [
+                                            Node(
+                                                size: Size(width: .percent(100), height: .auto),
+                                                flexGrow: 1,
+                                                view: FlexChild(ViewThatChangesHeight())
+                                            )
+                                        ],
+                                        justifyContent: .flexStart
+                                    )
+                                )
+                                
+                            })
                         )
                     ],
                     justifyContent: .flexStart
@@ -40,37 +56,10 @@ struct ShowHide: View {
 struct DemoApp: App {
     var body: some Scene {
         return WindowGroup {
-            ScrollView {
-                //                FlexView(
-                //                    node: Node(
-                //                        size: Size(width: .percent(100), height: .undefined),
-                //                        children: [
-                //                            Node(
-                //                                size: Size(width: .fixed(10), height: .fixed(300)),
-                //                                flexGrow: 1,
-                //                                flexShrink: 0,
-                //                                view: FlexChild(Color.red)
-                //                            ),
-                //                            Node(
-                //                                size: Size(width: .fixed(10), height: .fixed(300)),
-                //                                flexGrow: 1,
-                //                                flexShrink: 0,
-                //                                view: FlexChild(Color.blue)
-                //                            ),
-                //                            Node(
-                //                                size: Size(width: .fixed(10), height: .fixed(300)),
-                //                                flexGrow: 1,
-                //                                flexShrink: 0,
-                //                                view: FlexChild(Color.green)
-                //                            ),
-                //                        ],
-                //                        justifyContent: .center
-                //                    )
-                //                )
-
+            FlexScrollView {
                 ShowHide()
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }
