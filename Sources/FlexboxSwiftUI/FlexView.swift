@@ -18,10 +18,11 @@ struct LayoutViewModifier: ViewModifier {
             .padding(.trailing, layout.padding.right)
             .padding(.top, layout.padding.top)
             .padding(.bottom, layout.padding.bottom)
+            
 
         if applyPosition {
             paddedContent
-                .frame(width: layout.frame.width, height: layout.frame.height * 2)
+                .frame(width: layout.frame.width, height: layout.frame.height)
                 .clipped()
                 .position(
                     x: layout.frame.origin.x + (layout.frame.width / 2),
@@ -46,6 +47,43 @@ extension UIView {
             parentResponder = parentResponder?.next
         }
         return nil
+    }
+}
+
+extension UIView {
+    func constrainEdges(to other: UIView) {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            leadingAnchor.constraint(equalTo: other.leadingAnchor),
+            trailingAnchor.constraint(equalTo: other.trailingAnchor),
+            topAnchor.constraint(equalTo: other.topAnchor),
+            bottomAnchor.constraint(equalTo: other.bottomAnchor)
+        ])
+    }
+}
+
+class HostedChildViewWrapper: UIView {
+    var layout: Layout
+    
+    init(layout: Layout, hostingView: UIView) {
+        self.layout = layout
+        super.init(frame: .zero)
+        
+        self.addSubview(hostingView)
+        
+        hostingView.constrainEdges(to: self)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(
+            width: layout.frame.size.width - layout.padding.left - layout.padding.right,
+            height: layout.frame.size.height - layout.padding.top - layout.padding.bottom
+        )
     }
 }
 
@@ -88,20 +126,21 @@ struct HostedChild: UIViewRepresentable {
         Coordinator(hostingController: store.views[child]!)
     }
 
-    func makeUIView(context: Context) -> some UIView {
+    func makeUIView(context: Context) -> HostedChildViewWrapper {
         let hostingController = store.views[child]!
         hostingController.setEnvironment(context.environment)
         
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = true
-
-        return hostingController.view
+        return HostedChildViewWrapper(layout: layout, hostingView: hostingController.view)
     }
 
-    func updateUIView(_ uiView: UIViewType, context: Context) {
+    func updateUIView(_ uiView: HostedChildViewWrapper, context: Context) {
+        uiView.layout = layout
+        uiView.invalidateIntrinsicContentSize()
+        
         let hostingController = store.views[child]!
         
         let view = hostingController.view!
-        
+                
         DispatchQueue.main.async {
             guard let superview = view.superview else {
                 return
@@ -152,30 +191,30 @@ public struct FlexView: View {
             store.setMaxSize(
                 CGSize(
                     width: proxy.size.width == 0 ? .nan : min(proxy.size.width, store.screenMaxWidth),
-                    height: .nan
+                    height: node.size.height == .auto || node.size.height == .undefined ? .nan : proxy.size.height
                 )
             )
         }
 
-        return ZStack {
-            Color.clear
-        }
+        return Color.clear
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     public var body: some View {
-        let layout = node.layout(
-            node: store.node!,
-            maxSize: store.maxSize,
-            store: store
-        )
-        
         return ZStack {
             Color.clear
-                .frame(maxWidth: .infinity, maxHeight: 10)
                 .background(GeometryReader(content: readMaxSize))
-
-            LayoutRenderer(layout: layout, applyPosition: false)
-                .environmentObject(store)
+            
+            if let maxSize = store.maxSize {
+                let layout = node.layout(
+                    node: store.node!,
+                    maxSize: maxSize,
+                    store: store
+                )
+                
+                LayoutRenderer(layout: layout, applyPosition: false)
+                    .environmentObject(store)
+            }
         }
         .frame(maxWidth: store.screenMaxWidth)
         .onReceive(

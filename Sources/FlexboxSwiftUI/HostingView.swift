@@ -16,13 +16,25 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     private var content: AnyView
     private var environment: EnvironmentValues? = nil
     
+    func updateViewIntrinsic(_ proxy: GeometryProxy) -> some View {
+        self.node.markDirty()
+        
+        DispatchQueue.main.async {
+            self.store.forceUpdate()
+        }
+                
+        return Color.clear
+    }
+    
     func setRootView() {
         let base = AnyView(
             content.environment(\.markDirty) {
                 self.node.markDirty()
                 self.store.forceUpdate()
                 self.environment?.markDirty()
-            }
+            }.background(GeometryReader { proxy in
+                self.updateViewIntrinsic(proxy)
+            })
         )
         
         let withEnvironment: AnyView
@@ -58,7 +70,7 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     }
     
     func measure(targetSize: CGSize) -> CGSize {
-        return self.view.systemLayoutSizeFitting(targetSize)
+        return self.view.sizeThatFits(targetSize)
     }
 
     @MainActor @objc required dynamic init?(

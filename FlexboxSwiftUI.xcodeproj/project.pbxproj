@@ -16,23 +16,6 @@
 		EB60548E28AFA162006AFE77 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547F28AFA162006AFE77 /* Node.swift */; };
 		EB60548F28AFA162006AFE77 /* FlexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60548028AFA162006AFE77 /* FlexView.swift */; };
 		EB60549028AFA162006AFE77 /* HostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60548128AFA162006AFE77 /* HostingView.swift */; };
-		EB6054C728AFA166006AFE77 /* testTextContent.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054A328AFA166006AFE77 /* testTextContent.1.png */; };
-		EB6054C828AFA166006AFE77 /* testTextContentMaxHeight.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054A428AFA166006AFE77 /* testTextContentMaxHeight.1.png */; };
-		EB6054C928AFA166006AFE77 /* testNonEqualTwo.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054A628AFA166006AFE77 /* testNonEqualTwo.1.png */; };
-		EB6054CA28AFA166006AFE77 /* testEqual.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054A728AFA166006AFE77 /* testEqual.1.png */; };
-		EB6054CB28AFA166006AFE77 /* testNonEqual.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054A828AFA166006AFE77 /* testNonEqual.1.png */; };
-		EB6054CC28AFA166006AFE77 /* testHalfWidth.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054AA28AFA166006AFE77 /* testHalfWidth.1.png */; };
-		EB6054CD28AFA166006AFE77 /* testHalfHeight.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054AB28AFA166006AFE77 /* testHalfHeight.1.png */; };
-		EB6054CE28AFA166006AFE77 /* testButtonContent.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054AD28AFA166006AFE77 /* testButtonContent.1.png */; };
-		EB6054CF28AFA166006AFE77 /* testCenter.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054AF28AFA166006AFE77 /* testCenter.1.png */; };
-		EB6054D028AFA166006AFE77 /* testEnd.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B028AFA166006AFE77 /* testEnd.1.png */; };
-		EB6054D128AFA166006AFE77 /* testStart.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B128AFA166006AFE77 /* testStart.1.png */; };
-		EB6054D228AFA166006AFE77 /* testDynamicHeight.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B328AFA166006AFE77 /* testDynamicHeight.1.png */; };
-		EB6054D328AFA166006AFE77 /* testPadding.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B528AFA166006AFE77 /* testPadding.1.png */; };
-		EB6054D428AFA166006AFE77 /* testRow.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B728AFA166006AFE77 /* testRow.1.png */; };
-		EB6054D528AFA166006AFE77 /* testColumnJustify.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B828AFA166006AFE77 /* testColumnJustify.1.png */; };
-		EB6054D628AFA166006AFE77 /* testColumn.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054B928AFA166006AFE77 /* testColumn.1.png */; };
-		EB6054D728AFA166006AFE77 /* testMargins.1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6054BB28AFA166006AFE77 /* testMargins.1.png */; };
 		EB6054E028AFA183006AFE77 /* FlexboxSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */; platformFilter = ios; };
 		EB6054ED28AFA1A5006AFE77 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6054EC28AFA1A5006AFE77 /* DemoApp.swift */; };
 		EB6054F128AFA1A5006AFE77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB6054F028AFA1A5006AFE77 /* Assets.xcassets */; };
@@ -65,8 +48,13 @@
 		EB60554328AFB398006AFE77 /* FlexChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554128AFB35B006AFE77 /* FlexChild.swift */; };
 		EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554428B00B68006AFE77 /* FlexAnimation.swift */; };
 		EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554728B00E15006AFE77 /* TransferEnvironment.swift */; };
+		EB93F78A28B37C8D00867768 /* DemoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93F78928B37C8D00867768 /* DemoScreen.swift */; };
+		EB93F78C28B382E000867768 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93F78B28B382E000867768 /* Padding.swift */; };
 		EBE2849928B0E2A80047815A /* MarkDirty.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2849828B0E2A80047815A /* MarkDirty.swift */; };
-		EBE2849B28B2194D0047815A /* FlexScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2849A28B2194D0047815A /* FlexScrollView.swift */; };
+		EBE887D228B3738C006F7EB0 /* JustifyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE887D128B3738C006F7EB0 /* JustifyContent.swift */; };
+		EBE887D428B3760A006F7EB0 /* FillMaxAvailableHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE887D328B3760A006F7EB0 /* FillMaxAvailableHeight.swift */; };
+		EBE887D628B3780B006F7EB0 /* DynamicHeightText.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE887D528B3780B006F7EB0 /* DynamicHeightText.swift */; };
+		EBE887D828B37B15006F7EB0 /* AnimatedHeightChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE887D728B37B15006F7EB0 /* AnimatedHeightChange.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,23 +138,6 @@
 		EB60549E28AFA166006AFE77 /* FlexGrowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexGrowTests.swift; sourceTree = "<group>"; };
 		EB60549F28AFA166006AFE77 /* FlexButtonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexButtonTests.swift; sourceTree = "<group>"; };
 		EB6054A028AFA166006AFE77 /* FlexTextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexTextTests.swift; sourceTree = "<group>"; };
-		EB6054A328AFA166006AFE77 /* testTextContent.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testTextContent.1.png; sourceTree = "<group>"; };
-		EB6054A428AFA166006AFE77 /* testTextContentMaxHeight.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testTextContentMaxHeight.1.png; sourceTree = "<group>"; };
-		EB6054A628AFA166006AFE77 /* testNonEqualTwo.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testNonEqualTwo.1.png; sourceTree = "<group>"; };
-		EB6054A728AFA166006AFE77 /* testEqual.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testEqual.1.png; sourceTree = "<group>"; };
-		EB6054A828AFA166006AFE77 /* testNonEqual.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testNonEqual.1.png; sourceTree = "<group>"; };
-		EB6054AA28AFA166006AFE77 /* testHalfWidth.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testHalfWidth.1.png; sourceTree = "<group>"; };
-		EB6054AB28AFA166006AFE77 /* testHalfHeight.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testHalfHeight.1.png; sourceTree = "<group>"; };
-		EB6054AD28AFA166006AFE77 /* testButtonContent.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testButtonContent.1.png; sourceTree = "<group>"; };
-		EB6054AF28AFA166006AFE77 /* testCenter.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testCenter.1.png; sourceTree = "<group>"; };
-		EB6054B028AFA166006AFE77 /* testEnd.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testEnd.1.png; sourceTree = "<group>"; };
-		EB6054B128AFA166006AFE77 /* testStart.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testStart.1.png; sourceTree = "<group>"; };
-		EB6054B328AFA166006AFE77 /* testDynamicHeight.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testDynamicHeight.1.png; sourceTree = "<group>"; };
-		EB6054B528AFA166006AFE77 /* testPadding.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testPadding.1.png; sourceTree = "<group>"; };
-		EB6054B728AFA166006AFE77 /* testRow.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testRow.1.png; sourceTree = "<group>"; };
-		EB6054B828AFA166006AFE77 /* testColumnJustify.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testColumnJustify.1.png; sourceTree = "<group>"; };
-		EB6054B928AFA166006AFE77 /* testColumn.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testColumn.1.png; sourceTree = "<group>"; };
-		EB6054BB28AFA166006AFE77 /* testMargins.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testMargins.1.png; sourceTree = "<group>"; };
 		EB6054DC28AFA183006AFE77 /* FlexboxSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexboxSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6054EA28AFA1A5006AFE77 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6054EC28AFA1A5006AFE77 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
@@ -178,8 +149,13 @@
 		EB60554128AFB35B006AFE77 /* FlexChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexChild.swift; sourceTree = "<group>"; };
 		EB60554428B00B68006AFE77 /* FlexAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexAnimation.swift; sourceTree = "<group>"; };
 		EB60554728B00E15006AFE77 /* TransferEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEnvironment.swift; sourceTree = "<group>"; };
+		EB93F78928B37C8D00867768 /* DemoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoScreen.swift; sourceTree = "<group>"; };
+		EB93F78B28B382E000867768 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
 		EBE2849828B0E2A80047815A /* MarkDirty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDirty.swift; sourceTree = "<group>"; };
-		EBE2849A28B2194D0047815A /* FlexScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexScrollView.swift; sourceTree = "<group>"; };
+		EBE887D128B3738C006F7EB0 /* JustifyContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifyContent.swift; sourceTree = "<group>"; };
+		EBE887D328B3760A006F7EB0 /* FillMaxAvailableHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillMaxAvailableHeight.swift; sourceTree = "<group>"; };
+		EBE887D528B3780B006F7EB0 /* DynamicHeightText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightText.swift; sourceTree = "<group>"; };
+		EBE887D728B37B15006F7EB0 /* AnimatedHeightChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedHeightChange.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,7 +240,6 @@
 				EB60554428B00B68006AFE77 /* FlexAnimation.swift */,
 				EB60554728B00E15006AFE77 /* TransferEnvironment.swift */,
 				EBE2849828B0E2A80047815A /* MarkDirty.swift */,
-				EBE2849A28B2194D0047815A /* FlexScrollView.swift */,
 			);
 			path = FlexboxSwiftUI;
 			sourceTree = "<group>";
@@ -315,105 +290,8 @@
 				EB60549E28AFA166006AFE77 /* FlexGrowTests.swift */,
 				EB60549F28AFA166006AFE77 /* FlexButtonTests.swift */,
 				EB6054A028AFA166006AFE77 /* FlexTextTests.swift */,
-				EB6054A128AFA166006AFE77 /* __Snapshots__ */,
 			);
 			path = FlexboxSwiftUITests;
-			sourceTree = "<group>";
-		};
-		EB6054A128AFA166006AFE77 /* __Snapshots__ */ = {
-			isa = PBXGroup;
-			children = (
-				EB6054A228AFA166006AFE77 /* FlexTextTests */,
-				EB6054A528AFA166006AFE77 /* FlexGrowTests */,
-				EB6054A928AFA166006AFE77 /* FlexSizeTests */,
-				EB6054AC28AFA166006AFE77 /* FlexButtonTests */,
-				EB6054AE28AFA166006AFE77 /* FlexJustifyContentTests */,
-				EB6054B228AFA166006AFE77 /* FlexDynamicSizingTests */,
-				EB6054B428AFA166006AFE77 /* FlexPaddingTests */,
-				EB6054B628AFA166006AFE77 /* FlexDirectionTests */,
-				EB6054BA28AFA166006AFE77 /* FlexMarginTests */,
-			);
-			path = __Snapshots__;
-			sourceTree = "<group>";
-		};
-		EB6054A228AFA166006AFE77 /* FlexTextTests */ = {
-			isa = PBXGroup;
-			children = (
-				EB6054A328AFA166006AFE77 /* testTextContent.1.png */,
-				EB6054A428AFA166006AFE77 /* testTextContentMaxHeight.1.png */,
-			);
-			path = FlexTextTests;
-			sourceTree = "<group>";
-		};
-		EB6054A528AFA166006AFE77 /* FlexGrowTests */ = {
-			isa = PBXGroup;
-			children = (
-				EB6054A628AFA166006AFE77 /* testNonEqualTwo.1.png */,
-				EB6054A728AFA166006AFE77 /* testEqual.1.png */,
-				EB6054A828AFA166006AFE77 /* testNonEqual.1.png */,
-			);
-			path = FlexGrowTests;
-			sourceTree = "<group>";
-		};
-		EB6054A928AFA166006AFE77 /* FlexSizeTests */ = {
-			isa = PBXGroup;
-			children = (
-				EB6054AA28AFA166006AFE77 /* testHalfWidth.1.png */,
-				EB6054AB28AFA166006AFE77 /* testHalfHeight.1.png */,
-			);
-			path = FlexSizeTests;
-			sourceTree = "<group>";
-		};
-		EB6054AC28AFA166006AFE77 /* FlexButtonTests */ = {
-			isa = PBXGroup;
-			children = (
-				EB6054AD28AFA166006AFE77 /* testButtonContent.1.png */,
-			);
-			path = FlexButtonTests;
-			sourceTree = "<group>";
-		};
-		EB6054AE28AFA166006AFE77 /* FlexJustifyContentTests */ = {
-			isa = PBXGroup;
-			children = (
-				EB6054AF28AFA166006AFE77 /* testCenter.1.png */,
-				EB6054B028AFA166006AFE77 /* testEnd.1.png */,
-				EB6054B128AFA166006AFE77 /* testStart.1.png */,
-			);
-			path = FlexJustifyContentTests;
-			sourceTree = "<group>";
-		};
-		EB6054B228AFA166006AFE77 /* FlexDynamicSizingTests */ = {
-			isa = PBXGroup;
-			children = (
-				EB6054B328AFA166006AFE77 /* testDynamicHeight.1.png */,
-			);
-			path = FlexDynamicSizingTests;
-			sourceTree = "<group>";
-		};
-		EB6054B428AFA166006AFE77 /* FlexPaddingTests */ = {
-			isa = PBXGroup;
-			children = (
-				EB6054B528AFA166006AFE77 /* testPadding.1.png */,
-			);
-			path = FlexPaddingTests;
-			sourceTree = "<group>";
-		};
-		EB6054B628AFA166006AFE77 /* FlexDirectionTests */ = {
-			isa = PBXGroup;
-			children = (
-				EB6054B728AFA166006AFE77 /* testRow.1.png */,
-				EB6054B828AFA166006AFE77 /* testColumnJustify.1.png */,
-				EB6054B928AFA166006AFE77 /* testColumn.1.png */,
-			);
-			path = FlexDirectionTests;
-			sourceTree = "<group>";
-		};
-		EB6054BA28AFA166006AFE77 /* FlexMarginTests */ = {
-			isa = PBXGroup;
-			children = (
-				EB6054BB28AFA166006AFE77 /* testMargins.1.png */,
-			);
-			path = FlexMarginTests;
 			sourceTree = "<group>";
 		};
 		EB6054EB28AFA1A5006AFE77 /* Demo */ = {
@@ -423,6 +301,12 @@
 				EB6054F028AFA1A5006AFE77 /* Assets.xcassets */,
 				EB6054F228AFA1A5006AFE77 /* Preview Content */,
 				EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */,
+				EBE887D128B3738C006F7EB0 /* JustifyContent.swift */,
+				EBE887D328B3760A006F7EB0 /* FillMaxAvailableHeight.swift */,
+				EBE887D528B3780B006F7EB0 /* DynamicHeightText.swift */,
+				EBE887D728B37B15006F7EB0 /* AnimatedHeightChange.swift */,
+				EB93F78928B37C8D00867768 /* DemoScreen.swift */,
+				EB93F78B28B382E000867768 /* Padding.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -606,23 +490,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB6054D628AFA166006AFE77 /* testColumn.1.png in Resources */,
-				EB6054D028AFA166006AFE77 /* testEnd.1.png in Resources */,
-				EB6054D428AFA166006AFE77 /* testRow.1.png in Resources */,
-				EB6054D528AFA166006AFE77 /* testColumnJustify.1.png in Resources */,
-				EB6054CE28AFA166006AFE77 /* testButtonContent.1.png in Resources */,
-				EB6054D128AFA166006AFE77 /* testStart.1.png in Resources */,
-				EB6054D228AFA166006AFE77 /* testDynamicHeight.1.png in Resources */,
-				EB6054D728AFA166006AFE77 /* testMargins.1.png in Resources */,
-				EB6054CC28AFA166006AFE77 /* testHalfWidth.1.png in Resources */,
-				EB6054C928AFA166006AFE77 /* testNonEqualTwo.1.png in Resources */,
-				EB6054CD28AFA166006AFE77 /* testHalfHeight.1.png in Resources */,
-				EB6054D328AFA166006AFE77 /* testPadding.1.png in Resources */,
-				EB6054CA28AFA166006AFE77 /* testEqual.1.png in Resources */,
-				EB6054CF28AFA166006AFE77 /* testCenter.1.png in Resources */,
-				EB6054C728AFA166006AFE77 /* testTextContent.1.png in Resources */,
-				EB6054CB28AFA166006AFE77 /* testNonEqual.1.png in Resources */,
-				EB6054C828AFA166006AFE77 /* testTextContentMaxHeight.1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +532,6 @@
 				EB60548928AFA162006AFE77 /* Helpers.swift in Sources */,
 				EB60548C28AFA162006AFE77 /* Style.swift in Sources */,
 				EB60554028AFB158006AFE77 /* HostingViewStore.swift in Sources */,
-				EBE2849B28B2194D0047815A /* FlexScrollView.swift in Sources */,
 				EB60548D28AFA162006AFE77 /* Layout.swift in Sources */,
 				EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */,
 				EB60554328AFB398006AFE77 /* FlexChild.swift in Sources */,
@@ -697,7 +563,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB60553D28AFAD68006AFE77 /* ViewThatChangesHeight.swift in Sources */,
+				EBE887D228B3738C006F7EB0 /* JustifyContent.swift in Sources */,
+				EBE887D428B3760A006F7EB0 /* FillMaxAvailableHeight.swift in Sources */,
+				EBE887D628B3780B006F7EB0 /* DynamicHeightText.swift in Sources */,
 				EB6054ED28AFA1A5006AFE77 /* DemoApp.swift in Sources */,
+				EB93F78A28B37C8D00867768 /* DemoScreen.swift in Sources */,
+				EBE887D828B37B15006F7EB0 /* AnimatedHeightChange.swift in Sources */,
+				EB93F78C28B382E000867768 /* Padding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

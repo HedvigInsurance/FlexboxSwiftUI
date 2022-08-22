@@ -56,10 +56,33 @@ struct ShowHide: View {
 struct DemoApp: App {
     var body: some Scene {
         return WindowGroup {
-            FlexScrollView {
-                ShowHide()
+            NavigationView {
+                Form {
+                    Section(header: Text("Layouts")) {
+                        NavigationLink("JustifyContent") {
+                            DemoScreen(content: JustifyContent())
+                        }
+                        
+                        NavigationLink("FillMaxAvailableHeight") {
+                            DemoScreen(content: FillMaxAvailableHeight())
+                        }
+                        
+                        NavigationLink("Padding") {
+                            DemoScreen(content: Padding())
+                        }
+                    }
+                    
+                    Section(header: Text("Content")) {
+                        NavigationLink("DynamicHeightText") {
+                            DemoScreen(content: DynamicHeightText())
+                        }
+                        
+                        NavigationLink("AnimatedHeightChange") {
+                            DemoScreen(content: AnimatedHeightChange())
+                        }
+                    }
+                }.navigationTitle("FlexboxSwiftUI")
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }

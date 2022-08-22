@@ -79,31 +79,32 @@ class FlexGrowTests: XCTestCase {
     }
 
     func testNonEqualTwo() {
-        let view = FlexView(
-            node: Node(
-                size: Size(width: .percent(100), height: .percent(100)),
-                children: [
-                    Node(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 2,
-                        view: FlexChild(Color.red)
-                    ),
-                    Node(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 1,
-                        view: FlexChild(Color.blue)
-                    ),
-                    Node(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 2,
-                        view: FlexChild(Color.green)
-                    ),
-                ],
-                justifyContent: .center
+        let exp = assertFlexView(
+             FlexView(
+                node: Node(
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    children: [
+                        Node(
+                            size: Size(width: .fixed(10), height: .auto),
+                            flexGrow: 2,
+                            view: FlexChild(Color.red)
+                        ),
+                        Node(
+                            size: Size(width: .fixed(10), height: .auto),
+                            flexGrow: 1,
+                            view: FlexChild(Color.blue)
+                        ),
+                        Node(
+                            size: Size(width: .fixed(10), height: .auto),
+                            flexGrow: 2,
+                            view: FlexChild(Color.green)
+                        ),
+                    ],
+                    justifyContent: .center
+                )
             )
         )
-        .frame(assertSize)
 
-        assertSnapshot(matching: view, as: .image)
+        wait(for: [exp], timeout: 1)
     }
 }

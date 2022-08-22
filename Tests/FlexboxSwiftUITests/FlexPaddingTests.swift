@@ -22,7 +22,12 @@ class FlexPaddingTests: XCTestCase {
                         Node(
                             size: Size(width: .fixed(1), height: .auto),
                             flexGrow: 1,
-                            padding: Edges(leading: .fixed(50), trailing: .fixed(50), top: .auto, bottom: .auto),
+                            padding: Edges(
+                                leading: .fixed(50),
+                                trailing: .fixed(50),
+                                top: .auto,
+                                bottom: .auto
+                            ),
                             view: FlexChild(
                                 ZStack {
                                     Text("Padding")
