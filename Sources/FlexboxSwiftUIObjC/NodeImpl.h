@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, assign) YGNodeRef node;
 
-@property (nonatomic, copy) NSArray *children;
+@property (nonatomic, copy) NSArray<NodeImpl*> *children;
 
 @property (nonatomic, readonly, assign) CGRect frame;
 

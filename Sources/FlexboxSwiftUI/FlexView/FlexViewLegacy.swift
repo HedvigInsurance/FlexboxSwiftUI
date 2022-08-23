@@ -71,8 +71,6 @@ class HostedChildViewWrapper: UIView {
         super.init(frame: .zero)
         
         self.addSubview(hostingView)
-        
-        hostingView.constrainEdges(to: self)
     }
     
     required init?(coder: NSCoder) {
@@ -135,9 +133,11 @@ struct HostedChild: UIViewRepresentable {
 
     func updateUIView(_ uiView: HostedChildViewWrapper, context: Context) {
         uiView.layout = layout
-        uiView.invalidateIntrinsicContentSize()
         
         let hostingController = store.views[child]!
+        hostingController.layout = layout
+        hostingController.view.setNeedsLayout()
+        hostingController.view.layoutIfNeeded()
         
         let view = hostingController.view!
                 
@@ -172,7 +172,7 @@ struct LayoutRenderer: View {
     }
 }
 
-public struct FlexView: View {
+public struct FlexViewLegacy: View {
     @StateObject var store: HostingViewStore
 
     var node: Node
@@ -181,8 +181,8 @@ public struct FlexView: View {
         node: Node
     ) {
         self.node = node
-        let store = HostingViewStore()
-        store.node = node.createUnderlyingNode(store: store)
+        let store = HostingViewStore(node: node)
+        store._node = node.createUnderlyingNode()
         self._store = StateObject(wrappedValue: store)
     }
 
@@ -207,9 +207,8 @@ public struct FlexView: View {
             
             if let maxSize = store.maxSize {
                 let layout = node.layout(
-                    node: store.node!,
-                    maxSize: maxSize,
-                    store: store
+                    node: store._node!,
+                    maxSize: maxSize
                 )
                 
                 LayoutRenderer(layout: layout, applyPosition: false)

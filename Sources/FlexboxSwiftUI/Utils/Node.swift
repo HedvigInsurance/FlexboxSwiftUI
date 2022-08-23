@@ -144,8 +144,7 @@ public struct Node {
     /// Lay out the receiver and all its children with an optional `maxSize`.
     func layout(
         node: NodeImpl,
-        maxSize: CGSize? = nil,
-        store: HostingViewStore
+        maxSize: CGSize? = nil
     ) -> Layout {
         if let maxSize = maxSize {
             node.layout(withMaxSize: maxSize)
@@ -156,11 +155,10 @@ public struct Node {
         func createLayoutsFromChildren(_ node: NodeImpl) -> [Layout] {
             return node.children.enumerated()
                 .map { offset, childNode in
-                    let child = childNode as! NodeImpl
                     return Layout(
-                        frame: child.frame,
-                        padding: child.padding,
-                        children: createLayoutsFromChildren(child),
+                        frame: childNode.frame,
+                        padding: childNode.padding,
+                        children: createLayoutsFromChildren(childNode),
                         view: self.children[offset].view
                     )
                 }
@@ -171,7 +169,8 @@ public struct Node {
         return Layout(frame: node.frame, padding: node.padding, children: children, view: self.view)
     }
 
-    public func createUnderlyingNode(store: HostingViewStore) -> NodeImpl {
+    public func createUnderlyingNode(
+    ) -> NodeImpl {
         let node = NodeImpl()
 
         size.applyToNode(node, kind: .normal)
@@ -202,60 +201,12 @@ public struct Node {
         padding.applyToNode(node, kind: .padding)
         border.applyToNode(node, kind: .border)
 
-        if let view = self.view {
-            let hostingView = store.add(view, node: node)
-
-            node.measure = { suggestedSize, widthMode, heightMode in
-                let constrainedWidth =
-                    widthMode == .undefined
-                    ? UIView.layoutFittingExpandedSize.width
-                    : suggestedSize.width
-                let constrainedHeight =
-                    heightMode == .undefined
-                    ? UIView.layoutFittingExpandedSize.height
-                    : suggestedSize.width
-
-                func sanitize(
-                    constrainedSize: CGFloat,
-                    measuredSize: CGFloat,
-                    mode: YGMeasureMode
-                )
-                    -> CGFloat
-                {
-                    if mode == .exactly {
-                        return constrainedSize
-                    } else if mode == .atMost {
-                        return min(constrainedSize, measuredSize)
-                    } else {
-                        return measuredSize
-                    }
-                }
-                
-                let sizeThatFits = hostingView.measure(
-                    targetSize: CGSize(width: constrainedWidth, height: constrainedHeight)
-                )
-
-                let result = CGSize(
-                    width: sanitize(
-                        constrainedSize: constrainedWidth,
-                        measuredSize: sizeThatFits.width,
-                        mode: widthMode
-                    ),
-                    height: sanitize(
-                        constrainedSize: constrainedHeight,
-                        measuredSize: sizeThatFits.height,
-                        mode: heightMode
-                    )
-                )
-
-                return result
-            }
-
+        if self.view != nil {
             // Cannot add child: Nodes with measure functions cannot have children
             // (All children will be ignored).
             node.children = []
         } else {
-            node.children = children.map { $0.createUnderlyingNode(store: store) }
+            node.children = children.map { $0.createUnderlyingNode() }
         }
 
         return node

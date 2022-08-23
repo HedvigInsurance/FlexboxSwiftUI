@@ -47,7 +47,7 @@ static void YGRemoveAllChildren(const YGNodeRef node)
     return self;
 }
 
-- (void)setChildren:(NSArray *)children
+- (void)setChildren:(NSArray<NodeImpl*> *)children
 {
     _children = [children copy];
 

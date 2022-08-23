@@ -8,12 +8,17 @@
 import Foundation
 import SwiftUI
 
+public typealias MarkDirtyFunc = (
+    _ animation: Animation?,
+    _ body: @escaping (_ transaction: Transaction) -> Void
+) -> Void
+
 public struct MarkDirtyKey: EnvironmentKey {
-    public static let defaultValue: () -> Void = {}
+    public static let defaultValue: MarkDirtyFunc? = nil
 }
 
 public extension EnvironmentValues {
-    var markDirty: () -> Void {
+    var markDirty: MarkDirtyFunc? {
     get { self[MarkDirtyKey.self] }
     set { self[MarkDirtyKey.self] = newValue }
   }

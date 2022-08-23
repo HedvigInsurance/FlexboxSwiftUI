@@ -17,9 +17,9 @@ struct ViewThatChangesHeight: View {
         VStack {
             Button("Toggle") {
                 //isOpen.toggle()
-                withAnimation(.easeInOut(duration: 0.5)) {
+                
+                markDirty?(.spring()) { _ in
                     isOpen.toggle()
-                    markDirty()
                 }
             }
 

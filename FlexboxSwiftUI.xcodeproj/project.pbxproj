@@ -14,7 +14,7 @@
 		EB60548C28AFA162006AFE77 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547D28AFA162006AFE77 /* Style.swift */; };
 		EB60548D28AFA162006AFE77 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547E28AFA162006AFE77 /* Layout.swift */; };
 		EB60548E28AFA162006AFE77 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547F28AFA162006AFE77 /* Node.swift */; };
-		EB60548F28AFA162006AFE77 /* FlexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60548028AFA162006AFE77 /* FlexView.swift */; };
+		EB60548F28AFA162006AFE77 /* FlexViewLegacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60548028AFA162006AFE77 /* FlexViewLegacy.swift */; };
 		EB60549028AFA162006AFE77 /* HostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60548128AFA162006AFE77 /* HostingView.swift */; };
 		EB6054E028AFA183006AFE77 /* FlexboxSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */; platformFilter = ios; };
 		EB6054ED28AFA1A5006AFE77 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6054EC28AFA1A5006AFE77 /* DemoApp.swift */; };
@@ -48,6 +48,8 @@
 		EB60554328AFB398006AFE77 /* FlexChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554128AFB35B006AFE77 /* FlexChild.swift */; };
 		EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554428B00B68006AFE77 /* FlexAnimation.swift */; };
 		EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554728B00E15006AFE77 /* TransferEnvironment.swift */; };
+		EB8F91C328B4BDBE009A0977 /* FlexViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F91C228B4BDBE009A0977 /* FlexViewLayout.swift */; };
+		EB8F91C528B4BDC5009A0977 /* FlexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F91C428B4BDC5009A0977 /* FlexView.swift */; };
 		EB93F78A28B37C8D00867768 /* DemoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93F78928B37C8D00867768 /* DemoScreen.swift */; };
 		EB93F78C28B382E000867768 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93F78B28B382E000867768 /* Padding.swift */; };
 		EBE2849928B0E2A80047815A /* MarkDirty.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2849828B0E2A80047815A /* MarkDirty.swift */; };
@@ -122,7 +124,7 @@
 		EB60547D28AFA162006AFE77 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		EB60547E28AFA162006AFE77 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		EB60547F28AFA162006AFE77 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
-		EB60548028AFA162006AFE77 /* FlexView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexView.swift; sourceTree = "<group>"; };
+		EB60548028AFA162006AFE77 /* FlexViewLegacy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexViewLegacy.swift; sourceTree = "<group>"; };
 		EB60548128AFA162006AFE77 /* HostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostingView.swift; sourceTree = "<group>"; };
 		EB60548328AFA162006AFE77 /* NodeImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeImpl.h; sourceTree = "<group>"; };
 		EB60548528AFA162006AFE77 /* FlexboxSwiftUIObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexboxSwiftUIObjC.h; sourceTree = "<group>"; };
@@ -149,6 +151,8 @@
 		EB60554128AFB35B006AFE77 /* FlexChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexChild.swift; sourceTree = "<group>"; };
 		EB60554428B00B68006AFE77 /* FlexAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexAnimation.swift; sourceTree = "<group>"; };
 		EB60554728B00E15006AFE77 /* TransferEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEnvironment.swift; sourceTree = "<group>"; };
+		EB8F91C228B4BDBE009A0977 /* FlexViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexViewLayout.swift; sourceTree = "<group>"; };
+		EB8F91C428B4BDC5009A0977 /* FlexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexView.swift; sourceTree = "<group>"; };
 		EB93F78928B37C8D00867768 /* DemoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoScreen.swift; sourceTree = "<group>"; };
 		EB93F78B28B382E000867768 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
 		EBE2849828B0E2A80047815A /* MarkDirty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDirty.swift; sourceTree = "<group>"; };
@@ -232,8 +236,8 @@
 		EB60547728AFA162006AFE77 /* FlexboxSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				EB8F91C628B4BDCB009A0977 /* FlexView */,
 				EB60547828AFA162006AFE77 /* Utils */,
-				EB60548028AFA162006AFE77 /* FlexView.swift */,
 				EB60548128AFA162006AFE77 /* HostingView.swift */,
 				EB60553E28AFB138006AFE77 /* HostingViewStore.swift */,
 				EB60554128AFB35B006AFE77 /* FlexChild.swift */,
@@ -324,6 +328,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB8F91C628B4BDCB009A0977 /* FlexView */ = {
+			isa = PBXGroup;
+			children = (
+				EB8F91C428B4BDC5009A0977 /* FlexView.swift */,
+				EB8F91C228B4BDBE009A0977 /* FlexViewLayout.swift */,
+				EB60548028AFA162006AFE77 /* FlexViewLegacy.swift */,
+			);
+			path = FlexView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -526,9 +540,11 @@
 				EB60548828AFA162006AFE77 /* InOutMutable.swift in Sources */,
 				EBE2849928B0E2A80047815A /* MarkDirty.swift in Sources */,
 				EB60549028AFA162006AFE77 /* HostingView.swift in Sources */,
+				EB8F91C528B4BDC5009A0977 /* FlexView.swift in Sources */,
 				EB60548A28AFA162006AFE77 /* Size.swift in Sources */,
 				EB60548B28AFA162006AFE77 /* Edges.swift in Sources */,
-				EB60548F28AFA162006AFE77 /* FlexView.swift in Sources */,
+				EB8F91C328B4BDBE009A0977 /* FlexViewLayout.swift in Sources */,
+				EB60548F28AFA162006AFE77 /* FlexViewLegacy.swift in Sources */,
 				EB60548928AFA162006AFE77 /* Helpers.swift in Sources */,
 				EB60548C28AFA162006AFE77 /* Style.swift in Sources */,
 				EB60554028AFB158006AFE77 /* HostingViewStore.swift in Sources */,
