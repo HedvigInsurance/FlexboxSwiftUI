@@ -116,18 +116,20 @@ struct FlexLayoutStack: SwiftUI.Layout {
         cache: inout FlexLayoutStackCache
     ) {
         subviews.enumerated().forEach { offset, subview in
-            let layoutFrame = cache.layout?.children[offset].frame ?? .zero
-            
-            print("[BOUNDS]", bounds.origin)
-            print("[LAYOUT FRAME]", layoutFrame.origin)
+            guard let layout = cache.layout?.children[offset] else {
+                return
+            }
             
             subview.place(
                 at: CGPoint(
-                    x: layoutFrame.origin.x + bounds.origin.x,
-                    y: layoutFrame.origin.y + bounds.origin.y
+                    x: layout.frame.origin.x + bounds.origin.x + layout.padding.right,
+                    y: layout.frame.origin.y + bounds.origin.y + layout.padding.top
                 ),
                 anchor: .topLeading,
-                proposal: ProposedViewSize(layoutFrame.size)
+                proposal: ProposedViewSize(
+                    width: layout.frame.size.width - layout.padding.right - layout.padding.left,
+                    height: layout.frame.size.height - layout.padding.bottom - layout.padding.top
+                )
             )            
         }
     }

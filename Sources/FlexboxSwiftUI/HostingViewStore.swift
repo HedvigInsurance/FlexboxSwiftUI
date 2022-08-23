@@ -116,8 +116,6 @@ public class HostingViewStore: ObservableObject {
                             )
                         )
                         
-                        print(result)
-
                         return result
                     }
                 }
@@ -130,7 +128,6 @@ public class HostingViewStore: ObservableObject {
             store: self,
             node: node
         )
-        hostingView._disableSafeArea = true
         views[child] = hostingView
 
         return hostingView

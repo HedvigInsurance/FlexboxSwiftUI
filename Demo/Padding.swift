@@ -11,7 +11,7 @@ import SwiftUI
 
 struct Padding: View {
     var body: some View {        
-        FlexView(
+        RenderBothImplementations(
             node: Node(
                 size: Size(width: .percent(100), height: .auto),
                 children: [

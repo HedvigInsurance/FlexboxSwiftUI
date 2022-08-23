@@ -51,8 +51,6 @@ class AdjustableHostingController: UIHostingController<AnyView> {
                     self.view.setNeedsLayout()
                     self.view.layoutIfNeeded()
                 }
-            }.transaction { transaction in
-                self.transaction = transaction
             }
         )
         
@@ -90,7 +88,7 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     }
     
     func measure(targetSize: CGSize) -> CGSize {
-        return self.view.sizeThatFits(targetSize)
+        return self.view.systemLayoutSizeFitting(targetSize)
     }
 
     @MainActor @objc required dynamic init?(

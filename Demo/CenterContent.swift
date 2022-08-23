@@ -10,7 +10,6 @@ import FlexboxSwiftUI
 import SwiftUI
 
 class ColorView: UIView {
-    
     override var intrinsicContentSize: CGSize {
         return UIView.layoutFittingExpandedSize
     }
@@ -32,20 +31,7 @@ struct TestColor: UIViewRepresentable {
 
 struct CenterContent: View {
     var body: some View {
-        if #available(iOS 16, *) {
-            FlexViewLayout(node: Node(
-                size: Size(width: .percent(100), height: .percent(100)),
-                children: [
-                    Node(
-                        size: Size(width: .percent(20), height: .percent(100)),
-                        view: FlexChild(TestColor(color: .red))
-                    )
-                ],
-                justifyContent: .center
-            )).frame(height: 100)
-        }
-        
-        FlexViewLegacy(node: Node(
+        RenderBothImplementations(node: Node(
             size: Size(width: .percent(100), height: .percent(100)),
             children: [
                 Node(
@@ -56,66 +42,34 @@ struct CenterContent: View {
             justifyContent: .center
         )).frame(height: 100)
         
-        if #available(iOS 16, *) {
-            FlexViewLayout(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            flexGrow: 1,
-                            view: FlexChild(
-                                Button(
-                                    "Some button text",
-                                    action: {
-                                        
-                                    }
-                                )
-                            )
-                        ),
-                        Node(
-                            flexGrow: 1,
-                            view: FlexChild(
-                                Button(
-                                    "Some other text",
-                                    action: {
-                                        
-                                    }
-                                )
-                            )
-                        ),
-                    ]
-                )
-            ).frame(height: 100)
-        }
-        
-        FlexViewLegacy(
+        RenderBothImplementations(
             node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            flexGrow: 1,
-                            view: FlexChild(
-                                Button(
-                                    "Some button text",
-                                    action: {
-
-                                    }
-                                )
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        flexGrow: 1,
+                        view: FlexChild(
+                            Button(
+                                "Some button text",
+                                action: {
+                                    
+                                }
                             )
-                        ),
-                        Node(
-                            flexGrow: 1,
-                            view: FlexChild(
-                                Button(
-                                    "Some other text",
-                                    action: {
-
-                                    }
-                                )
+                        )
+                    ),
+                    Node(
+                        flexGrow: 1,
+                        view: FlexChild(
+                            Button(
+                                "Some other text",
+                                action: {
+                                    
+                                }
                             )
-                        ),
-                    ]
-                )
+                        )
+                    ),
+                ]
+            )
         ).frame(height: 100)
     }
 }

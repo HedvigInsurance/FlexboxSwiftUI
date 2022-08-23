@@ -82,12 +82,15 @@ class HostedChildViewWrapper: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        let size = subviews.first?.sizeThatFits(CGSize(
-            width: layout.frame.size.width - layout.padding.left - layout.padding.right,
-            height: layout.frame.size.height - layout.padding.top - layout.padding.bottom
+        let width = layout.frame.size.width - layout.padding.left - layout.padding.right
+        let height = layout.frame.size.height - layout.padding.top - layout.padding.bottom
+        
+        let size = subviews.first?.systemLayoutSizeFitting(CGSize(
+            width: width,
+            height: height
         )) ?? .zero
                         
-        return size
+        return CGSize(width: width, height: size.height)
     }
 }
 
@@ -213,8 +216,9 @@ public struct FlexViewLegacy: View {
                     .environmentObject(store)
             }
             
-            Color.clear.frame(
-                maxWidth: .infinity, maxHeight: .infinity
+            Color.clear.fixedSize().frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity
             ).background(GeometryReader(content: readMaxSize))
         }
         .frame(maxWidth: store.screenMaxWidth, maxHeight: .infinity)

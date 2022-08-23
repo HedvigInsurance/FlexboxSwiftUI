@@ -11,9 +11,9 @@ import SwiftUI
 
 struct AnimatedHeightChange: View {
     var body: some View {
-        Text("[KNOWN BUG] Animations currently causes content to stutter on pre iOS 16")
+        Text("[KNOWN BUG] Animations currently causes content to stutter on legacy impl")
         
-        FlexViewLegacy(
+        RenderBothImplementations(
             node: Node(
                 size: Size(width: .percent(100), height: .auto),
                 children: [
@@ -61,7 +61,7 @@ struct AnimatedHeightChange: View {
                 ],
                 flexDirection: .column
             )
-        ).background(Color.yellow)
+        )
     }
 }
 
