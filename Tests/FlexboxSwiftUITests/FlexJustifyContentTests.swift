@@ -13,59 +13,53 @@ import XCTest
 
 class FlexJustifyContentTests: XCTestCase {
     func testCenter() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            size: Size(width: .percent(20), height: .percent(100)),
-                            view: FlexChild(Color.red)
-                        )
-                    ],
-                    justifyContent: .center
-                )
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(20), height: .percent(100)),
+                        view: FlexChild(TestColor(color: .red))
+                    )
+                ],
+                justifyContent: .center
             )
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 
     func testStart() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            size: Size(width: .percent(20), height: .percent(100)),
-                            view: FlexChild(Color.red)
-                        )
-                    ],
-                    justifyContent: .flexStart
-                )
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(20), height: .percent(100)),
+                        view: FlexChild(TestColor(color: .red))
+                    )
+                ],
+                justifyContent: .flexStart
             )
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 
     func testEnd() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            size: Size(width: .percent(20), height: .percent(100)),
-                            view: FlexChild(Color.red)
-                        )
-                    ],
-                    justifyContent: .flexEnd
-                )
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(20), height: .percent(100)),
+                        view: FlexChild(TestColor(color: .red))
+                    )
+                ],
+                justifyContent: .flexEnd
             )
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 }

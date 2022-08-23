@@ -21,23 +21,21 @@ class FlexDynamicSizingTests: XCTestCase {
         """
 
     func testDynamicHeight() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .auto),
-                    children: [
-                        Node(
-                            size: Size(width: .percent(100), height: .auto),
-                            flexGrow: 1,
-                            view: FlexChild(Text(loremIpsum))
-                        )
-                    ],
-                    flexDirection: .column
-                )
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .auto),
+                children: [
+                    Node(
+                        size: Size(width: .percent(100), height: .auto),
+                        flexGrow: 1,
+                        view: FlexChild(Text(loremIpsum))
+                    )
+                ],
+                flexDirection: .column
             ),
             size: nil
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 }

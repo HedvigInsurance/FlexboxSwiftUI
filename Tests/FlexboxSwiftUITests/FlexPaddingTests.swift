@@ -14,46 +14,44 @@ import XCTest
 
 class FlexPaddingTests: XCTestCase {
     func testPadding() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            size: Size(width: .fixed(1), height: .auto),
-                            flexGrow: 1,
-                            padding: Edges(
-                                leading: .fixed(50),
-                                trailing: .fixed(50),
-                                top: .auto,
-                                bottom: .auto
-                            ),
-                            view: FlexChild(
-                                ZStack {
-                                    Text("Padding")
-                                }
-                                .frame(maxWidth: .infinity)
-                                .background(Color.red)
-                            )
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .fixed(1), height: .auto),
+                        flexGrow: 1,
+                        padding: Edges(
+                            leading: .fixed(50),
+                            trailing: .fixed(50),
+                            top: .auto,
+                            bottom: .auto
                         ),
-                        Node(
-                            size: Size(width: .fixed(1), height: .auto),
-                            flexGrow: 1,
-                            view: FlexChild(
-                                ZStack {
-                                    Text("Padding")
-                                }
-                                .frame(maxWidth: .infinity)
-                                .background(Color.red)
-                            )
-                        ),
-                    ],
-                    flexDirection: .row
-                )
+                        view: FlexChild(
+                            ZStack {
+                                Text("Padding")
+                            }
+                            .frame(maxWidth: .infinity)
+                            .background(Color.red)
+                        )
+                    ),
+                    Node(
+                        size: Size(width: .fixed(1), height: .auto),
+                        flexGrow: 1,
+                        view: FlexChild(
+                            ZStack {
+                                Text("Padding")
+                            }
+                            .frame(maxWidth: .infinity)
+                            .background(Color.red)
+                        )
+                    ),
+                ],
+                flexDirection: .row
             ),
             size: nil
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 }

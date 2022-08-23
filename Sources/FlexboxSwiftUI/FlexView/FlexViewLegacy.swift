@@ -18,11 +18,10 @@ struct LayoutViewModifier: ViewModifier {
             .padding(.trailing, layout.padding.right)
             .padding(.top, layout.padding.top)
             .padding(.bottom, layout.padding.bottom)
-            
 
         if applyPosition {
             paddedContent
-                .frame(width: layout.frame.width, height: layout.frame.height)
+                .frame(width: layout.frame.width, height: layout.frame.height, alignment: .topLeading)
                 .clipped()
                 .position(
                     x: layout.frame.origin.x + (layout.frame.width / 2),
@@ -30,7 +29,7 @@ struct LayoutViewModifier: ViewModifier {
                 )
         } else {
             paddedContent
-                .frame(width: layout.frame.width, height: layout.frame.height)
+                .frame(width: layout.frame.width, height: layout.frame.height, alignment: .topLeading)
                 .clipped()
         }
     }
@@ -71,6 +70,11 @@ class HostedChildViewWrapper: UIView {
         super.init(frame: .zero)
         
         self.addSubview(hostingView)
+        
+        self.setContentHuggingPriority(.required, for: .vertical)
+        self.setContentHuggingPriority(.required, for: .horizontal)
+        
+        hostingView.constrainEdges(to: self)
     }
     
     required init?(coder: NSCoder) {
@@ -78,10 +82,12 @@ class HostedChildViewWrapper: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        CGSize(
+        let size = subviews.first?.sizeThatFits(CGSize(
             width: layout.frame.size.width - layout.padding.left - layout.padding.right,
             height: layout.frame.size.height - layout.padding.top - layout.padding.bottom
-        )
+        )) ?? .zero
+                        
+        return size
     }
 }
 
@@ -133,19 +139,19 @@ struct HostedChild: UIViewRepresentable {
 
     func updateUIView(_ uiView: HostedChildViewWrapper, context: Context) {
         uiView.layout = layout
+        uiView.invalidateIntrinsicContentSize()
         
-        let hostingController = store.views[child]!
-        hostingController.layout = layout
-        hostingController.view.setNeedsLayout()
-        hostingController.view.layoutIfNeeded()
-        
-        let view = hostingController.view!
-                
-        DispatchQueue.main.async {
-            guard let superview = view.superview else {
-                return
+        if let hostingController = store.views[child] {
+            hostingController.view.invalidateIntrinsicContentSize()
+            hostingController.view.setNeedsLayout()
+            hostingController.view.layoutIfNeeded()
+            
+            DispatchQueue.main.async {
+                guard let superview = hostingController.view.superview else {
+                    return
+                }
+                context.coordinator.addChildController(superview)
             }
-            context.coordinator.addChildController(superview)
         }
     }
 }
@@ -156,7 +162,7 @@ struct LayoutRenderer: View {
     var applyPosition: Bool
 
     var body: some View {
-        return ZStack {
+        return ZStack(alignment: .topLeading) {
             if let view = layout.view {
                 HostedChild(
                     layout: layout,
@@ -189,39 +195,36 @@ public struct FlexViewLegacy: View {
     func readMaxSize(_ proxy: GeometryProxy) -> some View {
         DispatchQueue.main.async {
             store.setMaxSize(
-                CGSize(
-                    width: proxy.size.width == 0 ? .nan : min(proxy.size.width, store.screenMaxWidth),
-                    height: node.size.height == .auto || node.size.height == .undefined ? .nan : proxy.size.height
-                )
+                proxy.size
             )
         }
-
+        
         return Color.clear
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     public var body: some View {
-        return ZStack {
-            Color.clear
-                .background(GeometryReader(content: readMaxSize))
-            
-            if let maxSize = store.maxSize {
-                let layout = node.layout(
-                    node: store._node!,
-                    maxSize: maxSize
-                )
-                
+        if node != store.node {
+            store.node = node
+        }
+        
+        return ZStack(alignment: .topLeading) {
+            if let layout = store.calculateLayout() {                
                 LayoutRenderer(layout: layout, applyPosition: false)
                     .environmentObject(store)
             }
+            
+            Color.clear.frame(
+                maxWidth: .infinity, maxHeight: .infinity
+            ).background(GeometryReader(content: readMaxSize))
         }
-        .frame(maxWidth: store.screenMaxWidth)
+        .frame(maxWidth: store.screenMaxWidth, maxHeight: .infinity)
         .onReceive(
             NotificationCenter.default.publisher(
                 for: UIDevice.orientationDidChangeNotification
             )
         ) { _ in
             store.screenMaxWidth = UIScreen.main.bounds.width
+            store.setMaxSize(nil)
         }
     }
 }

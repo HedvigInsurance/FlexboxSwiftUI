@@ -13,98 +13,92 @@ import XCTest
 
 class FlexGrowTests: XCTestCase {
     func testEqual() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1,
-                            view: FlexChild(Color.red)
-                        ),
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1,
-                            view: FlexChild(Color.blue)
-                        ),
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1,
-                            view: FlexChild(Color.green)
-                        ),
-                    ],
-                    justifyContent: .center
-                )
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        flexShrink: 1,
+                        view: FlexChild(TestColor(color: .red))
+                    ),
+                    Node(
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        flexShrink: 1,
+                        view: FlexChild(TestColor(color: .blue))
+                    ),
+                    Node(
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        flexShrink: 1,
+                        view: FlexChild(TestColor(color: .green))
+                    ),
+                ],
+                justifyContent: .center
             )
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 
     func testNonEqual() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 2,
-                            flexShrink: 1,
-                            view: FlexChild(Color.red)
-                        ),
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1,
-                            view: FlexChild(Color.blue)
-                        ),
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1,
-                            view: FlexChild(Color.green)
-                        ),
-                    ],
-                    justifyContent: .center
-                )
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 2,
+                        flexShrink: 1,
+                        view: FlexChild(TestColor(color: .red))
+                    ),
+                    Node(
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        flexShrink: 1,
+                        view: FlexChild(TestColor(color: .blue))
+                    ),
+                    Node(
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        flexShrink: 1,
+                        view: FlexChild(TestColor(color: .green))
+                    ),
+                ],
+                justifyContent: .center
             )
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 
     func testNonEqualTwo() {
-        let exp = assertFlexView(
-             FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 2,
-                            view: FlexChild(Color.red)
-                        ),
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            view: FlexChild(Color.blue)
-                        ),
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 2,
-                            view: FlexChild(Color.green)
-                        ),
-                    ],
-                    justifyContent: .center
-                )
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 2,
+                        view: FlexChild(TestColor(color: .red))
+                    ),
+                    Node(
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        view: FlexChild(TestColor(color: .blue))
+                    ),
+                    Node(
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 2,
+                        view: FlexChild(TestColor(color: .green))
+                    ),
+                ],
+                justifyContent: .center
             )
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 }

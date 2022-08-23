@@ -15,7 +15,7 @@ struct DynamicHeightText: View {
         """
 
     var body: some View {
-        FlexView(
+        FlexViewLegacy(
             node: Node(
                 size: Size(width: .percent(100), height: .auto),
                 children: [
@@ -38,6 +38,33 @@ struct DynamicHeightText: View {
                 ],
                 flexDirection: .column
             )
-        )
+        ).frame(height: 300).background(Color.red).padding(20)
+        
+        if #available(iOS 16, *) {
+            FlexViewLayout(
+                node: Node(
+                    size: Size(width: .percent(100), height: .auto),
+                    children: [
+                        Node(
+                            size: Size(width: .percent(100), height: .auto),
+                            flexGrow: 1,
+                            view: FlexChild(
+                                Text(loremIpsum)
+                                    .padding(10)
+                            )
+                        ),
+                        Node(
+                            size: Size(width: .percent(100), height: .auto),
+                            flexGrow: 1,
+                            view: FlexChild(
+                                Text(loremIpsum)
+                                    .padding(10)
+                            )
+                        )
+                    ],
+                    flexDirection: .column
+                )
+            ).frame(height: 300).background(Color.red).padding(20)
+        }
     }
 }

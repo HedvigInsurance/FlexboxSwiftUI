@@ -63,6 +63,10 @@ struct DemoApp: App {
                             DemoScreen(content: JustifyContent())
                         }
                         
+                        NavigationLink("CenterContent") {
+                            DemoScreen(content: CenterContent())
+                        }
+                        
                         NavigationLink("FillMaxAvailableHeight") {
                             DemoScreen(content: FillMaxAvailableHeight())
                         }

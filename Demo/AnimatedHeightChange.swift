@@ -13,7 +13,7 @@ struct AnimatedHeightChange: View {
     var body: some View {
         Text("[KNOWN BUG] Animations currently causes content to stutter on pre iOS 16")
         
-        FlexView(
+        FlexViewLegacy(
             node: Node(
                 size: Size(width: .percent(100), height: .auto),
                 children: [
@@ -34,7 +34,7 @@ struct AnimatedHeightChange: View {
                     Node(
                         size: Size(width: .percent(100), height: .auto),
                         view: FlexChild(
-                            FlexView(
+                            FlexViewLegacy(
                                 node: Node(
                                     size: Size(width: .percent(100), height: .auto),
                                     children: [

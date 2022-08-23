@@ -14,38 +14,36 @@ import XCTest
 
 class FlexButtonTests: XCTestCase {
     func testButtonContent() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            flexGrow: 1,
-                            view: FlexChild(
-                                Button(
-                                    "Some button text",
-                                    action: {
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        flexGrow: 1,
+                        view: FlexChild(
+                            Button(
+                                "Some button text",
+                                action: {
 
-                                    }
-                                )
+                                }
                             )
-                        ),
-                        Node(
-                            flexGrow: 1,
-                            view: FlexChild(
-                                Button(
-                                    "Some other text",
-                                    action: {
+                        )
+                    ),
+                    Node(
+                        flexGrow: 1,
+                        view: FlexChild(
+                            Button(
+                                "Some other text",
+                                action: {
 
-                                    }
-                                )
+                                }
                             )
-                        ),
-                    ]
-                )
+                        )
+                    ),
+                ]
             )
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 }

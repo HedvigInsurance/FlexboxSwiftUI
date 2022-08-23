@@ -10,7 +10,11 @@ import SwiftUI
 import FlexboxSwiftUIObjC
 
 public class HostingViewStore: ObservableObject {
-    var node: Node
+    var node: Node {
+        didSet {
+            _node = node.createUnderlyingNode()
+        }
+    }
     var _node: NodeImpl? = nil {
         didSet {
             applyMeasureFuncs()
@@ -27,19 +31,36 @@ public class HostingViewStore: ObservableObject {
     }
 
     func setMaxSize(_ size: CGSize?) {
-        if self.maxSize?.width != size?.width,
-            self.maxSize?.height != size?.height
-        {
+        if size != self.maxSize {
             self.maxSize = size
-            self.forceUpdate()
+            
+            _node?.children.forEach({ node in
+                node.markDirty()
+            })
+            
+            forceUpdate()
+        }
+    }
+    
+    func calculateLayout() -> Layout? {
+        if let maxSize = maxSize {
+            return node.layout(
+                node: _node!,
+                maxSize: CGSize(
+                    width: maxSize.width == 0 ? .nan : min(maxSize.width, screenMaxWidth),
+                    height: node.size.height == .auto || node.size.height == .undefined ? .nan : maxSize.height
+                )
+            )
+        } else {
+            return nil
         }
     }
 
     public func forceUpdate() {
         let previousLayout = self.layout
         
-        self.layout = node.layout(node: _node!, maxSize: maxSize)
-        
+        self.layout = calculateLayout()
+
         if previousLayout != self.layout {
             self.objectWillChange.send()
         }
@@ -60,7 +81,7 @@ public class HostingViewStore: ObservableObject {
                         let constrainedHeight =
                             heightMode == .undefined
                             ? UIView.layoutFittingExpandedSize.height
-                            : suggestedSize.width
+                            : suggestedSize.height
 
                         func sanitize(
                             constrainedSize: CGFloat,
@@ -94,6 +115,8 @@ public class HostingViewStore: ObservableObject {
                                 mode: heightMode
                             )
                         )
+                        
+                        print(result)
 
                         return result
                     }
@@ -103,10 +126,11 @@ public class HostingViewStore: ObservableObject {
 
     func add(_ child: FlexChild, node: NodeImpl) -> AdjustableHostingController {
         let hostingView = AdjustableHostingController(
-            rootView: AnyView(child.view.fixedSize(horizontal: false, vertical: true)),
+            rootView: AnyView(child.view),
             store: self,
             node: node
         )
+        hostingView._disableSafeArea = true
         views[child] = hostingView
 
         return hostingView

@@ -37,33 +37,55 @@ var assertSize: CGSize {
     CGSize(width: 300, height: 300)
 }
 
-func assertFlexView(
-    _ view: FlexView,
+func assertFlexNode(
+    _ node: Node,
     size: CGSize? = assertSize,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line
-) -> XCTestExpectation {
-    let vc = UIHostingController(rootView: view.frame(size))
+) -> [XCTestExpectation] {
+    func runAssert<V: View>(_ view: V) -> XCTestExpectation {
+        let vc = UIHostingController(rootView: view.frame(size))
 
-    let exp = XCTestExpectation(description: "Wait for screen to render")
+        let exp = XCTestExpectation(description: "Wait for screen to render")
 
-    let window: UIWindow
+        let window: UIWindow
 
-    if let size = size {
-        window = UIWindow(frame: .init(origin: .zero, size: size))
+        if let size = size {
+            window = UIWindow(frame: .init(origin: .zero, size: size))
+        } else {
+            window = UIWindow(frame: UIScreen.main.bounds)
+        }
+
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
+        window.layoutIfNeeded()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            assertSnapshot(
+                matching: vc,
+                as: .image,
+                named: "flexNode",
+                file: file,
+                testName: testName,
+                line: line
+            )
+            exp.fulfill()
+        }
+        
+        return exp
+    }
+    
+    let legacyExp = runAssert(FlexViewLegacy(node: node))
+    
+    let layoutExp: XCTestExpectation?
+    
+    if #available(iOS 16, *) {
+        layoutExp = runAssert(FlexViewLayout(node: node))
     } else {
-        window = UIWindow(frame: UIScreen.main.bounds)
+        layoutExp = nil
     }
+    
 
-    window.rootViewController = vc
-    window.makeKeyAndVisible()
-    window.layoutIfNeeded()
-
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-        assertSnapshot(matching: vc, as: .image, file: file, testName: testName, line: line)
-        exp.fulfill()
-    }
-
-    return exp
+    return [legacyExp, layoutExp].compactMap { $0 }
 }

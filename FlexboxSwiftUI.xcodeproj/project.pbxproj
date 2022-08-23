@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB38169928B4E6B7009ADBA3 /* TestColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB38169728B4E6A6009ADBA3 /* TestColor.swift */; };
+		EB38169B28B4FCF9009ADBA3 /* CenterContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB38169A28B4FCF9009ADBA3 /* CenterContent.swift */; };
 		EB60548828AFA162006AFE77 /* InOutMutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547928AFA162006AFE77 /* InOutMutable.swift */; };
 		EB60548928AFA162006AFE77 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547A28AFA162006AFE77 /* Helpers.swift */; };
 		EB60548A28AFA162006AFE77 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547B28AFA162006AFE77 /* Size.swift */; };
@@ -116,6 +118,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EB38169728B4E6A6009ADBA3 /* TestColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColor.swift; sourceTree = "<group>"; };
+		EB38169A28B4FCF9009ADBA3 /* CenterContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterContent.swift; sourceTree = "<group>"; };
 		EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexboxSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB60547928AFA162006AFE77 /* InOutMutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InOutMutable.swift; sourceTree = "<group>"; };
 		EB60547A28AFA162006AFE77 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -294,6 +298,7 @@
 				EB60549E28AFA166006AFE77 /* FlexGrowTests.swift */,
 				EB60549F28AFA166006AFE77 /* FlexButtonTests.swift */,
 				EB6054A028AFA166006AFE77 /* FlexTextTests.swift */,
+				EB38169728B4E6A6009ADBA3 /* TestColor.swift */,
 			);
 			path = FlexboxSwiftUITests;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 				EBE887D728B37B15006F7EB0 /* AnimatedHeightChange.swift */,
 				EB93F78928B37C8D00867768 /* DemoScreen.swift */,
 				EB93F78B28B382E000867768 /* Padding.swift */,
+				EB38169A28B4FCF9009ADBA3 /* CenterContent.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -565,6 +571,7 @@
 				EB6054FB28AFA1BE006AFE77 /* FlexGrowTests.swift in Sources */,
 				EB60550128AFA1BE006AFE77 /* FlexSizeTests.swift in Sources */,
 				EB60550028AFA1BE006AFE77 /* FlexMarginTests.swift in Sources */,
+				EB38169928B4E6B7009ADBA3 /* TestColor.swift in Sources */,
 				EB6054FD28AFA1BE006AFE77 /* FlexButtonTests.swift in Sources */,
 				EB60550228AFA1BE006AFE77 /* FlexPaddingTests.swift in Sources */,
 				EB6054FE28AFA1BE006AFE77 /* Inspection.swift in Sources */,
@@ -586,6 +593,7 @@
 				EB93F78A28B37C8D00867768 /* DemoScreen.swift in Sources */,
 				EBE887D828B37B15006F7EB0 /* AnimatedHeightChange.swift in Sources */,
 				EB93F78C28B382E000867768 /* Padding.swift in Sources */,
+				EB38169B28B4FCF9009ADBA3 /* CenterContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

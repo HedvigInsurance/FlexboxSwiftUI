@@ -14,33 +14,31 @@ import XCTest
 
 class FlexMarginTests: XCTestCase {
     func testMargins() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            size: Size(width: .auto, height: .fixed(1)),
-                            flexGrow: 1,
-                            margin: Edges(
-                                leading: .undefined,
-                                trailing: .fixed(10),
-                                top: .fixed(10),
-                                bottom: .fixed(10)
-                            ),
-                            view: FlexChild(Color.red)
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .auto, height: .fixed(1)),
+                        flexGrow: 1,
+                        margin: Edges(
+                            leading: .undefined,
+                            trailing: .fixed(10),
+                            top: .fixed(10),
+                            bottom: .fixed(10)
                         ),
-                        Node(
-                            size: Size(width: .auto, height: .fixed(1)),
-                            flexGrow: 1,
-                            view: FlexChild(Color.blue)
-                        ),
-                    ],
-                    flexDirection: .column
-                )
+                        view: FlexChild(TestColor(color: .red))
+                    ),
+                    Node(
+                        size: Size(width: .auto, height: .fixed(1)),
+                        flexGrow: 1,
+                        view: FlexChild(TestColor(color: .blue))
+                    ),
+                ],
+                flexDirection: .column
             )
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 }

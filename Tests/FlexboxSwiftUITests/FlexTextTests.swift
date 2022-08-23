@@ -20,47 +20,43 @@ class FlexTextTests: XCTestCase {
         """
 
     func testTextContent() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            size: Size(width: .percent(50), height: .auto),
-                            flexGrow: 1,
-                            view: FlexChild(Text(loremIpsum))
-                        ),
-                        Node(
-                            size: Size(width: .percent(50), height: .auto),
-                            flexGrow: 1,
-                            view: FlexChild(Text(loremIpsum))
-                        ),
-                    ],
-                    flexDirection: .row
-                )
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        size: Size(width: .percent(50), height: .auto),
+                        flexGrow: 1,
+                        view: FlexChild(Text(loremIpsum))
+                    ),
+                    Node(
+                        size: Size(width: .percent(50), height: .auto),
+                        flexGrow: 1,
+                        view: FlexChild(Text(loremIpsum))
+                    ),
+                ],
+                flexDirection: .row
             )
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 
     func testTextContentMaxHeight() {
-        let exp = assertFlexView(
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            maxSize: Size(width: .auto, height: .fixed(30)),
-                            flexGrow: 1,
-                            view: FlexChild(Text(loremIpsum))
-                        )
-                    ],
-                    flexDirection: .row
-                )
+        let exp = assertFlexNode(
+            Node(
+                size: Size(width: .percent(100), height: .percent(100)),
+                children: [
+                    Node(
+                        maxSize: Size(width: .auto, height: .fixed(30)),
+                        flexGrow: 1,
+                        view: FlexChild(Text(loremIpsum))
+                    )
+                ],
+                flexDirection: .row
             )
         )
 
-        wait(for: [exp], timeout: 1)
+        wait(for: exp, timeout: 1)
     }
 }

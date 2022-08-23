@@ -22,31 +22,31 @@ class FlexLayoutStackCache: ObservableObject {
                 childNode.measure = { suggestedSize, widthMode, heightMode in
                     let constrainedWidth =
                         widthMode == .undefined
-                        ? UIView.layoutFittingExpandedSize.width
+                        ? nil
                         : suggestedSize.width
                     let constrainedHeight =
                         heightMode == .undefined
-                        ? UIView.layoutFittingExpandedSize.height
-                        : suggestedSize.width
+                        ? nil
+                        : suggestedSize.height
 
                     func sanitize(
-                        constrainedSize: CGFloat,
+                        constrainedSize: CGFloat?,
                         measuredSize: CGFloat,
                         mode: YGMeasureMode
                     )
                         -> CGFloat
                     {
                         if mode == .exactly {
-                            return constrainedSize
+                            return constrainedSize ?? 0
                         } else if mode == .atMost {
-                            return min(constrainedSize, measuredSize)
+                            return min(constrainedSize ?? 0, measuredSize)
                         } else {
                             return measuredSize
                         }
                     }
                     
                     let sizeThatFits = self.subviews?[offset].sizeThatFits(
-                        ProposedViewSize(CGSize(width: constrainedWidth, height: constrainedHeight))
+                        ProposedViewSize(width: constrainedWidth, height: constrainedHeight)
                     ) ?? .zero
 
                     let result = CGSize(
@@ -91,11 +91,18 @@ struct FlexLayoutStack: SwiftUI.Layout {
         subviews: Subviews,
         cache: inout FlexLayoutStackCache
     ) -> CGSize {
+        var maxHeight: CGFloat {
+            if node.size.height == .auto || node.size.height == .undefined {
+                return .nan
+            }
+            
+            return proposal.height ?? .nan
+        }
+        
         cache.calculate(
-            maxSize: proposal.replacingUnspecifiedDimensions(
-                by: CGSize(
-                    width: .zero, height: CGFloat.nan
-                )
+            maxSize: CGSize(
+                width: proposal.width ?? .zero,
+                height: maxHeight
             )
         )
                 
@@ -111,14 +118,17 @@ struct FlexLayoutStack: SwiftUI.Layout {
         subviews.enumerated().forEach { offset, subview in
             let layoutFrame = cache.layout?.children[offset].frame ?? .zero
             
+            print("[BOUNDS]", bounds.origin)
+            print("[LAYOUT FRAME]", layoutFrame.origin)
+            
             subview.place(
                 at: CGPoint(
                     x: layoutFrame.origin.x + bounds.origin.x,
-                    y:  layoutFrame.origin.y + bounds.origin.y
+                    y: layoutFrame.origin.y + bounds.origin.y
                 ),
                 anchor: .topLeading,
                 proposal: ProposedViewSize(layoutFrame.size)
-            )
+            )            
         }
     }
 }
@@ -140,9 +150,7 @@ public struct FlexViewLayout: View {
         FlexLayoutStack(node: node, cache: cache) {
             ForEach(Array(node.children.enumerated()), id: \.offset) { offset, child in
                 if let view = child.view {
-                    view.view.fixedSize(
-                        horizontal: false, vertical: true
-                    ).environment(\.markDirty) { animation, body in
+                    view.view.environment(\.markDirty) { animation, body in
                         if let parentMarkDirty = parentMarkDirty {
                             parentMarkDirty(animation) { transaction in
                                 body(transaction)
@@ -181,6 +189,10 @@ public struct FlexViewLayout: View {
                     }
                 }
             }
-        }
+        }.frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity,
+            alignment: .topLeading
+        )
     }
 }

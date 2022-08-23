@@ -224,29 +224,31 @@ extension Node: Equatable {
         if l.size != r.size { return false }
         if l.minSize != r.minSize { return false }
         if l.maxSize != r.maxSize { return false }
-
+        
         if l.flexDirection != r.flexDirection { return false }
         if l.flexWrap != r.flexWrap { return false }
         if l.justifyContent != r.justifyContent { return false }
         if l.alignContent != r.alignContent { return false }
         if l.alignItems != r.alignItems { return false }
         if l.alignSelf != r.alignSelf { return false }
-
+        
         if !_isCGFloatEqual(l.flex, r.flex) { return false }
         if !_isCGFloatEqual(l.flexGrow, r.flexGrow) { return false }
         if !_isCGFloatEqual(l.flexShrink, r.flexShrink) { return false }
         if !_isCGFloatEqual(l.flexBasis, r.flexBasis) { return false }
-
+        
         if l.direction != r.direction { return false }
         if l.overflow != r.overflow { return false }
         if l.positionType != r.positionType { return false }
-
+        
         if l.position != r.position { return false }
         if l.margin != r.margin { return false }
         if l.padding != r.padding { return false }
         if l.border != r.border { return false }
-
+        
         if l.children != r.children { return false }
+        
+        if l.view != r.view { return false }
 
         return true
     }
