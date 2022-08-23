@@ -88,7 +88,7 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     }
     
     func measure(targetSize: CGSize) -> CGSize {
-        return self.view.systemLayoutSizeFitting(targetSize)
+        return self.view.sizeThatFits(targetSize)
     }
 
     @MainActor @objc required dynamic init?(

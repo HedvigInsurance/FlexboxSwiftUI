@@ -27,5 +27,6 @@ struct ViewThatChangesHeight: View {
                 .frame(height: isOpen ? 100 : 0)
         }
         .padding(20)
+        .background(Color.red)
     }
 }

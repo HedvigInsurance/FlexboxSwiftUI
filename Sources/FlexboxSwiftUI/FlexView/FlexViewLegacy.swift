@@ -85,12 +85,12 @@ class HostedChildViewWrapper: UIView {
         let width = layout.frame.size.width - layout.padding.left - layout.padding.right
         let height = layout.frame.size.height - layout.padding.top - layout.padding.bottom
         
-        let size = subviews.first?.systemLayoutSizeFitting(CGSize(
+        let size = subviews.first?.sizeThatFits(CGSize(
             width: width,
             height: height
         )) ?? .zero
                         
-        return CGSize(width: width, height: size.height)
+        return size
     }
 }
 
@@ -165,7 +165,7 @@ struct LayoutRenderer: View {
     var applyPosition: Bool
 
     var body: some View {
-        return ZStack(alignment: .topLeading) {
+        Group {
             if let view = layout.view {
                 HostedChild(
                     layout: layout,
@@ -183,6 +183,7 @@ struct LayoutRenderer: View {
 
 public struct FlexViewLegacy: View {
     @StateObject var store: HostingViewStore
+    @Environment(\.markDirty) var parentMarkDirty
 
     var node: Node
 
@@ -216,12 +217,12 @@ public struct FlexViewLegacy: View {
                     .environmentObject(store)
             }
             
-            Color.clear.fixedSize().frame(
+            Color.clear.frame(
                 maxWidth: .infinity,
                 maxHeight: .infinity
             ).background(GeometryReader(content: readMaxSize))
         }
-        .frame(maxWidth: store.screenMaxWidth, maxHeight: .infinity)
+        .frame(maxWidth: store.screenMaxWidth)
         .onReceive(
             NotificationCenter.default.publisher(
                 for: UIDevice.orientationDidChangeNotification
