@@ -18,7 +18,7 @@ struct ViewThatChangesHeight: View {
             Button("Toggle") {
                 //isOpen.toggle()
                 
-                markDirty?(.spring()) { _ in
+                withAnimation(.spring()) {
                     isOpen.toggle()
                 }
             }

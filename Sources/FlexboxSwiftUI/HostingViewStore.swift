@@ -49,7 +49,10 @@ public class HostingViewStore: ObservableObject {
             
             self.layout = node.layout(
                 node: _node,
-                maxSize: maxSize
+                maxSize: CGSize(
+                    width: maxSize.width == 0 ? .nan : maxSize.width,
+                    height: node.isFlexibleHeight ? .nan : maxSize.height
+                )
             )
             
             if previousLayout != self.layout {
