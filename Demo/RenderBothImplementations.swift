@@ -11,19 +11,21 @@ import FlexboxSwiftUI
 
 struct RenderBothImplementations: View {
     var node: Node
+    var maxSize: CGSize? = nil
     
     var body: some View {
         Text("Legacy")
         
-        FlexViewLegacy(
-            node: node
-        )
+//        FlexViewLegacy(
+//            node: node
+//        )
         
         Text("Layout")
         
         if #available(iOS 16, *) {
             FlexViewLayout(
-                node: node
+                node: node,
+                maxSize: maxSize
             )
         }
     }

@@ -14,7 +14,7 @@ class FlexLayoutStackCache: ObservableObject {
     var node: Node
     var _node: NodeImpl
     var subviews: LayoutSubviews? = nil
-    var layout: Layout? = nil
+    var layout: FlexLayout? = nil
     
     func calculate(maxSize: CGSize) {
         _node.children.enumerated().forEach { offset, childNode in
@@ -72,7 +72,7 @@ class FlexLayoutStackCache: ObservableObject {
     
     init(node: Node) {
         self.node = node
-        self._node = node.createUnderlyingNode()
+        self._node = NodeImpl()
     }
 }
 
@@ -140,11 +140,14 @@ public struct FlexViewLayout: View {
     @Environment(\.markDirty) var parentMarkDirty
     @StateObject var cache: FlexLayoutStackCache
     var node: Node
-
+    var maxSize: CGSize
+    
     public init(
-        node: Node
+        node: Node,
+        maxSize: CGSize?
     ) {
         self.node = node
+        self.maxSize = maxSize ?? CGSize(width: Double.infinity, height: Double.infinity)
         self._cache = StateObject(wrappedValue: FlexLayoutStackCache(node: node))
     }
 
@@ -171,7 +174,10 @@ public struct FlexViewLayout: View {
                         }
                     }
                 } else {
-                    FlexViewLayout(node: child).environment(\.markDirty) { animation, body in
+                    FlexViewLayout(
+                        node: child,
+                        maxSize: maxSize
+                    ).environment(\.markDirty) { animation, body in
                         if let parentMarkDirty = parentMarkDirty {
                             parentMarkDirty(animation) { transaction in
                                 body(transaction)
@@ -192,8 +198,8 @@ public struct FlexViewLayout: View {
                 }
             }
         }.frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
+            maxWidth: maxSize.width,
+            maxHeight: maxSize.height,
             alignment: .topLeading
         )
     }

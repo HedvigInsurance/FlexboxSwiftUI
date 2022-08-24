@@ -8,29 +8,26 @@
 import SwiftUI
 
 struct LayoutViewModifier: ViewModifier {
-    var layout: Layout
-    var applyPosition: Bool
+    @EnvironmentObject var store: HostingViewStore
+    var offset: Int
 
     func body(content: Content) -> some View {
-        let paddedContent =
+        if let layout = store.layout?.children[offset] {
             content
             .padding(.leading, layout.padding.left)
             .padding(.trailing, layout.padding.right)
             .padding(.top, layout.padding.top)
             .padding(.bottom, layout.padding.bottom)
-
-        if applyPosition {
-            paddedContent
-                .frame(width: layout.frame.width, height: layout.frame.height, alignment: .topLeading)
-                .clipped()
-                .position(
-                    x: layout.frame.origin.x + (layout.frame.width / 2),
-                    y: layout.frame.origin.y + (layout.frame.height / 2)
-                )
+            .frame(
+                maxWidth: layout.frame.width,
+                maxHeight: layout.frame.height
+            )
+            .position(
+                x: layout.frame.origin.x + (layout.frame.width / 2),
+                y: layout.frame.origin.y + (layout.frame.height / 2)
+            )
         } else {
-            paddedContent
-                .frame(width: layout.frame.width, height: layout.frame.height, alignment: .topLeading)
-                .clipped()
+            content
         }
     }
 }
@@ -63,47 +60,42 @@ extension UIView {
 }
 
 class HostedChildViewWrapper: UIView {
-    var layout: Layout
+    var layout: FlexLayout?
     
-    init(layout: Layout, hostingView: UIView) {
-        self.layout = layout
+    init(hostingView: UIView) {
+        self.layout = nil
         super.init(frame: .zero)
         
         self.addSubview(hostingView)
         
+        self.backgroundColor = .clear
+        
         self.setContentHuggingPriority(.required, for: .vertical)
         self.setContentHuggingPriority(.required, for: .horizontal)
         
-        hostingView.constrainEdges(to: self)
+        self.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        self.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override var intrinsicContentSize: CGSize {
-        let width = layout.frame.size.width - layout.padding.left - layout.padding.right
-        let height = layout.frame.size.height - layout.padding.top - layout.padding.bottom
-        
-        let size = subviews.first?.sizeThatFits(CGSize(
-            width: width,
-            height: height
-        )) ?? .zero
-                        
-        return size
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
 }
 
-struct HostedChild: UIViewRepresentable {
+struct HostedChild: UIViewRepresentable, Equatable {
+    static func == (lhs: HostedChild, rhs: HostedChild) -> Bool {
+        lhs.offset == rhs.offset
+    }
+    
     @EnvironmentObject var store: HostingViewStore
-    var layout: Layout
-    var child: FlexChild
+    var offset: Int
 
     class Coordinator {
         var hostingController: AdjustableHostingController
-        var hasAddedChildController = false
-        var heightConstraint: NSLayoutConstraint? = nil
-        var widthConstraint: NSLayoutConstraint? = nil
 
         func addChildController(_ uiView: UIView) {
             guard
@@ -130,106 +122,188 @@ struct HostedChild: UIViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(hostingController: store.views[child]!)
+        let child = store.node.children[offset].view!
+        let hostingController = store.views[child]!
+        return Coordinator(hostingController: hostingController)
     }
 
     func makeUIView(context: Context) -> HostedChildViewWrapper {
-        let hostingController = store.views[child]!
-        hostingController.setEnvironment(context.environment)
+        let view = HostedChildViewWrapper(
+            hostingView: context.coordinator.hostingController.view
+        )
+        context.coordinator.hostingController.setEnvironment(context.environment)
         
-        return HostedChildViewWrapper(layout: layout, hostingView: hostingController.view)
+        context.coordinator.hostingController.view.constrainEdges(to: view)
+        
+        return view
     }
 
     func updateUIView(_ uiView: HostedChildViewWrapper, context: Context) {
-        uiView.layout = layout
-        uiView.invalidateIntrinsicContentSize()
+        DispatchQueue.main.async {
+            guard let superView = uiView.superview else {
+                return
+            }
+            context.coordinator.addChildController(superView)
+        }
+    }
+}
+
+struct ChildRenderer: View, Equatable {
+    var offset: Int
+
+    var body: some View {
+        if #available(iOS 15.0, *) {
+            let _ = Self._printChanges()
+        }
         
-        if let hostingController = store.views[child] {
-            hostingController.view.invalidateIntrinsicContentSize()
-            hostingController.view.setNeedsLayout()
-            hostingController.view.layoutIfNeeded()
-            
-            DispatchQueue.main.async {
-                guard let superview = hostingController.view.superview else {
-                    return
-                }
-                context.coordinator.addChildController(superview)
+        HostedChild(offset: offset).modifier(
+            LayoutViewModifier(offset: offset)
+        )
+    }
+}
+
+class ExpandingUIView: UIView {
+    override var intrinsicContentSize: CGSize {
+        return UIView.layoutFittingExpandedSize
+    }
+}
+
+struct ExpandingView: UIViewRepresentable {    
+    func makeUIView(context: Context) -> some UIView {
+        let view = ExpandingUIView(frame: .zero)
+        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        uiView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        uiView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        uiView.invalidateIntrinsicContentSize()
+    }
+}
+
+struct HeightFrameModifier: ViewModifier {
+    @EnvironmentObject var store: HostingViewStore
+    var height: SizeType
+    
+    func body(content: Content) -> some View {
+        switch height {
+        case .undefined, .auto:
+            content.frame(
+                maxHeight: .infinity,
+                alignment: .topLeading
+            )
+        case let .fixed(fixedHeight):
+            content.frame(
+                height: fixedHeight,
+                alignment: .topLeading
+            )
+        case let .percent(percent):
+            if let maxSize = store.maxSize {
+                content.frame(
+                    height: maxSize.height * (percent / 100),
+                    alignment: .topLeading
+                )
+            } else {
+                content
             }
         }
     }
 }
 
-struct LayoutRenderer: View {
+struct WidthFrameModifier: ViewModifier {
     @EnvironmentObject var store: HostingViewStore
-    var layout: Layout
-    var applyPosition: Bool
-
-    var body: some View {
-        Group {
-            if let view = layout.view {
-                HostedChild(
-                    layout: layout,
-                    child: view
+    var width: SizeType
+    
+    func body(content: Content) -> some View {
+        switch width {
+        case .undefined, .auto:
+            content.frame(
+                maxWidth: .infinity,
+                alignment: .topLeading
+            )
+        case let .fixed(fixedHeight):
+            content.frame(
+                width: fixedHeight,
+                alignment: .topLeading
+            )
+        case let .percent(percent):
+            if let maxSize = store.maxSize {
+                content.frame(
+                    width: maxSize.width * (percent / 100),
+                    alignment: .topLeading
                 )
             } else {
-                ForEach(Array(layout.children.enumerated()), id: \.offset) { offset, childLayout in
-                    LayoutRenderer(layout: childLayout, applyPosition: true)
-                }
+                content
             }
         }
-        .modifier(LayoutViewModifier(layout: layout, applyPosition: applyPosition))
+    }
+}
+
+struct MaxSizeFrameModifier: ViewModifier {
+    var node: Node
+    
+    func body(content: Content) -> some View {
+        content
+            .modifier(HeightFrameModifier(height: node.maxSize.height))
+            .modifier(WidthFrameModifier(width: node.maxSize.width))
+    }
+}
+
+public struct RenderChildren: View, Equatable {
+    var count: Int
+    
+    var children: [Int] {
+        Array(repeating: "", count: count).enumerated().map { offset, _ in
+            offset
+        }
+    }
+    
+    public var body: some View {
+        if #available(iOS 15.0, *) {
+            let _ = Self._printChanges()
+        }
+        ForEach(children, id: \.self) { offset in
+            ChildRenderer(offset: offset)
+        }
     }
 }
 
 public struct FlexViewLegacy: View {
-    @StateObject var store: HostingViewStore
-    @Environment(\.markDirty) var parentMarkDirty
-
-    var node: Node
-
-    public init(
-        node: Node
-    ) {
-        self.node = node
-        let store = HostingViewStore(node: node)
-        store._node = node.createUnderlyingNode()
-        self._store = StateObject(wrappedValue: store)
+    public init(store: HostingViewStore) {
+        self.store = store
     }
-
-    func readMaxSize(_ proxy: GeometryProxy) -> some View {
+    
+    @ObservedObject var store: HostingViewStore
+    @Environment(\.markDirty) var parentMarkDirty
+    @Environment(\.currentLayout) var currentLayout
+    
+    func updateMaxSize(_ proxy: GeometryProxy) -> some View {
         DispatchQueue.main.async {
-            store.setMaxSize(
-                proxy.size
-            )
+            if proxy.size != store.maxSize {
+                print(proxy.size)
+                store.maxSize = proxy.size
+            }
         }
         
         return Color.clear
     }
 
     public var body: some View {
-        if node != store.node {
-            store.node = node
+        if #available(iOS 15.0, *) {
+            let _ = Self._printChanges()
         }
         
         return ZStack(alignment: .topLeading) {
-            if let layout = store.calculateLayout() {                
-                LayoutRenderer(layout: layout, applyPosition: false)
-                    .environmentObject(store)
+            if currentLayout == nil {
+                ExpandingView().background(GeometryReader { proxy in
+                    updateMaxSize(proxy)
+                })
             }
             
-            Color.clear.frame(
-                maxWidth: .infinity,
-                maxHeight: .infinity
-            ).background(GeometryReader(content: readMaxSize))
+            RenderChildren(count: store.node.children.count)
         }
-        .frame(maxWidth: store.screenMaxWidth)
-        .onReceive(
-            NotificationCenter.default.publisher(
-                for: UIDevice.orientationDidChangeNotification
-            )
-        ) { _ in
-            store.screenMaxWidth = UIScreen.main.bounds.width
-            store.setMaxSize(nil)
-        }
+        .environmentObject(store)
     }
 }

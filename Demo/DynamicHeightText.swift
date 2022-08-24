@@ -15,30 +15,30 @@ struct DynamicHeightText: View {
         """
 
     var body: some View {
-        FlexViewLegacy(
-            node: Node(
-                size: Size(width: .percent(100), height: .auto),
-                children: [
-                    Node(
-                        size: Size(width: .percent(100), height: .auto),
-                        flexGrow: 1,
-                        view: FlexChild(
-                            Text(loremIpsum)
-                                .padding(10)
-                        )
-                    ),
-                    Node(
-                        size: Size(width: .percent(100), height: .auto),
-                        flexGrow: 1,
-                        view: FlexChild(
-                            Text(loremIpsum)
-                                .padding(10)
-                        )
-                    )
-                ],
-                flexDirection: .column
-            )
-        ).frame(height: 300).background(Color.red).padding(20)
+//        FlexViewLegacy(
+//            node: Node(
+//                size: Size(width: .percent(100), height: .auto),
+//                children: [
+//                    Node(
+//                        size: Size(width: .percent(100), height: .auto),
+//                        flexGrow: 1,
+//                        view: FlexChild(
+//                            Text(loremIpsum)
+//                                .padding(10)
+//                        )
+//                    ),
+//                    Node(
+//                        size: Size(width: .percent(100), height: .auto),
+//                        flexGrow: 1,
+//                        view: FlexChild(
+//                            Text(loremIpsum)
+//                                .padding(10)
+//                        )
+//                    )
+//                ],
+//                flexDirection: .column
+//            )
+//        ).frame(height: 300, alignment: .topLeading).background(Color.red).padding(20)
         
         if #available(iOS 16, *) {
             FlexViewLayout(
@@ -63,8 +63,9 @@ struct DynamicHeightText: View {
                         )
                     ],
                     flexDirection: .column
-                )
-            ).frame(height: 300).background(Color.red).padding(20)
+                ),
+                maxSize: nil
+            ).frame(height: 300, alignment: .topLeading).background(Color.red).padding(20)
         }
     }
 }

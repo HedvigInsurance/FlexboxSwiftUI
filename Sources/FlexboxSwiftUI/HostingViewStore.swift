@@ -10,64 +10,56 @@ import SwiftUI
 import FlexboxSwiftUIObjC
 
 public class HostingViewStore: ObservableObject {
-    var node: Node {
+    public var node: Node {
         didSet {
-            _node = node.createUnderlyingNode()
+            updateNode()
         }
     }
-    var _node: NodeImpl? = nil {
-        didSet {
-            applyMeasureFuncs()
-        }
-    }
+    var _node: NodeImpl
     var views: [FlexChild: AdjustableHostingController] = [:]
-    var layout: Layout? = nil
+    var layout: FlexLayout? = nil
 
-    var maxSize: CGSize? = nil
-    var screenMaxWidth: CGFloat = UIScreen.main.bounds.width
+    var maxSize: CGSize? = nil {
+        didSet {
+            node.markAllDirty(self._node)
+            updateLayout()
+        }
+    }
     
-    init(node: Node) {
+    func updateNode() {
+        node.applyTo(node: _node)
+        applyMeasureFuncs()
+        node.markAllDirty(_node)
+        updateLayout()
+    }
+    
+    public init(node: Node) {
         self.node = node
-    }
-
-    func setMaxSize(_ size: CGSize?) {
-        if size != self.maxSize {
-            self.maxSize = size
-            
-            _node?.children.forEach({ node in
-                node.markDirty()
-            })
-            
-            forceUpdate()
-        }
-    }
-    
-    func calculateLayout() -> Layout? {
-        if let maxSize = maxSize {
-            return node.layout(
-                node: _node!,
-                maxSize: CGSize(
-                    width: maxSize.width == 0 ? .nan : min(maxSize.width, screenMaxWidth),
-                    height: node.size.height == .auto || node.size.height == .undefined ? .nan : maxSize.height
-                )
-            )
-        } else {
-            return nil
-        }
-    }
-
-    public func forceUpdate() {
-        let previousLayout = self.layout
+        self.maxSize = nil
         
-        self.layout = calculateLayout()
-
-        if previousLayout != self.layout {
-            self.objectWillChange.send()
-        }
+        let _node = NodeImpl()
+        self._node = _node
+        
+        updateNode()
     }
     
+    func updateLayout() {
+        if let maxSize = maxSize {
+            let previousLayout = self.layout
+            
+            self.layout = node.layout(
+                node: _node,
+                maxSize: maxSize
+            )
+            
+            if previousLayout != self.layout {
+                self.objectWillChange.send()
+            }
+        }
+    }
+
     func applyMeasureFuncs() {
-        _node?.children
+        _node.children
             .enumerated()
             .forEach { offset, nodeChild in
                 if let flexChild = node.children[offset].view {
@@ -99,8 +91,9 @@ public class HostingViewStore: ObservableObject {
                             }
                         }
                         
-                        let sizeThatFits = hostingView.measure(
-                            targetSize: CGSize(width: constrainedWidth, height: constrainedHeight)
+                        hostingView.view.invalidateIntrinsicContentSize()
+                        let sizeThatFits = hostingView.view.systemLayoutSizeFitting(
+                            CGSize(width: constrainedWidth, height: constrainedHeight)
                         )
 
                         let result = CGSize(
@@ -123,6 +116,10 @@ public class HostingViewStore: ObservableObject {
     }
 
     func add(_ child: FlexChild, node: NodeImpl) -> AdjustableHostingController {
+        if let previousController = views[child] {
+            return previousController
+        }
+        
         let hostingView = AdjustableHostingController(
             rootView: AnyView(child.view),
             store: self,

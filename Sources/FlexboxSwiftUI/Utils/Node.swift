@@ -145,17 +145,17 @@ public struct Node {
     func layout(
         node: NodeImpl,
         maxSize: CGSize? = nil
-    ) -> Layout {
+    ) -> FlexLayout {
         if let maxSize = maxSize {
             node.layout(withMaxSize: maxSize)
         } else {
             node.layout()
         }
         
-        func createLayoutsFromChildren(_ node: NodeImpl) -> [Layout] {
+        func createLayoutsFromChildren(_ node: NodeImpl) -> [FlexLayout] {
             return node.children.enumerated()
                 .map { offset, childNode in
-                    return Layout(
+                    return FlexLayout(
                         frame: childNode.frame,
                         padding: childNode.padding,
                         children: createLayoutsFromChildren(childNode),
@@ -166,13 +166,12 @@ public struct Node {
         
         let children = createLayoutsFromChildren(node)
         
-        return Layout(frame: node.frame, padding: node.padding, children: children, view: self.view)
+        return FlexLayout(frame: node.frame, padding: node.padding, children: children, view: self.view)
     }
     
-    public func createUnderlyingNode(
-    ) -> NodeImpl {
-        let node = NodeImpl()
-        
+    public func applyTo(
+        node: NodeImpl
+    ) {
         size.applyToNode(node, kind: .normal)
         maxSize.applyToNode(node, kind: .max)
         minSize.applyToNode(node, kind: .min)
@@ -206,14 +205,33 @@ public struct Node {
             // (All children will be ignored).
             node.children = []
         } else {
-            node.children = children.map { $0.createUnderlyingNode() }
-        }
-        
-        return node
+            node.children = children.enumerated().map { offset, child in
+                if node.children.indices.contains(offset) {
+                    let node = node.children[offset]
+                    child.applyTo(node: node)
+                    return node
+                } else {
+                    let node = NodeImpl()
+                    child.applyTo(node: node)
+                    return node
+                }
+            }
+        }        
     }
     
     var isFlexibleHeight: Bool {
         [SizeType.auto, SizeType.undefined].contains(size.height)
+    }
+        
+    public func markAllDirty(_ _node: NodeImpl) {
+        if view != nil {
+            _node.markDirty()
+        } else {
+            children.enumerated().forEach { offset, subNode in
+                let _subNode = _node.children[offset]
+                subNode.markAllDirty(_subNode)
+            }
+        }
     }
 }
 
