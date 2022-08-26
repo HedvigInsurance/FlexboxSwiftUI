@@ -19,9 +19,8 @@ struct LayoutViewModifier: ViewModifier {
             .padding(.top, layout.padding.top)
             .padding(.bottom, layout.padding.bottom)
             .frame(
-                width: layout.frame.width,
-                height: layout.frame.height,
-                alignment: .topLeading
+                maxWidth: layout.frame.width,
+                maxHeight: layout.frame.height
             )
             .position(
                 x: layout.frame.origin.x + (layout.frame.width / 2),
@@ -164,44 +163,22 @@ struct ChildRenderer: View, Equatable {
 }
 
 class ExpandingUIView: UIView {
-    var flexibilityAxies: [Axis]
-    
-    init(flexibilityAxies: [Axis]) {
-        self.flexibilityAxies = flexibilityAxies
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override var intrinsicContentSize: CGSize {
-        CGSize(
-            width: flexibilityAxies.contains(.horizontal) ? UIView.layoutFittingExpandedSize.width : 0,
-            height: flexibilityAxies.contains(.vertical) ? UIView.layoutFittingExpandedSize.height : 0
-        )
+        return UIView.layoutFittingExpandedSize
     }
 }
 
-struct ExpandingView: UIViewRepresentable {
-    var flexibilityAxies: [Axis]
-    
-    func makeUIView(context: Context) -> ExpandingUIView {
-        let view = ExpandingUIView(flexibilityAxies: flexibilityAxies)
+struct ExpandingView: UIViewRepresentable {    
+    func makeUIView(context: Context) -> some UIView {
+        let view = ExpandingUIView(frame: .zero)
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        
-        view.setContentHuggingPriority(.required, for: .vertical)
-        view.setContentHuggingPriority(.required, for: .horizontal)
         return view
     }
     
-    func updateUIView(_ uiView: ExpandingUIView, context: Context) {
-        uiView.flexibilityAxies = flexibilityAxies
+    func updateUIView(_ uiView: UIViewType, context: Context) {
         uiView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         uiView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        uiView.setContentHuggingPriority(.required, for: .vertical)
-        uiView.setContentHuggingPriority(.required, for: .horizontal)
         uiView.invalidateIntrinsicContentSize()
     }
 }
@@ -305,6 +282,7 @@ public struct FlexViewLegacy: View {
     func updateMaxSize(_ proxy: GeometryProxy) -> some View {
         DispatchQueue.main.async {
             if proxy.size != store.maxSize {
+                print(proxy.size)
                 store.maxSize = proxy.size
             }
         }
@@ -319,12 +297,7 @@ public struct FlexViewLegacy: View {
         
         return ZStack(alignment: .topLeading) {
             if currentLayout == nil {
-                ExpandingView(
-                    flexibilityAxies: [
-                        .horizontal,
-                        !store.node.isFlexibleHeight ? .vertical : nil
-                    ].compactMap { $0 }
-                ).background(GeometryReader { proxy in
+                ExpandingView().background(GeometryReader { proxy in
                     updateMaxSize(proxy)
                 })
             }
@@ -332,6 +305,5 @@ public struct FlexViewLegacy: View {
             RenderChildren(count: store.node.children.count)
         }
         .environmentObject(store)
-        .clipped()
     }
 }

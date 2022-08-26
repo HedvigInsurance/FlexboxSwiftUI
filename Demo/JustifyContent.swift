@@ -16,14 +16,16 @@ struct JustifyContent: View {
             Node(
                 size: Size(width: .auto, height: .auto),
                 flexGrow: 1,
-                flexShrink: 1,
                 view: FlexChild(TestColor(color: .yellow))
             ),
             Node(
                 size: Size(width: .auto, height: .auto),
                 flexGrow: 1,
-                flexShrink: 0,
-                view: FlexChild(ViewThatChangesHeight())
+                view: FlexChild(ZStack {
+                    Button("fisk") {
+                        
+                    }
+                }.background(Color.blue))
             )
         ]
     ))
@@ -34,7 +36,7 @@ struct JustifyContent: View {
         node.children = node.children.map { node in
             var node = node
             
-            node.size = Size(width: .auto, height: .percent(CGFloat(Int.random(in: 50..<100))))
+            node.size = Size(width: .auto, height: .percent(CGFloat(Int.random(in: 1..<100))))
             
             return node
         }
@@ -52,5 +54,7 @@ struct JustifyContent: View {
         FlexViewLegacy(
             store: store
         )
+        .frame(height: 150, alignment: .topLeading)
+        .background(Color.red)
     }
 }

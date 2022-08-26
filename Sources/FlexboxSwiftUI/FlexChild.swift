@@ -23,8 +23,6 @@ public struct FlexChild: Hashable {
     public init<Content: View>(
         _ view: Content
     ) {
-        self.view = AnyView(
-            view.frame(maxHeight: .infinity, alignment: .topLeading)
-        )
+        self.view = AnyView(view)
     }
 }
