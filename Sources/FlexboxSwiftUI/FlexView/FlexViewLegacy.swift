@@ -63,7 +63,11 @@ extension UIView {
 }
 
 class HostedChildViewWrapper: UIView {
-    var layout: Layout
+    var layout: Layout {
+        didSet {
+            updateHostingViewFrame()
+        }
+    }
     
     init(layout: Layout, hostingView: UIView) {
         self.layout = layout
@@ -73,24 +77,23 @@ class HostedChildViewWrapper: UIView {
         
         self.setContentHuggingPriority(.required, for: .vertical)
         self.setContentHuggingPriority(.required, for: .horizontal)
-        
-        hostingView.constrainEdges(to: self)
+    }
+    
+    func updateHostingViewFrame() {
+        subviews.forEach { hostingView in
+            let fittingSize = hostingView.sizeThatFits(layout.frame.size)
+            hostingView.frame = CGRect(origin: .zero, size: fittingSize)
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override var intrinsicContentSize: CGSize {
-        let width = layout.frame.size.width - layout.padding.left - layout.padding.right
-        let height = layout.frame.size.height - layout.padding.top - layout.padding.bottom
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
-        let size = subviews.first?.sizeThatFits(CGSize(
-            width: width,
-            height: height
-        )) ?? .zero
-                        
-        return size
+        updateHostingViewFrame()
     }
 }
 
@@ -138,6 +141,13 @@ struct HostedChild: UIViewRepresentable {
         hostingController.setEnvironment(context.environment)
         
         return HostedChildViewWrapper(layout: layout, hostingView: hostingController.view)
+    }
+    
+    func _overrideSizeThatFits(_ size: inout CoreGraphics.CGSize, in proposedSize: SwiftUI._ProposedSize, uiView: Self.UIViewType) {
+        let width = layout.frame.size.width - layout.padding.left - layout.padding.right
+        let height = layout.frame.size.height - layout.padding.top - layout.padding.bottom
+        
+        size = CGSize(width: width, height: height)
     }
 
     func updateUIView(_ uiView: HostedChildViewWrapper, context: Context) {
@@ -196,40 +206,25 @@ public struct FlexViewLegacy: View {
         self._store = StateObject(wrappedValue: store)
     }
 
-    func readMaxSize(_ proxy: GeometryProxy) -> some View {
-        DispatchQueue.main.async {
-            store.setMaxSize(
-                proxy.size
-            )
-        }
-        
-        return Color.clear
-    }
-
     public var body: some View {
         if node != store.node {
             store.node = node
         }
         
         return ZStack(alignment: .topLeading) {
-            if let layout = store.calculateLayout() {                
-                LayoutRenderer(layout: layout, applyPosition: false)
-                    .environmentObject(store)
+            SizeReaderView { size in
+                store.setMaxSize(size)
             }
             
-            Color.clear.frame(
-                maxWidth: .infinity,
-                maxHeight: .infinity
-            ).background(GeometryReader(content: readMaxSize))
+            if let layout = store.calculateLayout() {
+                LayoutRenderer(layout: layout, applyPosition: false)
+                .position(
+                    x: layout.frame.origin.x + (layout.frame.width / 2),
+                    y: layout.frame.origin.y + (layout.frame.height / 2)
+                )
+            }
         }
-        .frame(maxWidth: store.screenMaxWidth)
-        .onReceive(
-            NotificationCenter.default.publisher(
-                for: UIDevice.orientationDidChangeNotification
-            )
-        ) { _ in
-            store.screenMaxWidth = UIScreen.main.bounds.width
-            store.setMaxSize(nil)
-        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .environmentObject(store)
     }
 }

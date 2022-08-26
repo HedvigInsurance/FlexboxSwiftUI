@@ -21,47 +21,40 @@ struct JustifyContent: View {
         
         FlexViewLegacy(
             node: Node(
-                size: Size(width: .percent(50), height: .percent(100)),
+                size: Size(width: .percent(50), height: .fixed(modifySize ? 300 : 100)),
                 children: [
                     Node(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(TestColor(color: .blue))
+                        view: FlexChild(ViewThatChangesHeight())
+                    ),
+                    Node(
+                        size: Size(width: .auto, height: .auto),
+                        flexGrow: 1,
+                        view: FlexChild(ViewThatChangesHeight())
                     )
-                ]
+                ],
+                flexDirection: .column
             )
-        ).frame(height: modifySize ? 300 : 100).background(Color.yellow)
+        ).background(Color.yellow)
         
         if #available(iOS 16, *) {
             FlexViewLayout(node: Node(
-                size: Size(width: .percent(50), height: .percent(100)),
+                size: Size(width: .percent(50), height: .fixed(modifySize ? 300 : 100)),
                 children: [
                     Node(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(TestColor(color: .blue))
+                        view: FlexChild(ViewThatChangesHeight())
+                    ),
+                    Node(
+                        size: Size(width: .auto, height: .auto),
+                        flexGrow: 1,
+                        view: FlexChild(ViewThatChangesHeight())
                     )
-                ]
-            )).frame(height: modifySize ? 300 : 100).background(Color.yellow)
+                ],
+                flexDirection: .column
+            )).background(Color.yellow)
         }
-        
-        
-//        FlexView(
-//            node: Node(
-//                size: Size(width: .percent(100), height: .auto),
-//                children: [
-//                    Node(
-//                        size: Size(width: .percent(100), height: .fixed(10)),
-//                        view: FlexChild(Color.red)
-//                    ),
-//                    Node(
-//                        size: Size(width: .percent(100), height: .fixed(40)),
-//                        view: FlexChild(Color.blue)
-//                    ),
-//                ],
-//                flexDirection: .column,
-//                justifyContent: .center
-//            )
-//        )
     }
 }

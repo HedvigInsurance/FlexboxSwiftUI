@@ -9,22 +9,24 @@ import Foundation
 import FlexboxSwiftUI
 import SwiftUI
 
-class ColorView: UIView {
-    override var intrinsicContentSize: CGSize {
-        return UIView.layoutFittingExpandedSize
-    }
-}
-
 struct TestColor: UIViewRepresentable {
     var color: Color
     
-    func makeUIView(context: Context) -> some UIView {
-        ColorView(frame: .zero)
+    func makeUIView(context: Context) -> UIView {
+        UIView(frame: .zero)
     }
     
-    func updateUIView(_ uiView: UIViewType, context: Context) {
+    func _overrideSizeThatFits(_ size: inout CoreGraphics.CGSize, in proposedSize: SwiftUI._ProposedSize, uiView: UIView) {
+        size = CGSize(width: proposedSize.width, height: proposedSize.height)
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {
         uiView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         uiView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        
+        uiView.setContentHuggingPriority(.required, for: .horizontal)
+        uiView.setContentHuggingPriority(.required, for: .vertical)
+        
         uiView.backgroundColor = UIColor(color)
     }
 }

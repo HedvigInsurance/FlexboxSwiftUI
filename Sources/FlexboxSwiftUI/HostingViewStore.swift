@@ -24,7 +24,6 @@ public class HostingViewStore: ObservableObject {
     var layout: Layout? = nil
 
     var maxSize: CGSize? = nil
-    var screenMaxWidth: CGFloat = UIScreen.main.bounds.width
     
     init(node: Node) {
         self.node = node
@@ -47,7 +46,7 @@ public class HostingViewStore: ObservableObject {
             return node.layout(
                 node: _node!,
                 maxSize: CGSize(
-                    width: maxSize.width == 0 ? .nan : min(maxSize.width, screenMaxWidth),
+                    width: maxSize.width == 0 ? .nan : maxSize.width,
                     height: node.size.height == .auto || node.size.height == .undefined ? .nan : maxSize.height
                 )
             )
@@ -60,7 +59,7 @@ public class HostingViewStore: ObservableObject {
         let previousLayout = self.layout
         
         self.layout = calculateLayout()
-
+        
         if previousLayout != self.layout {
             self.objectWillChange.send()
         }
@@ -98,7 +97,7 @@ public class HostingViewStore: ObservableObject {
                                 return measuredSize
                             }
                         }
-                        
+                                                                        
                         let sizeThatFits = hostingView.measure(
                             targetSize: CGSize(width: constrainedWidth, height: constrainedHeight)
                         )
@@ -115,7 +114,7 @@ public class HostingViewStore: ObservableObject {
                                 mode: heightMode
                             )
                         )
-                        
+                                                
                         return result
                     }
                 }

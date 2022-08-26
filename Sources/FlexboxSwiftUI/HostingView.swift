@@ -97,39 +97,9 @@ class AdjustableHostingController: UIHostingController<AnyView> {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var previousSize: CGSize? = nil
+    var previousIntrinsicSize: CGSize? = nil
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        func forceUpdate() {
-            let newSize = self.view.sizeThatFits(CGSize(
-                width: self.view.frame.width,
-                height: UIView.layoutFittingExpandedSize.height
-            ))
-            
-            if newSize != previousSize {
-                self.node.markDirty()
-                self.store.forceUpdate()
-                            
-                self.view.invalidateIntrinsicContentSize()
-                self.view.updateConstraints()
-                self.view.layoutIfNeeded()
-                
-                self.view.superview?.invalidateIntrinsicContentSize()
-                self.view.superview?.updateConstraints()
-                self.view.superview?.layoutIfNeeded()
-                
-                previousSize = newSize
-            }            
-        }
-        
-        if let transaction = transaction {
-            withTransaction(transaction) {
-                forceUpdate()
-            }
-        } else {
-            forceUpdate()
-        }
     }
 }

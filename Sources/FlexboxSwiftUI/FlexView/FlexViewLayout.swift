@@ -11,7 +11,11 @@ import FlexboxSwiftUIObjC
 
 @available(iOS 16, *)
 class FlexLayoutStackCache: ObservableObject {
-    var node: Node
+    var node: Node {
+        didSet {
+            _node = node.createUnderlyingNode()
+        }
+    }
     var _node: NodeImpl
     var subviews: LayoutSubviews? = nil
     var layout: Layout? = nil
@@ -83,6 +87,7 @@ struct FlexLayoutStack: SwiftUI.Layout {
     
     func makeCache(subviews: Subviews) -> FlexLayoutStackCache {
         cache.subviews = subviews
+        cache.node = node
         return cache
     }
     
@@ -105,8 +110,12 @@ struct FlexLayoutStack: SwiftUI.Layout {
                 height: maxHeight
             )
         )
-                
+                                
         return cache.layout?.frame.size ?? .zero
+    }
+    
+    func spacing(subviews: Subviews, cache: inout FlexLayoutStackCache) -> ViewSpacing {
+        return .zero
     }
     
     func placeSubviews(
@@ -119,7 +128,7 @@ struct FlexLayoutStack: SwiftUI.Layout {
             guard let layout = cache.layout?.children[offset] else {
                 return
             }
-            
+                        
             subview.place(
                 at: CGPoint(
                     x: layout.frame.origin.x + bounds.origin.x + layout.padding.right,
@@ -196,5 +205,6 @@ public struct FlexViewLayout: View {
             maxHeight: .infinity,
             alignment: .topLeading
         )
+        .clipped()
     }
 }
