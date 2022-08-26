@@ -11,16 +11,16 @@ import UIKit
 
 /// An evaluated Flexbox layout.
 /// - Note: Layouts will not be created manually.
-public struct FlexLayout {
+public struct Layout {
     public let frame: CGRect
     public let padding: UIEdgeInsets
-    public let children: [FlexLayout]
+    public let children: [Layout]
     public let view: FlexChild?
 
     internal init(
         frame: CGRect,
         padding: UIEdgeInsets,
-        children: [FlexLayout],
+        children: [Layout],
         view: FlexChild?
     ) {
         self.frame = frame
@@ -30,7 +30,7 @@ public struct FlexLayout {
     }
 }
 
-extension FlexLayout: CustomStringConvertible {
+extension Layout: CustomStringConvertible {
     public var description: String {
         return _descriptionForDepth(0)
     }
@@ -51,8 +51,8 @@ extension FlexLayout: CustomStringConvertible {
     }
 }
 
-extension FlexLayout: Equatable {
-    public static func == (lhs: FlexLayout, rhs: FlexLayout) -> Bool {
+extension Layout: Equatable {
+    public static func == (lhs: Layout, rhs: Layout) -> Bool {
         if lhs.frame != rhs.frame { return false }
         if lhs.children != rhs.children { return false }
 

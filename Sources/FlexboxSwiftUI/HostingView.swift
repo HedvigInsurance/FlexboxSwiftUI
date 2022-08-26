@@ -15,6 +15,7 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     private var store: HostingViewStore
     private var content: AnyView
     private var environment: EnvironmentValues? = nil
+    private var transaction: Transaction? = nil
     
     func disableSafeArea() {
         guard let viewClass = object_getClass(view) else { return }
@@ -43,9 +44,12 @@ class AdjustableHostingController: UIHostingController<AnyView> {
         let base = AnyView(
             content.environment(\.markDirty) { animation, body in
                 let transaction = Transaction(animation: animation)
+                self.transaction = transaction
                 
                 withTransaction(transaction) {
                     body(transaction)
+                    self.view.setNeedsLayout()
+                    self.view.layoutIfNeeded()
                 }
             }
         )
@@ -69,7 +73,7 @@ class AdjustableHostingController: UIHostingController<AnyView> {
         self.environment = environment
         setRootView()
     }
-
+    
     public init(
         rootView: AnyView,
         store: HostingViewStore,
@@ -82,6 +86,10 @@ class AdjustableHostingController: UIHostingController<AnyView> {
         disableSafeArea()
         view.backgroundColor = .clear
     }
+    
+    func measure(targetSize: CGSize) -> CGSize {
+        return self.view.sizeThatFits(targetSize)
+    }
 
     @MainActor @objc required dynamic init?(
         coder aDecoder: NSCoder
@@ -93,5 +101,35 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        func forceUpdate() {
+            let newSize = self.view.sizeThatFits(CGSize(
+                width: self.view.frame.width,
+                height: UIView.layoutFittingExpandedSize.height
+            ))
+            
+            if newSize != previousSize {
+                self.node.markDirty()
+                self.store.forceUpdate()
+                            
+                self.view.invalidateIntrinsicContentSize()
+                self.view.updateConstraints()
+                self.view.layoutIfNeeded()
+                
+                self.view.superview?.invalidateIntrinsicContentSize()
+                self.view.superview?.updateConstraints()
+                self.view.superview?.layoutIfNeeded()
+                
+                previousSize = newSize
+            }            
+        }
+        
+        if let transaction = transaction {
+            withTransaction(transaction) {
+                forceUpdate()
+            }
+        } else {
+            forceUpdate()
+        }
     }
 }

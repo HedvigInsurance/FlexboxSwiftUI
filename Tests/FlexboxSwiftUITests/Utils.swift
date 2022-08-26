@@ -26,7 +26,7 @@ struct InspectionEnabledView<Content: View>: View, Inspectable {
 extension View {
     @ViewBuilder func frame(_ size: CGSize?) -> some View {
         if let size = size {
-            self.frame(width: size.width, height: size.height, alignment: .topLeading)
+            self.frame(width: size.width, height: size.height)
         } else {
             self
         }
@@ -45,7 +45,7 @@ func assertFlexNode(
     line: UInt = #line
 ) -> [XCTestExpectation] {
     func runAssert<V: View>(_ view: V) -> XCTestExpectation {
-        let vc = UIHostingController(rootView: view)
+        let vc = UIHostingController(rootView: view.frame(size))
 
         let exp = XCTestExpectation(description: "Wait for screen to render")
 
@@ -76,12 +76,12 @@ func assertFlexNode(
         return exp
     }
     
-    let legacyExp = runAssert(FlexViewLegacy(node: node, maxSize: assertSize))
+    let legacyExp = runAssert(FlexViewLegacy(node: node))
     
     let layoutExp: XCTestExpectation?
     
     if #available(iOS 16, *) {
-        layoutExp = runAssert(FlexViewLayout(node: node, maxSize: assertSize))
+        layoutExp = runAssert(FlexViewLayout(node: node))
     } else {
         layoutExp = nil
     }

@@ -65,9 +65,7 @@ static void YGRemoveAllChildren(const YGNodeRef node)
 
 - (void)markDirty
 {
-    if (YGNodeHasMeasureFunc(_node)) {
-        YGNodeMarkDirty(_node);
-    }
+    YGNodeMarkDirty(_node);
 }
 
 static int LogCallback(YGConfigRef config, YGNodeRef node, YGLogLevel level, const char* format, va_list args) {
