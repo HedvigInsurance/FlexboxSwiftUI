@@ -18,7 +18,7 @@ class AdjustableHostingController: UIHostingController<AnyView> {
             }
         }
     }
-    private var node: NodeImpl
+    private var nodeOffset: NodeOffset
     private var store: HostingViewStore
     private var content: AnyView
     private var environment: EnvironmentValues? = nil
@@ -75,14 +75,34 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     public init(
         rootView: AnyView,
         store: HostingViewStore,
-        node: NodeImpl
+        nodeOffset: NodeOffset
     ) {
         self.store = store
         self.content = rootView
-        self.node = node
+        self.nodeOffset = nodeOffset
         super.init(rootView: rootView)
         disableSafeArea()
         view.backgroundColor = .clear
+        
+        view.onLayoutHandler = {
+            let size = self.view.sizeThatFits(.zero)
+            
+            if self.previousSize != size {
+                store.markNodeDirty(offset: nodeOffset)
+                store.forceUpdate()
+                
+                if let layout = store.findLayoutFor(offset: nodeOffset) {
+                    self.layout = layout
+                    
+                    if let superview = self.view.superview as? HostedChildViewWrapper {
+                        superview.updateFrame()
+                    }
+                }
+
+            }
+            
+            self.previousSize = size
+        }
     }
     
     func measure(targetSize: CGSize) -> CGSize {
@@ -98,9 +118,10 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     ) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    var previousSize: CGSize? = nil
             
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.view.superview?.invalidateIntrinsicContentSize()
     }
 }

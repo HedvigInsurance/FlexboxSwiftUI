@@ -28,6 +28,14 @@ class NodeOffset: Hashable {
         )
     }
     
+    func findLayout(on layout: Layout) -> Layout {
+        if let nodeOffset = nodeOffset {
+            return nodeOffset.findLayout(on: layout.children[offset])
+        }
+        
+        return layout.children[offset]
+    }
+    
     func findNode(on node: Node) -> Node {
         if let nodeOffset = nodeOffset {
             return nodeOffset.findNode(on: node.children[offset])

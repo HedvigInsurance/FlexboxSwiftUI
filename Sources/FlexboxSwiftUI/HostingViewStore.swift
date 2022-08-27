@@ -44,6 +44,14 @@ public class HostingViewStore: ObservableObject {
         }
     }
     
+    func findLayoutFor(offset: NodeOffset) -> Layout? {
+        if let layout = layout {
+            return offset.findLayout(on: layout)
+        }
+        
+        return nil
+    }
+    
     func calculateLayout() -> Layout? {
         if let maxSize = maxSize {
             return node?.layout(
@@ -75,7 +83,6 @@ public class HostingViewStore: ObservableObject {
                 if let view = node?.children[offset].view {
                     let hostingView = self.add(
                         offset: NodeOffset(offset: offset),
-                        node: nodeChild,
                         view: view
                     )
 
@@ -130,7 +137,6 @@ public class HostingViewStore: ObservableObject {
 
     func add(
         offset: NodeOffset,
-        node: NodeImpl,
         view: AnyView
     ) -> AdjustableHostingController {
         if let hostingController = views[offset] {
@@ -140,7 +146,7 @@ public class HostingViewStore: ObservableObject {
         let hostingController = AdjustableHostingController(
             rootView: view,
             store: self,
-            node: node
+            nodeOffset: offset
         )
         views[offset] = hostingController
 

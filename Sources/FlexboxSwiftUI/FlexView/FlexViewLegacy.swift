@@ -72,9 +72,7 @@ class HostedChildViewWrapper: UIView {
         
         self.addSubview(hostingView)
         
-        hostingView.translatesAutoresizingMaskIntoConstraints = false
-        
-        //hostingView.constrainEdges(to: self)
+        hostingView.translatesAutoresizingMaskIntoConstraints = false        
     }
     
     override var intrinsicContentSize: CGSize {
@@ -85,9 +83,31 @@ class HostedChildViewWrapper: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    var layoutWidth: CGFloat {
+        if let layout = coordinator.hostingController.layout {
+            return layout.frame.size.width - layout.padding.left - layout.padding.right
+        }
         
+        return .zero
+    }
+    
+    var layoutHeight: CGFloat {
+        if let layout = coordinator.hostingController.layout {
+            return  layout.frame.size.height - layout.padding.top - layout.padding.bottom
+        }
+        
+        return .zero
+    }
+    
+    func calculateSizeThatFits() -> CGSize {
+        if let hostingView = subviews.first {
+            return hostingView.sizeThatFits(CGSize(width: layoutWidth, height: layoutHeight))
+        }
+        
+        return .zero
+    }
+    
+    func updateFrame() {
         if let hostingView = subviews.first {
             let layoutWidth = coordinator.hostingController.layout?.frame.width ?? 0
             let layoutHeight = coordinator.hostingController.layout?.frame.height ?? 0
@@ -104,6 +124,11 @@ class HostedChildViewWrapper: UIView {
                 height: sizeThatFits.height
             )
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateFrame()
     }
 }
 
@@ -153,22 +178,16 @@ struct HostedChild: UIViewRepresentable {
         )
     }
     
-    func _overrideSizeThatFits(_ size: inout CoreGraphics.CGSize, in proposedSize: SwiftUI._ProposedSize, uiView: Self.UIViewType) {
-        let width = layout.frame.size.width - layout.padding.left - layout.padding.right
-        let height = layout.frame.size.height - layout.padding.top - layout.padding.bottom
-                        
-        if size != uiView.previousSize {
-            store.markNodeDirty(offset: offset)
-            store.forceUpdate()
-        }
-        
-        uiView.previousSize = size
-        
-        let sizeThatFits = uiView.subviews.first?.sizeThatFits(CGSize(width: width, height: height)) ?? .zero
+    func _overrideSizeThatFits(
+        _ size: inout CoreGraphics.CGSize,
+        in proposedSize: SwiftUI._ProposedSize,
+        uiView: HostedChildViewWrapper
+    ) {
+        let sizeThatFits = uiView.calculateSizeThatFits()
 
         size = CGSize(
-            width: min(width, sizeThatFits.width),
-            height: min(height, sizeThatFits.height)
+            width: min(uiView.layoutWidth, sizeThatFits.width),
+            height: min(uiView.layoutHeight, sizeThatFits.height)
         )
     }
 
@@ -241,6 +260,8 @@ public struct FlexViewLegacy: View {
         if node != store.node {
             store.node = node
         }
+        
+        UIView.swizzleLayoutHandler()
         
         return ZStack(alignment: .topLeading) {
             SizeReaderView { size in
