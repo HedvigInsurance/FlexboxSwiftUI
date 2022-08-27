@@ -72,7 +72,9 @@ class HostedChildViewWrapper: UIView {
         
         self.addSubview(hostingView)
         
-        hostingView.constrainEdges(to: self)
+        hostingView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //hostingView.constrainEdges(to: self)
     }
     
     override var intrinsicContentSize: CGSize {
@@ -85,6 +87,23 @@ class HostedChildViewWrapper: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        if let hostingView = subviews.first {
+            let layoutWidth = coordinator.hostingController.layout?.frame.width ?? 0
+            let layoutHeight = coordinator.hostingController.layout?.frame.height ?? 0
+            
+            let sizeThatFits = hostingView.sizeThatFits(
+                CGSize(width: layoutWidth, height: layoutHeight)
+            )
+            
+            hostingView.center = .zero
+            hostingView.frame = CGRect(
+                x: 0,
+                y: 0,
+                width: sizeThatFits.width,
+                height: sizeThatFits.height
+            )
+        }
     }
 }
 
@@ -139,6 +158,7 @@ struct HostedChild: UIViewRepresentable {
         let height = layout.frame.size.height - layout.padding.top - layout.padding.bottom
                         
         if size != uiView.previousSize {
+            store.markNodeDirty(offset: offset)
             store.forceUpdate()
         }
         

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FlexboxSwiftUIObjC
 
 class NodeOffset: Hashable {
     internal init(offset: Int, nodeOffset: NodeOffset? = nil) {
@@ -28,6 +29,14 @@ class NodeOffset: Hashable {
     }
     
     func findNode(on node: Node) -> Node {
+        if let nodeOffset = nodeOffset {
+            return nodeOffset.findNode(on: node.children[offset])
+        }
+        
+        return node.children[offset]
+    }
+    
+    func findNode(on node: NodeImpl) -> NodeImpl {
         if let nodeOffset = nodeOffset {
             return nodeOffset.findNode(on: node.children[offset])
         }

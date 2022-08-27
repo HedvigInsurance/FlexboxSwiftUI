@@ -30,19 +30,15 @@ public class HostingViewStore: ObservableObject {
         
     }
     
-    func markAllDirty() {
-        _node?.children.forEach({ node in
-            node.markDirty()
-        })
+    func markNodeDirty(offset: NodeOffset) {
+        if let _node = _node {
+            offset.findNode(on: _node).markDirty()
+        }
     }
 
     func setMaxSize(_ size: CGSize?) {
         if size != self.maxSize {
             self.maxSize = size
-            
-            _node?.children.forEach({ node in
-                node.markDirty()
-            })
             
             forceUpdate()
         }
@@ -63,8 +59,6 @@ public class HostingViewStore: ObservableObject {
     }
 
     public func forceUpdate() {
-        markAllDirty()
-        
         let previousLayout = self.layout
         
         self.layout = calculateLayout()

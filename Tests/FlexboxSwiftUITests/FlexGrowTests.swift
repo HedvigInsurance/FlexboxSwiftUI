@@ -21,19 +21,19 @@ class FlexGrowTests: XCTestCase {
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
                         flexShrink: 1,
-                        view: FlexChild(TestColor(color: .red))
+                        view: AnyView(TestColor(color: .red))
                     ),
                     Node(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
                         flexShrink: 1,
-                        view: FlexChild(TestColor(color: .blue))
+                        view: AnyView(TestColor(color: .blue))
                     ),
                     Node(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
                         flexShrink: 1,
-                        view: FlexChild(TestColor(color: .green))
+                        view: AnyView(TestColor(color: .green))
                     ),
                 ],
                 justifyContent: .center
@@ -52,19 +52,19 @@ class FlexGrowTests: XCTestCase {
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 2,
                         flexShrink: 1,
-                        view: FlexChild(TestColor(color: .red))
+                        view: AnyView(TestColor(color: .red))
                     ),
                     Node(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
                         flexShrink: 1,
-                        view: FlexChild(TestColor(color: .blue))
+                        view: AnyView(TestColor(color: .blue))
                     ),
                     Node(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
                         flexShrink: 1,
-                        view: FlexChild(TestColor(color: .green))
+                        view: AnyView(TestColor(color: .green))
                     ),
                 ],
                 justifyContent: .center
@@ -82,17 +82,17 @@ class FlexGrowTests: XCTestCase {
                     Node(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 2,
-                        view: FlexChild(TestColor(color: .red))
+                        view: AnyView(TestColor(color: .red))
                     ),
                     Node(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(TestColor(color: .blue))
+                        view: AnyView(TestColor(color: .blue))
                     ),
                     Node(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 2,
-                        view: FlexChild(TestColor(color: .green))
+                        view: AnyView(TestColor(color: .green))
                     ),
                 ],
                 justifyContent: .center

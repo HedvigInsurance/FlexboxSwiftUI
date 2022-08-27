@@ -20,7 +20,7 @@ class FlexButtonTests: XCTestCase {
                 children: [
                     Node(
                         flexGrow: 1,
-                        view: FlexChild(
+                        view: AnyView(
                             Button(
                                 "Some button text",
                                 action: {
@@ -31,7 +31,7 @@ class FlexButtonTests: XCTestCase {
                     ),
                     Node(
                         flexGrow: 1,
-                        view: FlexChild(
+                        view: AnyView(
                             Button(
                                 "Some other text",
                                 action: {

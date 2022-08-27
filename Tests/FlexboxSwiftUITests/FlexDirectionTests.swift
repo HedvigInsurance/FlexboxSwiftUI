@@ -20,11 +20,11 @@ class FlexDirectionTests: XCTestCase {
                 children: [
                     Node(
                         size: Size(width: .percent(100), height: .fixed(10)),
-                        view: FlexChild(TestColor(color: .red))
+                        view: AnyView(TestColor(color: .red))
                     ),
                     Node(
                         size: Size(width: .percent(100), height: .fixed(40)),
-                        view: FlexChild(TestColor(color: .blue))
+                        view: AnyView(TestColor(color: .blue))
                     ),
                 ],
                 flexDirection: .column,
@@ -42,11 +42,11 @@ class FlexDirectionTests: XCTestCase {
                 children: [
                     Node(
                         size: Size(width: .percent(100), height: .fixed(10)),
-                        view: FlexChild(TestColor(color: .red))
+                        view: AnyView(TestColor(color: .red))
                     ),
                     Node(
                         size: Size(width: .percent(100), height: .fixed(40)),
-                        view: FlexChild(TestColor(color: .blue))
+                        view: AnyView(TestColor(color: .blue))
                     ),
                 ],
                 flexDirection: .column,
@@ -64,11 +64,11 @@ class FlexDirectionTests: XCTestCase {
                 children: [
                     Node(
                         size: Size(width: .percent(50), height: .fixed(40)),
-                        view: FlexChild(TestColor(color: .red))
+                        view: AnyView(TestColor(color: .red))
                     ),
                     Node(
                         size: Size(width: .percent(50), height: .auto),
-                        view: FlexChild(TestColor(color: .blue))
+                        view: AnyView(TestColor(color: .blue))
                     ),
                 ],
                 flexDirection: .row

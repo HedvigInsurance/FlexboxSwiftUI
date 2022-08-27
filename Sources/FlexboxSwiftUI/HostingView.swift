@@ -89,13 +89,7 @@ class AdjustableHostingController: UIHostingController<AnyView> {
         let size = self.view.sizeThatFits(
             targetSize
         )
-        
-        let sizeZero = self.view.sizeThatFits(
-            .zero
-        )
-    
-        print("targetSize", targetSize, size, sizeZero)
-        
+            
         return size
     }
 

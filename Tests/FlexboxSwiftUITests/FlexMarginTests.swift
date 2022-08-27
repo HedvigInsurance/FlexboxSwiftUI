@@ -27,12 +27,12 @@ class FlexMarginTests: XCTestCase {
                             top: .fixed(10),
                             bottom: .fixed(10)
                         ),
-                        view: FlexChild(TestColor(color: .red))
+                        view: AnyView(TestColor(color: .red))
                     ),
                     Node(
                         size: Size(width: .auto, height: .fixed(1)),
                         flexGrow: 1,
-                        view: FlexChild(TestColor(color: .blue))
+                        view: AnyView(TestColor(color: .blue))
                     ),
                 ],
                 flexDirection: .column

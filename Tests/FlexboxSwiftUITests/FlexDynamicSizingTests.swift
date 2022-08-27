@@ -28,7 +28,7 @@ class FlexDynamicSizingTests: XCTestCase {
                     Node(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(Text(loremIpsum))
+                        view: AnyView(Text(loremIpsum))
                     )
                 ],
                 flexDirection: .column
