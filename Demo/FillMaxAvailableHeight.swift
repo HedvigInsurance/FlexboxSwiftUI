@@ -18,7 +18,7 @@ struct FillMaxAvailableHeight: View {
                     Node(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(Color.blue)
+                        view: AnyView(Color.blue)
                     )
                 ]
             )

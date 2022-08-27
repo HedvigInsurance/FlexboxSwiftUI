@@ -26,7 +26,7 @@ struct ShowHide: View {
                         Node(
                             size: Size(width: .percent(100), height: .auto),
                             flexGrow: 1,
-                            view: FlexChild(VStack {
+                            view: AnyView(VStack {
                                 
                                 FlexView(
                                     node: Node(
@@ -35,7 +35,7 @@ struct ShowHide: View {
                                             Node(
                                                 size: Size(width: .percent(100), height: .auto),
                                                 flexGrow: 1,
-                                                view: FlexChild(ViewThatChangesHeight())
+                                                view: AnyView(ViewThatChangesHeight())
                                             )
                                         ],
                                         justifyContent: .flexStart

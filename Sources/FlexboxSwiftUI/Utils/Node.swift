@@ -78,7 +78,7 @@ public struct Node {
     /// facebook/yoga implementation that mostly works as same as `padding`.
     public var border: Edges
     
-    public var view: FlexChild?
+    public var view: AnyView?
     
     /// - Note: See `gYGNodeDefaults.style`.
     public init(
@@ -109,7 +109,7 @@ public struct Node {
         padding: Edges = .undefined,
         border: Edges = .undefined,
         
-        view: FlexChild? = nil
+        view: AnyView? = nil
     ) {
         self.size = size
         self.minSize = minSize
@@ -252,7 +252,7 @@ extension Node: Equatable {
         
         if l.children != r.children { return false }
         
-        if l.view != r.view { return false }
+        if "\(String(describing: l.view.self))" != "\(String(describing: r.view.self))" { return false }
 
         return true
     }

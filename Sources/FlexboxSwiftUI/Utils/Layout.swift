@@ -15,13 +15,13 @@ public struct Layout {
     public let frame: CGRect
     public let padding: UIEdgeInsets
     public let children: [Layout]
-    public let view: FlexChild?
+    public let view: AnyView?
 
     internal init(
         frame: CGRect,
         padding: UIEdgeInsets,
         children: [Layout],
-        view: FlexChild?
+        view: AnyView?
     ) {
         self.frame = frame
         self.padding = padding

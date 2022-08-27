@@ -18,7 +18,7 @@ struct LayoutViewModifier: ViewModifier {
             .padding(.trailing, layout.padding.right)
             .padding(.top, layout.padding.top)
             .padding(.bottom, layout.padding.bottom)
-
+        
         if applyPosition {
             paddedContent
                 .frame(width: layout.frame.width, height: layout.frame.height, alignment: .topLeading)
@@ -63,27 +63,20 @@ extension UIView {
 }
 
 class HostedChildViewWrapper: UIView {
-    var layout: Layout {
-        didSet {
-            updateHostingViewFrame()
-        }
-    }
+    var coordinator: HostedChild.Coordinator
+    var previousSize: CGSize? = nil
     
-    init(layout: Layout, hostingView: UIView) {
-        self.layout = layout
+    init(coordinator: HostedChild.Coordinator, hostingView: UIView) {
+        self.coordinator = coordinator
         super.init(frame: .zero)
         
         self.addSubview(hostingView)
         
-        self.setContentHuggingPriority(.required, for: .vertical)
-        self.setContentHuggingPriority(.required, for: .horizontal)
+        hostingView.constrainEdges(to: self)
     }
     
-    func updateHostingViewFrame() {
-        subviews.forEach { hostingView in
-            let fittingSize = hostingView.sizeThatFits(layout.frame.size)
-            hostingView.frame = CGRect(origin: .zero, size: fittingSize)
-        }
+    override var intrinsicContentSize: CGSize {
+        subviews.first?.intrinsicContentSize ?? .zero
     }
     
     required init?(coder: NSCoder) {
@@ -92,21 +85,16 @@ class HostedChildViewWrapper: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        updateHostingViewFrame()
     }
 }
 
 struct HostedChild: UIViewRepresentable {
     @EnvironmentObject var store: HostingViewStore
     var layout: Layout
-    var child: FlexChild
+    var offset: NodeOffset
 
     class Coordinator {
         var hostingController: AdjustableHostingController
-        var hasAddedChildController = false
-        var heightConstraint: NSLayoutConstraint? = nil
-        var widthConstraint: NSLayoutConstraint? = nil
 
         func addChildController(_ uiView: UIView) {
             guard
@@ -133,28 +121,42 @@ struct HostedChild: UIViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(hostingController: store.views[child]!)
+        Coordinator(hostingController: store.views[offset]!)
     }
 
     func makeUIView(context: Context) -> HostedChildViewWrapper {
-        let hostingController = store.views[child]!
+        let hostingController = store.views[offset]!
         hostingController.setEnvironment(context.environment)
         
-        return HostedChildViewWrapper(layout: layout, hostingView: hostingController.view)
+        return HostedChildViewWrapper(
+            coordinator: context.coordinator,
+            hostingView: hostingController.view
+        )
     }
     
     func _overrideSizeThatFits(_ size: inout CoreGraphics.CGSize, in proposedSize: SwiftUI._ProposedSize, uiView: Self.UIViewType) {
         let width = layout.frame.size.width - layout.padding.left - layout.padding.right
         let height = layout.frame.size.height - layout.padding.top - layout.padding.bottom
+                        
+        if size != uiView.previousSize {
+            store.forceUpdate()
+        }
         
-        size = CGSize(width: width, height: height)
+        uiView.previousSize = size
+        
+        let sizeThatFits = uiView.subviews.first?.sizeThatFits(CGSize(width: width, height: height)) ?? .zero
+
+        size = CGSize(
+            width: min(width, sizeThatFits.width),
+            height: min(height, sizeThatFits.height)
+        )
     }
 
     func updateUIView(_ uiView: HostedChildViewWrapper, context: Context) {
-        uiView.layout = layout
         uiView.invalidateIntrinsicContentSize()
-        
-        if let hostingController = store.views[child] {
+        context.coordinator.hostingController.layout = layout
+                
+        if let hostingController = store.views[offset] {
             hostingController.view.invalidateIntrinsicContentSize()
             hostingController.view.setNeedsLayout()
             hostingController.view.layoutIfNeeded()
@@ -173,17 +175,30 @@ struct LayoutRenderer: View {
     @EnvironmentObject var store: HostingViewStore
     var layout: Layout
     var applyPosition: Bool
-
+    var nodeOffset: NodeOffset?
+    
     var body: some View {
         Group {
-            if let view = layout.view {
+            if layout.view != nil, let nodeOffset = nodeOffset {
                 HostedChild(
                     layout: layout,
-                    child: view
-                )
+                    offset: nodeOffset
+                ).fixedSize()
             } else {
                 ForEach(Array(layout.children.enumerated()), id: \.offset) { offset, childLayout in
-                    LayoutRenderer(layout: childLayout, applyPosition: true)
+                    if let nodeOffset = nodeOffset {
+                        LayoutRenderer(
+                            layout: childLayout,
+                            applyPosition: true,
+                            nodeOffset: nodeOffset.makeInner(offset: offset)
+                        )
+                    } else {
+                        LayoutRenderer(
+                            layout: childLayout,
+                            applyPosition: true,
+                            nodeOffset: NodeOffset(offset: offset)
+                        )
+                    }
                 }
             }
         }
@@ -192,8 +207,7 @@ struct LayoutRenderer: View {
 }
 
 public struct FlexViewLegacy: View {
-    @StateObject var store: HostingViewStore
-    @Environment(\.markDirty) var parentMarkDirty
+    @StateObject var store = HostingViewStore()
 
     var node: Node
 
@@ -201,9 +215,6 @@ public struct FlexViewLegacy: View {
         node: Node
     ) {
         self.node = node
-        let store = HostingViewStore(node: node)
-        store._node = node.createUnderlyingNode()
-        self._store = StateObject(wrappedValue: store)
     }
 
     public var body: some View {

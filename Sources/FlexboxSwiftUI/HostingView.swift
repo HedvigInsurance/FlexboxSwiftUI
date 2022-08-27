@@ -11,12 +11,19 @@ import UIKit
 import FlexboxSwiftUIObjC
 
 class AdjustableHostingController: UIHostingController<AnyView> {
+    var layout: Layout? = nil {
+        didSet {
+            if self.view.intrinsicContentSize.height != self.layout?.frame.height {
+                self.store.forceUpdate()
+            }
+        }
+    }
     private var node: NodeImpl
     private var store: HostingViewStore
     private var content: AnyView
     private var environment: EnvironmentValues? = nil
     private var transaction: Transaction? = nil
-    
+
     func disableSafeArea() {
         guard let viewClass = object_getClass(view) else { return }
         
@@ -42,16 +49,7 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     
     func setRootView() {
         let base = AnyView(
-            content.environment(\.markDirty) { animation, body in
-                let transaction = Transaction(animation: animation)
-                self.transaction = transaction
-                
-                withTransaction(transaction) {
-                    body(transaction)
-                    self.view.setNeedsLayout()
-                    self.view.layoutIfNeeded()
-                }
-            }
+            content
         )
         
         let withEnvironment: AnyView
@@ -88,7 +86,17 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     }
     
     func measure(targetSize: CGSize) -> CGSize {
-        return self.view.sizeThatFits(targetSize)
+        let size = self.view.sizeThatFits(
+            targetSize
+        )
+        
+        let sizeZero = self.view.sizeThatFits(
+            .zero
+        )
+    
+        print("targetSize", targetSize, size, sizeZero)
+        
+        return size
     }
 
     @MainActor @objc required dynamic init?(
@@ -96,10 +104,9 @@ class AdjustableHostingController: UIHostingController<AnyView> {
     ) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    var previousIntrinsicSize: CGSize? = nil
-    
+            
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.view.superview?.invalidateIntrinsicContentSize()
     }
 }

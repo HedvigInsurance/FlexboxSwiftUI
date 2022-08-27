@@ -22,7 +22,7 @@ struct DynamicHeightText: View {
                     Node(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(
+                        view: AnyView(
                             Text(loremIpsum)
                                 .padding(10)
                         )
@@ -30,7 +30,7 @@ struct DynamicHeightText: View {
                     Node(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(
+                        view: AnyView(
                             Text(loremIpsum)
                                 .padding(10)
                         )
@@ -48,7 +48,7 @@ struct DynamicHeightText: View {
                         Node(
                             size: Size(width: .percent(100), height: .auto),
                             flexGrow: 1,
-                            view: FlexChild(
+                            view: AnyView(
                                 Text(loremIpsum)
                                     .padding(10)
                             )
@@ -56,7 +56,7 @@ struct DynamicHeightText: View {
                         Node(
                             size: Size(width: .percent(100), height: .auto),
                             flexGrow: 1,
-                            view: FlexChild(
+                            view: AnyView(
                                 Text(loremIpsum)
                                     .padding(10)
                             )

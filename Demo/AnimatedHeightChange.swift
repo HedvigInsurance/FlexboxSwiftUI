@@ -20,20 +20,20 @@ struct AnimatedHeightChange: View {
                     Node(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(
+                        view: AnyView(
                             ViewThatChangesHeight()
                         )
                     ),
                     Node(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(
+                        view: AnyView(
                             ViewThatChangesHeight()
                         )
                     ),
                     Node(
                         size: Size(width: .percent(100), height: .auto),
-                        view: FlexChild(
+                        view: AnyView(
                             FlexViewLegacy(
                                 node: Node(
                                     size: Size(width: .percent(100), height: .auto),
@@ -41,14 +41,14 @@ struct AnimatedHeightChange: View {
                                         Node(
                                             size: Size(width: .percent(100), height: .auto),
                                             flexGrow: 1,
-                                            view: FlexChild(
+                                            view: AnyView(
                                                 ViewThatChangesHeight()
                                             )
                                         ),
                                         Node(
                                             size: Size(width: .percent(100), height: .auto),
                                             flexGrow: 1,
-                                            view: FlexChild(
+                                            view: AnyView(
                                                 ViewThatChangesHeight()
                                             )
                                         )

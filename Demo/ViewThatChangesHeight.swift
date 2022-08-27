@@ -10,14 +10,11 @@ import Foundation
 import SwiftUI
 
 struct ViewThatChangesHeight: View {
-    @Environment(\.markDirty) var markDirty
     @State var isOpen = false
 
     var body: some View {
         VStack {
-            Button("Toggle") {
-                //isOpen.toggle()
-                
+            Button("Toggle") {                
                 isOpen.toggle()
             }
 

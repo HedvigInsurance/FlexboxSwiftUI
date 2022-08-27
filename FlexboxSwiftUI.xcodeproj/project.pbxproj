@@ -48,16 +48,15 @@
 		EB60553A28AFA365006AFE77 /* FlexboxSwiftUIObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EB60553D28AFAD68006AFE77 /* ViewThatChangesHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */; };
 		EB60554028AFB158006AFE77 /* HostingViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60553E28AFB138006AFE77 /* HostingViewStore.swift */; };
-		EB60554328AFB398006AFE77 /* FlexChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554128AFB35B006AFE77 /* FlexChild.swift */; };
 		EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554428B00B68006AFE77 /* FlexAnimation.swift */; };
 		EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554728B00E15006AFE77 /* TransferEnvironment.swift */; };
 		EB75B1BC28B92924003E56F9 /* SizeReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1BB28B92924003E56F9 /* SizeReaderView.swift */; };
 		EB75B1BE28B9343D003E56F9 /* ProposedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */; };
+		EB75B1C028BA36FC003E56F9 /* NodeOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1BF28BA36FC003E56F9 /* NodeOffset.swift */; };
 		EB8F91C328B4BDBE009A0977 /* FlexViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F91C228B4BDBE009A0977 /* FlexViewLayout.swift */; };
 		EB8F91C528B4BDC5009A0977 /* FlexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F91C428B4BDC5009A0977 /* FlexView.swift */; };
 		EB93F78A28B37C8D00867768 /* DemoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93F78928B37C8D00867768 /* DemoScreen.swift */; };
 		EB93F78C28B382E000867768 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93F78B28B382E000867768 /* Padding.swift */; };
-		EBE2849928B0E2A80047815A /* MarkDirty.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2849828B0E2A80047815A /* MarkDirty.swift */; };
 		EBE887D228B3738C006F7EB0 /* JustifyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE887D128B3738C006F7EB0 /* JustifyContent.swift */; };
 		EBE887D428B3760A006F7EB0 /* FillMaxAvailableHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE887D328B3760A006F7EB0 /* FillMaxAvailableHeight.swift */; };
 		EBE887D628B3780B006F7EB0 /* DynamicHeightText.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE887D528B3780B006F7EB0 /* DynamicHeightText.swift */; };
@@ -156,16 +155,15 @@
 		EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexboxSwiftUIObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewThatChangesHeight.swift; sourceTree = "<group>"; };
 		EB60553E28AFB138006AFE77 /* HostingViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingViewStore.swift; sourceTree = "<group>"; };
-		EB60554128AFB35B006AFE77 /* FlexChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexChild.swift; sourceTree = "<group>"; };
 		EB60554428B00B68006AFE77 /* FlexAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexAnimation.swift; sourceTree = "<group>"; };
 		EB60554728B00E15006AFE77 /* TransferEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEnvironment.swift; sourceTree = "<group>"; };
 		EB75B1BB28B92924003E56F9 /* SizeReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeReaderView.swift; sourceTree = "<group>"; };
 		EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposedSize.swift; sourceTree = "<group>"; };
+		EB75B1BF28BA36FC003E56F9 /* NodeOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeOffset.swift; sourceTree = "<group>"; };
 		EB8F91C228B4BDBE009A0977 /* FlexViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexViewLayout.swift; sourceTree = "<group>"; };
 		EB8F91C428B4BDC5009A0977 /* FlexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexView.swift; sourceTree = "<group>"; };
 		EB93F78928B37C8D00867768 /* DemoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoScreen.swift; sourceTree = "<group>"; };
 		EB93F78B28B382E000867768 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
-		EBE2849828B0E2A80047815A /* MarkDirty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDirty.swift; sourceTree = "<group>"; };
 		EBE887D128B3738C006F7EB0 /* JustifyContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifyContent.swift; sourceTree = "<group>"; };
 		EBE887D328B3760A006F7EB0 /* FillMaxAvailableHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillMaxAvailableHeight.swift; sourceTree = "<group>"; };
 		EBE887D528B3780B006F7EB0 /* DynamicHeightText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightText.swift; sourceTree = "<group>"; };
@@ -250,10 +248,9 @@
 				EB60547828AFA162006AFE77 /* Utils */,
 				EB60548128AFA162006AFE77 /* HostingView.swift */,
 				EB60553E28AFB138006AFE77 /* HostingViewStore.swift */,
-				EB60554128AFB35B006AFE77 /* FlexChild.swift */,
 				EB60554428B00B68006AFE77 /* FlexAnimation.swift */,
 				EB60554728B00E15006AFE77 /* TransferEnvironment.swift */,
-				EBE2849828B0E2A80047815A /* MarkDirty.swift */,
+				EB75B1BF28BA36FC003E56F9 /* NodeOffset.swift */,
 			);
 			path = FlexboxSwiftUI;
 			sourceTree = "<group>";
@@ -554,7 +551,6 @@
 			files = (
 				EB60548828AFA162006AFE77 /* InOutMutable.swift in Sources */,
 				EB75B1BC28B92924003E56F9 /* SizeReaderView.swift in Sources */,
-				EBE2849928B0E2A80047815A /* MarkDirty.swift in Sources */,
 				EB60549028AFA162006AFE77 /* HostingView.swift in Sources */,
 				EB75B1BE28B9343D003E56F9 /* ProposedSize.swift in Sources */,
 				EB8F91C528B4BDC5009A0977 /* FlexView.swift in Sources */,
@@ -567,9 +563,9 @@
 				EB60554028AFB158006AFE77 /* HostingViewStore.swift in Sources */,
 				EB60548D28AFA162006AFE77 /* Layout.swift in Sources */,
 				EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */,
-				EB60554328AFB398006AFE77 /* FlexChild.swift in Sources */,
 				EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */,
 				EB60548E28AFA162006AFE77 /* Node.swift in Sources */,
+				EB75B1C028BA36FC003E56F9 /* NodeOffset.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

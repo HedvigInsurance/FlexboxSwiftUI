@@ -10,9 +10,10 @@ import SwiftUI
 import FlexboxSwiftUIObjC
 
 public class HostingViewStore: ObservableObject {
-    var node: Node {
+    var node: Node? = nil {
         didSet {
-            _node = node.createUnderlyingNode()
+            _node = node?.createUnderlyingNode()
+            forceUpdate()
         }
     }
     var _node: NodeImpl? = nil {
@@ -20,13 +21,19 @@ public class HostingViewStore: ObservableObject {
             applyMeasureFuncs()
         }
     }
-    var views: [FlexChild: AdjustableHostingController] = [:]
+    var views: [NodeOffset: AdjustableHostingController] = [:]
     var layout: Layout? = nil
-
+    
     var maxSize: CGSize? = nil
     
-    init(node: Node) {
-        self.node = node
+    init() {
+        
+    }
+    
+    func markAllDirty() {
+        _node?.children.forEach({ node in
+            node.markDirty()
+        })
     }
 
     func setMaxSize(_ size: CGSize?) {
@@ -43,19 +50,21 @@ public class HostingViewStore: ObservableObject {
     
     func calculateLayout() -> Layout? {
         if let maxSize = maxSize {
-            return node.layout(
+            return node?.layout(
                 node: _node!,
                 maxSize: CGSize(
                     width: maxSize.width == 0 ? .nan : maxSize.width,
-                    height: node.size.height == .auto || node.size.height == .undefined ? .nan : maxSize.height
+                    height: node?.size.height == .auto || node?.size.height == .undefined ? .nan : maxSize.height
                 )
             )
         } else {
-            return nil
+            return node?.layout(node: _node!)
         }
     }
 
     public func forceUpdate() {
+        markAllDirty()
+        
         let previousLayout = self.layout
         
         self.layout = calculateLayout()
@@ -69,8 +78,12 @@ public class HostingViewStore: ObservableObject {
         _node?.children
             .enumerated()
             .forEach { offset, nodeChild in
-                if let flexChild = node.children[offset].view {
-                    let hostingView = self.add(flexChild, node: nodeChild)
+                if let view = node?.children[offset].view {
+                    let hostingView = self.add(
+                        offset: NodeOffset(offset: offset),
+                        node: nodeChild,
+                        view: view
+                    )
 
                     nodeChild.measure = { suggestedSize, widthMode, heightMode in
                         let constrainedWidth =
@@ -114,21 +127,29 @@ public class HostingViewStore: ObservableObject {
                                 mode: heightMode
                             )
                         )
-                                                
+                                                                        
                         return result
                     }
                 }
         }
     }
 
-    func add(_ child: FlexChild, node: NodeImpl) -> AdjustableHostingController {
-        let hostingView = AdjustableHostingController(
-            rootView: AnyView(child.view),
+    func add(
+        offset: NodeOffset,
+        node: NodeImpl,
+        view: AnyView
+    ) -> AdjustableHostingController {
+        if let hostingController = views[offset] {
+            return hostingController
+        }
+        
+        let hostingController = AdjustableHostingController(
+            rootView: view,
             store: self,
             node: node
         )
-        views[child] = hostingView
+        views[offset] = hostingController
 
-        return hostingView
+        return hostingController
     }
 }

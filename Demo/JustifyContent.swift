@@ -26,12 +26,12 @@ struct JustifyContent: View {
                     Node(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(ViewThatChangesHeight())
+                        view: AnyView(ViewThatChangesHeight())
                     ),
                     Node(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(ViewThatChangesHeight())
+                        view: AnyView(ViewThatChangesHeight())
                     )
                 ],
                 flexDirection: .column
@@ -45,12 +45,12 @@ struct JustifyContent: View {
                     Node(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(ViewThatChangesHeight())
+                        view: AnyView(ViewThatChangesHeight())
                     ),
                     Node(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(ViewThatChangesHeight())
+                        view: AnyView(ViewThatChangesHeight())
                     )
                 ],
                 flexDirection: .column

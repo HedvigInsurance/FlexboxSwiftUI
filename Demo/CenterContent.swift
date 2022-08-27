@@ -38,7 +38,7 @@ struct CenterContent: View {
             children: [
                 Node(
                     size: Size(width: .percent(20), height: .percent(100)),
-                    view: FlexChild(TestColor(color: .red))
+                    view: AnyView(TestColor(color: .red))
                 )
             ],
             justifyContent: .center
@@ -50,7 +50,7 @@ struct CenterContent: View {
                 children: [
                     Node(
                         flexGrow: 1,
-                        view: FlexChild(
+                        view: AnyView(
                             Button(
                                 "Some button text",
                                 action: {
@@ -61,7 +61,7 @@ struct CenterContent: View {
                     ),
                     Node(
                         flexGrow: 1,
-                        view: FlexChild(
+                        view: AnyView(
                             Button(
                                 "Some other text",
                                 action: {

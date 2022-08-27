@@ -24,7 +24,7 @@ struct Padding: View {
                             top: .auto,
                             bottom: .auto
                         ),
-                        view: FlexChild(
+                        view: AnyView(
                             Text("Padding")
                             .frame(maxWidth: .infinity)
                             .background(Color.red)
@@ -33,7 +33,7 @@ struct Padding: View {
                     Node(
                         size: Size(width: .fixed(1), height: .auto),
                         flexGrow: 1,
-                        view: FlexChild(
+                        view: AnyView(
                             Text("Padding")
                             .frame(maxWidth: .infinity)
                             .background(Color.red)

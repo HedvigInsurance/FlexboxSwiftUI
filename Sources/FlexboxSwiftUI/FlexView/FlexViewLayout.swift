@@ -146,7 +146,6 @@ struct FlexLayoutStack: SwiftUI.Layout {
 
 @available(iOS 16, *)
 public struct FlexViewLayout: View {
-    @Environment(\.markDirty) var parentMarkDirty
     @StateObject var cache: FlexLayoutStackCache
     var node: Node
 
@@ -161,43 +160,9 @@ public struct FlexViewLayout: View {
         FlexLayoutStack(node: node, cache: cache) {
             ForEach(Array(node.children.enumerated()), id: \.offset) { offset, child in
                 if let view = child.view {
-                    view.view.environment(\.markDirty) { animation, body in
-                        if let parentMarkDirty = parentMarkDirty {
-                            parentMarkDirty(animation) { transaction in
-                                body(transaction)
-                                let childNode = cache._node.children[offset]
-                                childNode.markDirty()
-                            }
-                        } else {
-                            let transaction = Transaction(animation: animation)
-                            
-                            withTransaction(transaction) {
-                                body(transaction)
-                                let childNode = cache._node.children[offset]
-                                childNode.markDirty()
-                                self.cache.objectWillChange.send()
-                            }
-                        }
-                    }
+                    view
                 } else {
-                    FlexViewLayout(node: child).environment(\.markDirty) { animation, body in
-                        if let parentMarkDirty = parentMarkDirty {
-                            parentMarkDirty(animation) { transaction in
-                                body(transaction)
-                                let childNode = cache._node.children[offset]
-                                childNode.markDirty()
-                            }
-                        } else {
-                            let transaction = Transaction(animation: animation)
-                            
-                            withTransaction(transaction) {
-                                body(transaction)
-                                let childNode = cache._node.children[offset]
-                                childNode.markDirty()
-                                self.cache.objectWillChange.send()
-                            }
-                        }
-                    }
+                    FlexViewLayout(node: child)
                 }
             }
         }.frame(
