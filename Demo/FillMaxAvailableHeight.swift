@@ -11,19 +11,17 @@ import SwiftUI
 
 struct FillMaxAvailableHeight: View {
     var body: some View {
-        FlexView(
-            node: Node(
-                size: Size(width: .percent(100), height: .percent(50)),
-                children: [
-                    Node(
-                        size: Size(width: .auto, height: .auto),
-                        flexGrow: 1,
-                        view: AnyView(Color.blue)
-                    )
-                ]
-            )
-        )
-        .frame(height: 200)
-        .background(Color.yellow)
+        ForEach(Array(Array(repeating: "", count: 100).enumerated()), id: \.offset) { _, _ in
+            FlexRoot {
+                FlexNode(style: FlexStyle(flexDirection: .row)) {
+                    FlexNode(style: FlexStyle(size: .init(width: .percent(50), height: .auto))) {
+                        ViewThatChangesHeight()
+                    }
+                    FlexNode(style: FlexStyle(size: .init(width: .percent(50), height: .auto))) {
+                        ViewThatChangesHeight()
+                    }
+                }
+            }
+        }
     }
 }

@@ -14,11 +14,7 @@ struct RenderBothImplementations: View {
     
     var body: some View {
         Text("Legacy")
-        
-        FlexViewLegacy(
-            node: node
-        )
-        
+      
         Text("Layout")
         
         if #available(iOS 16, *) {

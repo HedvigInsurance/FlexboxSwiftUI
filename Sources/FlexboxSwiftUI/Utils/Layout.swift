@@ -21,7 +21,7 @@ public struct Layout {
         frame: CGRect,
         padding: UIEdgeInsets,
         children: [Layout],
-        view: AnyView?
+        view: AnyView? = nil
     ) {
         self.frame = frame
         self.padding = padding
@@ -51,9 +51,30 @@ extension Layout: CustomStringConvertible {
     }
 }
 
+func diff(_ lhs: CGFloat, _ rhs: CGFloat) -> CGFloat {
+    return abs(lhs - rhs)
+}
+
+func compareEquals(_ lhs: CGFloat, _ rhs: CGFloat, tolerance: CGFloat) -> Bool {
+    let difference = diff(lhs, rhs)
+    return difference <= tolerance
+}
+
+extension CGRect {
+    /// Checks if a rect is equal with a given tolerance
+    func equalTo(other rect: CGRect, tolerance: CGFloat = 1) -> Bool {
+        return ![
+            compareEquals(origin.y, rect.origin.y, tolerance: tolerance),
+            compareEquals(origin.x, rect.origin.x, tolerance: tolerance),
+            compareEquals(width, rect.width, tolerance: tolerance),
+            compareEquals(height, rect.height, tolerance: tolerance),
+        ].contains(false)
+    }
+}
+
 extension Layout: Equatable {
     public static func == (lhs: Layout, rhs: Layout) -> Bool {
-        if lhs.frame != rhs.frame { return false }
+        if !lhs.frame.equalTo(other: rhs.frame) { return false }
         if lhs.children != rhs.children { return false }
 
         return true

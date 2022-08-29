@@ -2,15 +2,14 @@
 //  SizeReaderView.swift
 //  FlexboxSwiftUI
 //
-//  Created by Sam Pettersson on 2022-08-26.
+//  Created by Sam Pettersson on 2022-08-28.
 //
 
 import Foundation
 import SwiftUI
 
 struct SizeReaderView: UIViewRepresentable {
-    @State var previousSize: CGSize? = nil
-    @EnvironmentObject var store: HostingViewStore
+    @EnvironmentObject var coordinator: FlexCoordinator
     var onSize: (_ size: CGSize) -> Void
     
     func makeUIView(context: Context) -> UIView {
@@ -28,7 +27,7 @@ struct SizeReaderView: UIViewRepresentable {
         
         let proposedSize = CGSize(width: proposedSize.width, height: proposedSize.height)
         
-        size = store.layout?.frame.size ?? .zero
+        size = coordinator.layout?.frame.size ?? .zero
                 
         if proposedSize != size {
             onSize(proposedSize)

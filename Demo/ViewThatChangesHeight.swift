@@ -14,8 +14,10 @@ struct ViewThatChangesHeight: View {
 
     var body: some View {
         VStack {
-            Button("Toggle") {                
-                isOpen.toggle()
+            Button("Toggle") {
+                withAnimation(.spring()) {
+                    isOpen.toggle()
+                }
             }
 
             Color.red

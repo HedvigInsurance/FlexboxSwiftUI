@@ -21,7 +21,7 @@ public struct FlexView: View {
         if #available(iOS 16, *) {
             FlexViewLayout(node: node)
         } else {
-            FlexViewLegacy(node: node)
+            //FlexViewLegacy(node: node)
         }
     }
 }

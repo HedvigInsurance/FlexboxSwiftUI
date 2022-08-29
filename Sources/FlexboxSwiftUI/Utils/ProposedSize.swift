@@ -20,4 +20,8 @@ extension SwiftUI._ProposedSize {
             label == "width" ? value as? CGFloat : nil
         }.first ?? .zero
     }
+    
+    public var cgSize: CGSize {
+        CGSize(width: width, height: height)
+    }
 }
