@@ -11,10 +11,11 @@ import SwiftUI
 
 struct ViewThatChangesHeight: View {
     @State var isOpen = false
+    var offset: Int
 
     var body: some View {
         VStack {
-            Button("Toggle") {
+            Button("\(offset)") {
                 withAnimation(.spring()) {
                     isOpen.toggle()
                 }

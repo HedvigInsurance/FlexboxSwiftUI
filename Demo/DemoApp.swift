@@ -8,50 +8,6 @@
 import FlexboxSwiftUI
 import SwiftUI
 
-struct ShowHide: View {
-    @State var show = false
-
-    var body: some View {
-        VStack {
-            Text("Without flex")
-
-            ViewThatChangesHeight()
-
-            Text("With flex")
-            
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .auto),
-                    children: [
-                        Node(
-                            size: Size(width: .percent(100), height: .auto),
-                            flexGrow: 1,
-                            view: AnyView(VStack {
-                                
-                                FlexView(
-                                    node: Node(
-                                        size: Size(width: .percent(100), height: .auto),
-                                        children: [
-                                            Node(
-                                                size: Size(width: .percent(100), height: .auto),
-                                                flexGrow: 1,
-                                                view: AnyView(ViewThatChangesHeight())
-                                            )
-                                        ],
-                                        justifyContent: .flexStart
-                                    )
-                                )
-                                
-                            })
-                        )
-                    ],
-                    justifyContent: .flexStart
-                )
-            )
-        }
-    }
-}
-
 @main
 struct DemoApp: App {
     var body: some Scene {

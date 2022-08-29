@@ -10,15 +10,20 @@ import FlexboxSwiftUI
 import SwiftUI
 
 struct FillMaxAvailableHeight: View {
+    let loremIpsum = """
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum eu diam id facilisis. Integer tempus libero nec velit condimentum iaculis.
+        """
+    
     var body: some View {
-        ForEach(Array(Array(repeating: "", count: 100).enumerated()), id: \.offset) { _, _ in
-            FlexRoot {
-                FlexNode(style: FlexStyle(flexDirection: .row)) {
+        
+        FlexRoot {
+            FlexNode(style: FlexStyle(flexDirection: .column)) {
+                ForEach(Array(Array(repeating: "", count: 10).enumerated()), id: \.offset) { offset, _ in
                     FlexNode(style: FlexStyle(size: .init(width: .percent(50), height: .auto))) {
-                        ViewThatChangesHeight()
+                        ViewThatChangesHeight(offset: offset)
                     }
                     FlexNode(style: FlexStyle(size: .init(width: .percent(50), height: .auto))) {
-                        ViewThatChangesHeight()
+                        Text(loremIpsum)
                     }
                 }
             }

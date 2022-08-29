@@ -8,6 +8,16 @@
 import Foundation
 import SwiftUI
 
+extension VerticalAlignment {
+    struct FlexRootTop: AlignmentID {
+        static func defaultValue(in d: ViewDimensions) -> CGFloat {
+            d[.top]
+        }
+    }
+
+    static let flexRootTop = VerticalAlignment(FlexRootTop.self)
+}
+
 struct LayoutViewModifier: ViewModifier {
     @EnvironmentObject var coordinator: FlexCoordinator
     @EnvironmentObject var nodeChildHolder: NodeChildHolder
@@ -26,12 +36,10 @@ struct LayoutViewModifier: ViewModifier {
                 height: layout.frame.height,
                 alignment: .topLeading
             )
-            .alignmentGuide(.top) { d in
-                return layout.frame.origin.y
-            }
-            .alignmentGuide(.leading) { d in
-                return layout.frame.origin.x
-            }
+            .offset(
+                x: layout.frame.origin.x,
+                y: layout.frame.origin.y
+            )
         } else {
             content
         }

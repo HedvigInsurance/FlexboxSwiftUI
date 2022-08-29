@@ -21,7 +21,7 @@ class NodeChildHolder: ObservableObject {
     
     func updateChildren() {
         node.children = children.sorted { a, b in
-            a.key > b.key
+            a.key < b.key
         }.map { _, value in
             value
         }

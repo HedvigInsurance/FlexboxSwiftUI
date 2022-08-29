@@ -18,7 +18,7 @@ struct NodeSizeUpdater<Content: View>: View {
     
     func dirtieNode(_ proxy: GeometryProxy) -> some View {
         let _ = proxy.size
-        
+                                
         if let transaction = nodeChildHolder.transactions[offset] {
             withTransaction(transaction) {
                 nodeChildHolder.node.markDirty()
@@ -44,7 +44,7 @@ struct NodeSizeUpdater<Content: View>: View {
                 })
             ) { measure in
                 let node = nodeChildHolder.node
-                
+                                                
                 node.measure = { suggestedSize, widthMode, heightMode in
                     let constrainedWidth =
                         widthMode == .undefined

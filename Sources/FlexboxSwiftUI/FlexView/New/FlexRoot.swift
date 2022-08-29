@@ -17,7 +17,7 @@ public struct FlexRoot<Content: View>: View {
     }
     
     public var body: some View {
-        ZStack(alignment: .topLeading) {
+        ZStack(alignment: .init(horizontal: .leading, vertical: .flexRootTop)) {
             SizeReaderView { size in
                 coordinator.maxSize = size
             }

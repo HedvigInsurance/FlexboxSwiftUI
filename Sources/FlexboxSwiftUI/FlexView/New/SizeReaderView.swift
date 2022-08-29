@@ -17,18 +17,17 @@ struct SizeReaderView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIView, context: Context) {
-        
     }
     
     func _overrideSizeThatFits(_ size: inout CoreGraphics.CGSize, in proposedSize: SwiftUI._ProposedSize, uiView: UIView) {
+        size = coordinator.layout?.frame.size ?? .zero
+        
         guard proposedSize.height > 0 else {
             return
         }
         
         let proposedSize = CGSize(width: proposedSize.width, height: proposedSize.height)
-        
-        size = coordinator.layout?.frame.size ?? .zero
-                
+                                
         if proposedSize != size {
             onSize(proposedSize)
         }
