@@ -14,34 +14,49 @@ import XCTest
 
 class FlexSizeTests: XCTestCase {
     func testHalfHeight() {
-        let exp = assertFlexNode(
-            Node(
-                size: Size(width: .percent(100), height: .percent(50)),
-                children: [
-                    Node(
-                        size: Size(width: .auto, height: .auto),
-                        flexGrow: 1,
-                        view: AnyView(TestColor(color: .blue))
+        let exp = assertFlex(
+            FlexRoot {
+                FlexNode(
+                    style: FlexStyle(
+                        size: Size(
+                            width: .percent(100),
+                            height: .percent(50)
+                        )
                     )
-                ]
-            )
+                ) {
+                    FlexNode(
+                        style: FlexStyle(
+                            size: Size(width: .auto, height: .auto),
+                            flexGrow: 1
+                        )
+                    ) {
+                        TestColor(color: .blue)
+                    }
+                }
+            }
         )
 
         wait(for: exp, timeout: 1)
     }
 
     func testHalfWidth() {
-        let exp = assertFlexNode(
-            Node(
-                size: Size(width: .percent(50), height: .percent(100)),
-                children: [
-                    Node(
-                        size: Size(width: .auto, height: .auto),
-                        flexGrow: 1,
-                        view: AnyView(TestColor(color: .blue))
+        let exp = assertFlex(
+            FlexRoot {
+                FlexNode(
+                    style: FlexStyle(
+                        size: Size(width: .percent(50), height: .percent(100))
                     )
-                ]
-            )
+                ) {
+                    FlexNode(
+                        style: FlexStyle(
+                            size: Size(width: .auto, height: .auto),
+                            flexGrow: 1
+                        )
+                    ) {
+                        TestColor(color: .blue)
+                    }
+                }
+            }
         )
 
         wait(for: exp, timeout: 1)

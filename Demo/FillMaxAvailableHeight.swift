@@ -18,13 +18,14 @@ struct FillMaxAvailableHeight: View {
     
     var body: some View {
         Button("Change count") {
-            withAnimation(.spring()) {
-                count = Int.random(in: 1..<50)
-            }
+            count = Int.random(in: 1..<50)
         }
         
-        FlexRoot {
-            FlexNode(style: FlexStyle(flexDirection: .columnReverse)) {
+        FlexRoot(flexibleAxies: [.vertical]) {
+            FlexNode(style: FlexStyle(
+                size: Size(width: .auto, height: .undefined),
+                flexDirection: .columnReverse
+            )) {
                 ForEach(Array(Array(repeating: "", count: count).enumerated()), id: \.offset) { offset, _ in
                     FlexNode(style: FlexStyle(size: .init(width: .percent(50), height: .auto))) {
                         ViewThatChangesHeight(offset: offset)

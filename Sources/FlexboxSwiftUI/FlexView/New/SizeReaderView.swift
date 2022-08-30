@@ -8,28 +8,42 @@
 import Foundation
 import SwiftUI
 
+class ZeroSizeView: UIView {
+    var transaction: Transaction? = nil
+    var proposedSize: CGSize? = nil
+    var onSize: (_ size: CGSize) -> Void = { _ in }
+    
+    override var intrinsicContentSize: CGSize {
+        .zero
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if let proposedSize = proposedSize {
+            onSize(proposedSize)
+        }
+    }
+}
+
 struct SizeReaderView: UIViewRepresentable {
     @EnvironmentObject var coordinator: FlexCoordinator
     var onSize: (_ size: CGSize) -> Void
     
-    func makeUIView(context: Context) -> UIView {
-        UIView()
+    func makeUIView(context: Context) -> ZeroSizeView {
+        let view = ZeroSizeView()
+        view.onSize = onSize
+        return view
     }
     
-    func updateUIView(_ uiView: UIView, context: Context) {
+    func updateUIView(_ uiView: ZeroSizeView, context: Context) {
+        uiView.onSize = onSize
+        uiView.transaction = context.transaction
     }
     
-    func _overrideSizeThatFits(_ size: inout CoreGraphics.CGSize, in proposedSize: SwiftUI._ProposedSize, uiView: UIView) {
-        size = coordinator.layout?.frame.size ?? .zero
-        
-        guard proposedSize.height > 0 else {
-            return
-        }
-        
+    func _overrideSizeThatFits(_ size: inout CoreGraphics.CGSize, in proposedSize: SwiftUI._ProposedSize, uiView: ZeroSizeView) {
         let proposedSize = CGSize(width: proposedSize.width, height: proposedSize.height)
-                                
-        if proposedSize != size {
-            onSize(proposedSize)
-        }
+        size = proposedSize
+        uiView.proposedSize = proposedSize
     }
 }

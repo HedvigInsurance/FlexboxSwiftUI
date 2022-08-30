@@ -7,15 +7,6 @@
 
 import Foundation
 import SwiftUI
-import FlexboxSwiftUIObjC
-
-struct NodeImplPreferenceKey: PreferenceKey {
-    static var defaultValue: NodeImpl? = nil
-
-    static func reduce(value: inout NodeImpl?, nextValue: () -> NodeImpl?) {
-       value = nextValue()
-    }
-}
 
 struct VaradicFlexNodes: _VariadicView_UnaryViewRoot {
     var coordinator: FlexCoordinator

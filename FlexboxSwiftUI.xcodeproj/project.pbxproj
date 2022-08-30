@@ -47,8 +47,8 @@
 		EB60553D28AFAD68006AFE77 /* ViewThatChangesHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */; };
 		EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554428B00B68006AFE77 /* FlexAnimation.swift */; };
 		EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554728B00E15006AFE77 /* TransferEnvironment.swift */; };
+		EB72CD2828BE23D8009AEAE1 /* NodeImplPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72CD2728BE23D8009AEAE1 /* NodeImplPreferenceKey.swift */; };
 		EB75B1BE28B9343D003E56F9 /* ProposedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */; };
-		EB75B1C028BA36FC003E56F9 /* NodeOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1BF28BA36FC003E56F9 /* NodeOffset.swift */; };
 		EB75B1C228BA4402003E56F9 /* ViewOnLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1C128BA4402003E56F9 /* ViewOnLayout.swift */; };
 		EB75B1C928BB9E10003E56F9 /* FlexNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1C828BB9E10003E56F9 /* FlexNode.swift */; };
 		EB75B1CD28BB9F6E003E56F9 /* VaradicFlexNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1CC28BB9F6E003E56F9 /* VaradicFlexNodes.swift */; };
@@ -56,7 +56,6 @@
 		EB75B1D128BB9FF4003E56F9 /* FlexCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1D028BB9FF4003E56F9 /* FlexCoordinator.swift */; };
 		EB75B1D728BBB6B3003E56F9 /* LayoutViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1D628BBB6B3003E56F9 /* LayoutViewModifier.swift */; };
 		EB75B1D928BBCDC0003E56F9 /* FlexStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1D828BBCDC0003E56F9 /* FlexStyle.swift */; };
-		EB75B1DB28BBD17D003E56F9 /* NodeOffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1DA28BBD17D003E56F9 /* NodeOffsetKey.swift */; };
 		EB75B1DD28BBDF90003E56F9 /* FlexRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1DC28BBDF90003E56F9 /* FlexRoot.swift */; };
 		EB75B1DF28BBE21B003E56F9 /* SizeReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1DE28BBE21B003E56F9 /* SizeReaderView.swift */; };
 		EB75B1E128BCBDF5003E56F9 /* NodeChildHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1E028BCBDF5003E56F9 /* NodeChildHolder.swift */; };
@@ -162,8 +161,8 @@
 		EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewThatChangesHeight.swift; sourceTree = "<group>"; };
 		EB60554428B00B68006AFE77 /* FlexAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexAnimation.swift; sourceTree = "<group>"; };
 		EB60554728B00E15006AFE77 /* TransferEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEnvironment.swift; sourceTree = "<group>"; };
+		EB72CD2728BE23D8009AEAE1 /* NodeImplPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeImplPreferenceKey.swift; sourceTree = "<group>"; };
 		EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposedSize.swift; sourceTree = "<group>"; };
-		EB75B1BF28BA36FC003E56F9 /* NodeOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeOffset.swift; sourceTree = "<group>"; };
 		EB75B1C128BA4402003E56F9 /* ViewOnLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOnLayout.swift; sourceTree = "<group>"; };
 		EB75B1C828BB9E10003E56F9 /* FlexNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexNode.swift; sourceTree = "<group>"; };
 		EB75B1CC28BB9F6E003E56F9 /* VaradicFlexNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaradicFlexNodes.swift; sourceTree = "<group>"; };
@@ -171,7 +170,6 @@
 		EB75B1D028BB9FF4003E56F9 /* FlexCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexCoordinator.swift; sourceTree = "<group>"; };
 		EB75B1D628BBB6B3003E56F9 /* LayoutViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewModifier.swift; sourceTree = "<group>"; };
 		EB75B1D828BBCDC0003E56F9 /* FlexStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexStyle.swift; sourceTree = "<group>"; };
-		EB75B1DA28BBD17D003E56F9 /* NodeOffsetKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeOffsetKey.swift; sourceTree = "<group>"; };
 		EB75B1DC28BBDF90003E56F9 /* FlexRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexRoot.swift; sourceTree = "<group>"; };
 		EB75B1DE28BBE21B003E56F9 /* SizeReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeReaderView.swift; sourceTree = "<group>"; };
 		EB75B1E028BCBDF5003E56F9 /* NodeChildHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeChildHolder.swift; sourceTree = "<group>"; };
@@ -361,15 +359,14 @@
 				EB75B1C828BB9E10003E56F9 /* FlexNode.swift */,
 				EB75B1CC28BB9F6E003E56F9 /* VaradicFlexNodes.swift */,
 				EB75B1CE28BB9FAB003E56F9 /* SizeReadable.swift */,
-				EB75B1BF28BA36FC003E56F9 /* NodeOffset.swift */,
 				EB75B1D028BB9FF4003E56F9 /* FlexCoordinator.swift */,
 				EB75B1D628BBB6B3003E56F9 /* LayoutViewModifier.swift */,
 				EB75B1D828BBCDC0003E56F9 /* FlexStyle.swift */,
-				EB75B1DA28BBD17D003E56F9 /* NodeOffsetKey.swift */,
 				EB75B1DC28BBDF90003E56F9 /* FlexRoot.swift */,
 				EB75B1DE28BBE21B003E56F9 /* SizeReaderView.swift */,
 				EB75B1E028BCBDF5003E56F9 /* NodeChildHolder.swift */,
 				EBB30E5F28BCD1D20044BE84 /* NodeSizeUpdater.swift */,
+				EB72CD2728BE23D8009AEAE1 /* NodeImplPreferenceKey.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -587,6 +584,7 @@
 				EB75B1C228BA4402003E56F9 /* ViewOnLayout.swift in Sources */,
 				EB75B1BE28B9343D003E56F9 /* ProposedSize.swift in Sources */,
 				EB75B1D128BB9FF4003E56F9 /* FlexCoordinator.swift in Sources */,
+				EB72CD2828BE23D8009AEAE1 /* NodeImplPreferenceKey.swift in Sources */,
 				EB8F91C528B4BDC5009A0977 /* FlexView.swift in Sources */,
 				EB60548A28AFA162006AFE77 /* Size.swift in Sources */,
 				EB75B1CD28BB9F6E003E56F9 /* VaradicFlexNodes.swift in Sources */,
@@ -596,7 +594,6 @@
 				EB8F91C328B4BDBE009A0977 /* FlexViewLayout.swift in Sources */,
 				EB60548928AFA162006AFE77 /* Helpers.swift in Sources */,
 				EB75B1DD28BBDF90003E56F9 /* FlexRoot.swift in Sources */,
-				EB75B1DB28BBD17D003E56F9 /* NodeOffsetKey.swift in Sources */,
 				EB75B1D928BBCDC0003E56F9 /* FlexStyle.swift in Sources */,
 				EB60548C28AFA162006AFE77 /* Style.swift in Sources */,
 				EB60548D28AFA162006AFE77 /* Layout.swift in Sources */,
@@ -605,7 +602,6 @@
 				EB60548E28AFA162006AFE77 /* Node.swift in Sources */,
 				EB75B1C928BB9E10003E56F9 /* FlexNode.swift in Sources */,
 				EB75B1E128BCBDF5003E56F9 /* NodeChildHolder.swift in Sources */,
-				EB75B1C028BA36FC003E56F9 /* NodeOffset.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

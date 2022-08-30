@@ -18,6 +18,12 @@ extension VerticalAlignment {
     static let flexRootTop = VerticalAlignment(FlexRootTop.self)
 }
 
+extension CGFloat {
+    func replaceNan(with value: CGFloat) -> CGFloat {
+        isNaN ? value : self
+    }
+}
+
 struct LayoutViewModifier: ViewModifier {
     @EnvironmentObject var coordinator: FlexCoordinator
     @EnvironmentObject var nodeChildHolder: NodeChildHolder
@@ -32,8 +38,8 @@ struct LayoutViewModifier: ViewModifier {
             .padding(.top, layout.padding.top)
             .padding(.bottom, layout.padding.bottom)
             .frame(
-                width: layout.frame.width,
-                height: layout.frame.height,
+                width: layout.frame.width.replaceNan(with: 0),
+                height: layout.frame.height.replaceNan(with: 0),
                 alignment: .topLeading
             )
             .offset(

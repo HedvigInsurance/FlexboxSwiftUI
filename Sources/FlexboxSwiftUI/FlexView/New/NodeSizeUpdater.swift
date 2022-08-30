@@ -18,17 +18,17 @@ struct NodeSizeUpdater<Content: View>: View {
     
     func dirtieNode(_ proxy: GeometryProxy) -> some View {
         let _ = proxy.size
-                                
-        if let transaction = nodeChildHolder.transactions[offset] {
+               
+        if let transaction = nodeChildHolder.transaction {
             withTransaction(transaction) {
                 nodeChildHolder.node.markDirty()
                 coordinator.updateLayout()
             }
-            
-            nodeChildHolder.transactions.removeValue(forKey: offset)
-        } else {
-            nodeChildHolder.node.markDirty()
-            coordinator.updateLayout()
+        } else if let transaction = coordinator.rootTransaction {
+            withTransaction(transaction) {
+                nodeChildHolder.node.markDirty()
+                coordinator.updateLayout()
+            }
         }
         
         return Color.clear
@@ -41,7 +41,7 @@ struct NodeSizeUpdater<Content: View>: View {
                     dirtieNode(proxy)
                 }).transaction { transaction in
                     if transaction.animation != nil {
-                        nodeChildHolder.transactions[offset] = transaction
+                        nodeChildHolder.transaction = transaction
                     }
                 }
             ) { measure in
@@ -89,13 +89,14 @@ struct NodeSizeUpdater<Content: View>: View {
                             mode: heightMode
                         )
                     )
-                                                                                        
+                                                                                                            
                     return result
                 }
             }
             .opacity(0)
             .position()
             .allowsHitTesting(false)
+            .animation(nil)
         }
     }
 }

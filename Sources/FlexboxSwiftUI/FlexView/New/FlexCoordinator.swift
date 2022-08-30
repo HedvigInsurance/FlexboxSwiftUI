@@ -10,14 +10,11 @@ import FlexboxSwiftUIObjC
 import SwiftUI
 
 class FlexCoordinator: ObservableObject {
+    var rootTransaction: Transaction? = nil
     var rootNode: NodeImpl? = nil
+    var flexibleAxies: [Axis]? = nil
     var layout: Layout?
-    var maxSize: CGSize? {
-        didSet {
-            updateLayout()
-        }
-    }
-    var rootStyle: FlexStyle? = nil
+    var maxSize: CGSize?
     
     func layoutForNode(_ nodeImpl: NodeImpl) -> Layout? {
         guard layout != nil else {
@@ -45,16 +42,14 @@ class FlexCoordinator: ObservableObject {
     }
 
     func updateLayout() {
-        guard let maxSize = maxSize, let rootNode = rootNode else {
+        guard let maxSize = maxSize, let rootNode = rootNode, let flexibleAxies = flexibleAxies else {
             return
         }
-                
-        let isFlexibleHeight = true
-                
+      
         rootNode.layout(
             withMaxSize: CGSize(
-                width: maxSize.width,
-                height: isFlexibleHeight ? .nan : maxSize.height
+                width: flexibleAxies.contains(.horizontal) ? .nan : maxSize.width,
+                height: flexibleAxies.contains(.vertical) ? .nan : maxSize.height
             )
         )
                 
