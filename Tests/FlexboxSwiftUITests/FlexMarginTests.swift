@@ -13,32 +13,41 @@ import XCTest
 @testable import FlexboxSwiftUI
 
 class FlexMarginTests: XCTestCase {
-//    func testMargins() {
-//        let exp = assertFlexNode(
-//            Node(
-//                size: Size(width: .percent(100), height: .percent(100)),
-//                children: [
-//                    Node(
-//                        size: Size(width: .auto, height: .fixed(1)),
-//                        flexGrow: 1,
-//                        margin: Edges(
-//                            leading: .undefined,
-//                            trailing: .fixed(10),
-//                            top: .fixed(10),
-//                            bottom: .fixed(10)
-//                        ),
-//                        view: AnyView(TestColor(color: .red))
-//                    ),
-//                    Node(
-//                        size: Size(width: .auto, height: .fixed(1)),
-//                        flexGrow: 1,
-//                        view: AnyView(TestColor(color: .blue))
-//                    ),
-//                ],
-//                flexDirection: .column
-//            )
-//        )
-//
-//        wait(for: exp, timeout: 1)
-//    }
+    func testMargins() {
+        let exp = assertFlex(
+            FlexRoot {
+                FlexNode(
+                    style: FlexStyle(
+                        size: Size(width: .percent(100), height: .percent(100)),
+                        flexDirection: .column
+                    )
+                ) {
+                    FlexNode(
+                        style: FlexStyle(
+                            size: Size(width: .auto, height: .fixed(1)),
+                            flexGrow: 1,
+                            margin: Edges(
+                                leading: .undefined,
+                                trailing: .fixed(10),
+                                top: .fixed(10),
+                                bottom: .fixed(10)
+                            )
+                        )
+                    ) {
+                        TestColor(color: .red)
+                    }
+                    FlexNode(
+                        style: FlexStyle(
+                            size: Size(width: .auto, height: .fixed(1)),
+                            flexGrow: 1
+                        )
+                    ) {
+                        TestColor(color: .blue)
+                    }
+                }
+            }
+        )
+
+        wait(for: exp, timeout: 1)
+    }
 }

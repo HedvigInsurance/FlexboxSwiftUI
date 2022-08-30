@@ -40,7 +40,7 @@ public struct FlexRoot<Content: View>: View {
                 Color.clear.frame(
                     width: coordinator.layout?.frame.width ?? 0,
                     height: coordinator.layout?.frame.height ?? 0
-                ).background(Color.yellow)
+                )
                 
                 content()
             }
