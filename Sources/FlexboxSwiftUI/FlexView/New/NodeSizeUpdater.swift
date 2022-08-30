@@ -39,9 +39,11 @@ struct NodeSizeUpdater<Content: View>: View {
             SizeReadable(
                 content: content.background(GeometryReader { proxy in
                     dirtieNode(proxy)
-                }).transaction({ transaction in
-                    nodeChildHolder.transactions[offset] = transaction
-                })
+                }).transaction { transaction in
+                    if transaction.animation != nil {
+                        nodeChildHolder.transactions[offset] = transaction
+                    }
+                }
             ) { measure in
                 let node = nodeChildHolder.node
                                                 
@@ -90,9 +92,6 @@ struct NodeSizeUpdater<Content: View>: View {
                                                                                         
                     return result
                 }
-                                            
-                node.markDirty()
-                coordinator.updateLayout()
             }
             .opacity(0)
             .position()
