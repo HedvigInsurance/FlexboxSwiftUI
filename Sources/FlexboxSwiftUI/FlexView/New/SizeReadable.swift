@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 import UIKit
 
-class SizeReadableHostingController<Content: View>: UIHostingController<Content> {
-    override init(rootView: Content) {
+class SizeReadableHostingController<Content: View>: UIHostingController<TransferEnvironmentView<Content>> {
+    override init(rootView: TransferEnvironmentView<Content>) {
         super.init(rootView: rootView)
         self._disableSafeArea = true
     }
@@ -46,7 +46,7 @@ struct SizeReadable<Content: View>: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
         Coordinator(
             hostingController: SizeReadableHostingController(
-                rootView: content
+                rootView: TransferEnvironmentView(content: content, environment: .init())
             )
         )
     }
@@ -60,10 +60,18 @@ struct SizeReadable<Content: View>: UIViewRepresentable {
 
     func makeUIView(context: Context) -> UIView {
         updateReader(context: context)
+        context.coordinator.hostingController.rootView = TransferEnvironmentView(
+            content: content,
+            environment: context.environment
+        )
         return context.coordinator.hostingController.view
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
         updateReader(context: context)
+        context.coordinator.hostingController.rootView = TransferEnvironmentView(
+            content: content,
+            environment: context.environment
+        )
     }
 }

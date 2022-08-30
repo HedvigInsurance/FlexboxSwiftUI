@@ -8,19 +8,11 @@
 import Foundation
 import SwiftUI
 
-public struct TransferEnvironment: ViewModifier {
+struct TransferEnvironmentView<Content: View>: View {
+    var content: Content
     var environment: EnvironmentValues
-
-    public init(
-        environment: EnvironmentValues
-    ) {
-        self.environment = environment
-    }
-
-    public func body(content: Content) -> some View {
-        return Group {
-            content
-        }
-        .environment(\.self, environment)
+    
+    var body: some View {
+        content.environment(\.self, environment)
     }
 }

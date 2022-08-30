@@ -45,11 +45,9 @@
 		EB60553928AFA365006AFE77 /* FlexboxSwiftUIObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */; };
 		EB60553A28AFA365006AFE77 /* FlexboxSwiftUIObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EB60553D28AFAD68006AFE77 /* ViewThatChangesHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */; };
-		EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554428B00B68006AFE77 /* FlexAnimation.swift */; };
 		EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554728B00E15006AFE77 /* TransferEnvironment.swift */; };
 		EB72CD2828BE23D8009AEAE1 /* NodeImplPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72CD2728BE23D8009AEAE1 /* NodeImplPreferenceKey.swift */; };
 		EB75B1BE28B9343D003E56F9 /* ProposedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */; };
-		EB75B1C228BA4402003E56F9 /* ViewOnLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1C128BA4402003E56F9 /* ViewOnLayout.swift */; };
 		EB75B1C928BB9E10003E56F9 /* FlexNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1C828BB9E10003E56F9 /* FlexNode.swift */; };
 		EB75B1CD28BB9F6E003E56F9 /* VaradicFlexNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1CC28BB9F6E003E56F9 /* VaradicFlexNodes.swift */; };
 		EB75B1CF28BB9FAB003E56F9 /* SizeReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1CE28BB9FAB003E56F9 /* SizeReadable.swift */; };
@@ -159,11 +157,9 @@
 		EB6054F328AFA1A5006AFE77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EB60552328AFA272006AFE77 /* FlexboxSwiftUIObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexboxSwiftUIObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewThatChangesHeight.swift; sourceTree = "<group>"; };
-		EB60554428B00B68006AFE77 /* FlexAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexAnimation.swift; sourceTree = "<group>"; };
 		EB60554728B00E15006AFE77 /* TransferEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEnvironment.swift; sourceTree = "<group>"; };
 		EB72CD2728BE23D8009AEAE1 /* NodeImplPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeImplPreferenceKey.swift; sourceTree = "<group>"; };
 		EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposedSize.swift; sourceTree = "<group>"; };
-		EB75B1C128BA4402003E56F9 /* ViewOnLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOnLayout.swift; sourceTree = "<group>"; };
 		EB75B1C828BB9E10003E56F9 /* FlexNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexNode.swift; sourceTree = "<group>"; };
 		EB75B1CC28BB9F6E003E56F9 /* VaradicFlexNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaradicFlexNodes.swift; sourceTree = "<group>"; };
 		EB75B1CE28BB9FAB003E56F9 /* SizeReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeReadable.swift; sourceTree = "<group>"; };
@@ -260,8 +256,6 @@
 			children = (
 				EB8F91C628B4BDCB009A0977 /* FlexView */,
 				EB60547828AFA162006AFE77 /* Utils */,
-				EB75B1C128BA4402003E56F9 /* ViewOnLayout.swift */,
-				EB60554428B00B68006AFE77 /* FlexAnimation.swift */,
 				EB60554728B00E15006AFE77 /* TransferEnvironment.swift */,
 			);
 			path = FlexboxSwiftUI;
@@ -581,7 +575,6 @@
 				EB75B1CF28BB9FAB003E56F9 /* SizeReadable.swift in Sources */,
 				EB60548828AFA162006AFE77 /* InOutMutable.swift in Sources */,
 				EBB30E6028BCD1D20044BE84 /* NodeSizeUpdater.swift in Sources */,
-				EB75B1C228BA4402003E56F9 /* ViewOnLayout.swift in Sources */,
 				EB75B1BE28B9343D003E56F9 /* ProposedSize.swift in Sources */,
 				EB75B1D128BB9FF4003E56F9 /* FlexCoordinator.swift in Sources */,
 				EB72CD2828BE23D8009AEAE1 /* NodeImplPreferenceKey.swift in Sources */,
@@ -597,7 +590,6 @@
 				EB75B1D928BBCDC0003E56F9 /* FlexStyle.swift in Sources */,
 				EB60548C28AFA162006AFE77 /* Style.swift in Sources */,
 				EB60548D28AFA162006AFE77 /* Layout.swift in Sources */,
-				EB60554628B00C4F006AFE77 /* FlexAnimation.swift in Sources */,
 				EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */,
 				EB60548E28AFA162006AFE77 /* Node.swift in Sources */,
 				EB75B1C928BB9E10003E56F9 /* FlexNode.swift in Sources */,
