@@ -7,7 +7,6 @@
 
 import FlexboxSwiftUIObjC
 import Foundation
-import YogaKit
 
 /// Size types
 public enum SizeType: Equatable {

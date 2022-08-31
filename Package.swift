@@ -15,7 +15,6 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/ZupIT/Yoga.git", from: "1.0.0"),
         .package(url: "https://github.com/nalexn/ViewInspector.git", from: "0.9.1"),
         .package(
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
@@ -26,15 +25,12 @@ let package = Package(
         .target(
             name: "FlexboxSwiftUI",
             dependencies: [
-                .product(name: "YogaKit", package: "Yoga"),
                 "FlexboxSwiftUIObjC",
             ]
         ),
         .target(
             name: "FlexboxSwiftUIObjC",
-            dependencies: [
-                .product(name: "YogaKit", package: "Yoga")
-            ],
+            dependencies: [],
             cxxSettings: [
                 .headerSearchPath("Sources/FlexboxSwiftUIObjC")
             ]
