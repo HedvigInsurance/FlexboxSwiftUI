@@ -37,10 +37,15 @@ struct VaradicFlexNodes: _VariadicView_UnaryViewRoot {
                         )
                     }
                 }.onAppear {
-                    nodeChildHolder.updateChildren()
+                    withTransaction(coordinator.rootTransaction) {
+                        nodeChildHolder.updateChildren()
+                    }
                 }.onDisappear {
                     nodeChildHolder.children.removeValue(forKey: offset)
-                    nodeChildHolder.updateChildren()
+                    
+                    withTransaction(coordinator.rootTransaction) {
+                        nodeChildHolder.updateChildren()
+                    }
                 }
             }
         }

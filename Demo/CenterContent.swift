@@ -33,45 +33,21 @@ struct TestColor: UIViewRepresentable {
 
 struct CenterContent: View {
     var body: some View {
-        RenderBothImplementations(node: Node(
-            size: Size(width: .percent(100), height: .percent(100)),
-            children: [
-                Node(
-                    size: Size(width: .percent(20), height: .percent(100)),
-                    view: AnyView(TestColor(color: .red))
+        FlexRoot {
+            FlexNode(
+                style: FlexStyle(
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    justifyContent: .center
                 )
-            ],
-            justifyContent: .center
-        )).frame(height: 100)
-        
-        RenderBothImplementations(
-            node: Node(
-                size: Size(width: .percent(100), height: .percent(100)),
-                children: [
-                    Node(
-                        flexGrow: 1,
-                        view: AnyView(
-                            Button(
-                                "Some button text",
-                                action: {
-                                    
-                                }
-                            )
-                        )
-                    ),
-                    Node(
-                        flexGrow: 1,
-                        view: AnyView(
-                            Button(
-                                "Some other text",
-                                action: {
-                                    
-                                }
-                            )
-                        )
-                    ),
-                ]
-            )
-        ).frame(height: 100)
+            ) {
+                FlexNode(
+                    style: FlexStyle(
+                        size: Size(width: .percent(20), height: .percent(100))
+                    )
+                ) {
+                    TestColor(color: .red)
+                }
+            }
+        }.frame(height: 100)
     }
 }

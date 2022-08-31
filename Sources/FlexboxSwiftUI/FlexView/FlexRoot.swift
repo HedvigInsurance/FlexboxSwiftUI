@@ -27,11 +27,9 @@ public struct FlexRoot<Content: View>: View {
         return ZStack(alignment: .topLeading) {
             SizeReaderView { size in
                 if size != coordinator.maxSize {
-                    if let transaction = coordinator.rootTransaction {
-                        withTransaction(transaction) {
-                            coordinator.maxSize = size
-                            coordinator.updateLayout()
-                        }
+                    withTransaction(coordinator.rootTransaction) {
+                        coordinator.maxSize = size
+                        coordinator.updateLayout()
                     }
                 }
             }

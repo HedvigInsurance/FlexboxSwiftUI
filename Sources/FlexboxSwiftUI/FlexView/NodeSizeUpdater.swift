@@ -18,32 +18,24 @@ struct NodeSizeUpdater<Content: View>: View {
     
     func dirtieNode(_ proxy: GeometryProxy) -> some View {
         let _ = proxy.size
-               
-        if let transaction = nodeChildHolder.transaction {
-            withTransaction(transaction) {
-                nodeChildHolder.node.markDirty()
-                coordinator.updateLayout()
-            }
-        } else if let transaction = coordinator.rootTransaction {
-            withTransaction(transaction) {
-                nodeChildHolder.node.markDirty()
-                coordinator.updateLayout()
-            }
-        }
-        
+        nodeChildHolder.pendingNodeUpdate = true
         return Color.clear
     }
     
     var body: some View {
         if nodeChildHolder.isLeafNode == true {
             SizeReadable(
-                content: content.background(GeometryReader { proxy in
-                    dirtieNode(proxy)
-                }).transaction { transaction in
-                    if transaction.animation != nil {
-                        nodeChildHolder.transaction = transaction
+                content: content.transaction { transaction in
+                    if nodeChildHolder.pendingNodeUpdate {
+                        nodeChildHolder.pendingNodeUpdate = false
+                        withTransaction(transaction) {
+                            nodeChildHolder.node.markDirty()
+                            coordinator.updateLayout()
+                        }
                     }
-                }
+                }.background(GeometryReader { proxy in
+                    dirtieNode(proxy)
+                })
             ) { measure in
                 let node = nodeChildHolder.node
                                                 
@@ -97,6 +89,9 @@ struct NodeSizeUpdater<Content: View>: View {
             .position()
             .allowsHitTesting(false)
             .animation(nil)
+            .onDisappear {
+                nodeChildHolder.node.removeMeasureFunc()
+            }
         }
     }
 }

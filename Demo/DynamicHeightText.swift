@@ -15,32 +15,32 @@ struct DynamicHeightText: View {
         """
 
     var body: some View {
-    
-        if #available(iOS 16, *) {
-            FlexViewLayout(
-                node: Node(
+        FlexRoot(flexibleAxies: [.vertical]) {
+            FlexNode(
+                style: FlexStyle(
                     size: Size(width: .percent(100), height: .auto),
-                    children: [
-                        Node(
-                            size: Size(width: .percent(100), height: .auto),
-                            flexGrow: 1,
-                            view: AnyView(
-                                Text(loremIpsum)
-                                    .padding(10)
-                            )
-                        ),
-                        Node(
-                            size: Size(width: .percent(100), height: .auto),
-                            flexGrow: 1,
-                            view: AnyView(
-                                Text(loremIpsum)
-                                    .padding(10)
-                            )
-                        )
-                    ],
                     flexDirection: .column
                 )
-            ).frame(height: 300).background(Color.red).padding(20)
+            ) {
+                FlexNode(
+                    style: FlexStyle(
+                        size: Size(width: .percent(100), height: .auto),
+                        flexGrow: 1
+                    )
+                ) {
+                    Text(loremIpsum)
+                        .padding(10)
+                }
+                FlexNode(
+                    style: FlexStyle(
+                        size: Size(width: .percent(100), height: .auto),
+                        flexGrow: 1
+                    )
+                ) {
+                    Text(loremIpsum)
+                        .padding(10)
+                }
+            }
         }
     }
 }

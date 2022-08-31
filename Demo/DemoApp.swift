@@ -23,16 +23,16 @@ struct DemoApp: App {
                             DemoScreen(content: CenterContent())
                         }
                         
-                        NavigationLink("FillMaxAvailableHeight") {
-                            DemoScreen(content: FillMaxAvailableHeight())
-                        }
-                        
                         NavigationLink("Padding") {
                             DemoScreen(content: Padding())
                         }
                     }
                     
                     Section(header: Text("Content")) {
+                        NavigationLink("LotsOfNodes") {
+                            DemoScreen(content: LotsOfNodes())
+                        }
+                        
                         NavigationLink("DynamicHeightText") {
                             DemoScreen(content: DynamicHeightText())
                         }

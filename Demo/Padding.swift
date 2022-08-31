@@ -10,12 +10,16 @@ import FlexboxSwiftUI
 import SwiftUI
 
 struct Padding: View {
-    var body: some View {        
-        RenderBothImplementations(
-            node: Node(
-                size: Size(width: .percent(100), height: .auto),
-                children: [
-                    Node(
+    var body: some View {
+        FlexRoot {
+            FlexNode(
+                style: FlexStyle(
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    flexDirection: .row
+                )
+            ) {
+                FlexNode(
+                    style: FlexStyle(
                         size: Size(width: .fixed(1), height: .auto),
                         flexGrow: 1,
                         padding: Edges(
@@ -23,25 +27,34 @@ struct Padding: View {
                             trailing: .fixed(50),
                             top: .auto,
                             bottom: .auto
-                        ),
-                        view: AnyView(
-                            Text("Padding")
-                            .frame(maxWidth: .infinity)
-                            .background(Color.red)
                         )
-                    ),
-                    Node(
+                    )
+                ) {
+                    ZStack {
+                        Text("Padding")
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color.red)
+                }
+                FlexNode(
+                    style: FlexStyle(
                         size: Size(width: .fixed(1), height: .auto),
                         flexGrow: 1,
-                        view: AnyView(
-                            Text("Padding")
-                            .frame(maxWidth: .infinity)
-                            .background(Color.red)
+                        padding: Edges(
+                            leading: .fixed(50),
+                            trailing: .auto,
+                            top: .auto,
+                            bottom: .auto
                         )
-                    ),
-                ],
-                flexDirection: .row
-            )
-        )
+                    )
+                ) {
+                    ZStack {
+                        Text("Padding")
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color.red)
+                }
+            }
+        }
     }
 }

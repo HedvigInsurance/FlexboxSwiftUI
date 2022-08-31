@@ -11,12 +11,20 @@ import FlexboxSwiftUI
 
 struct JustifyContent: View {
     @State var modifySize = false
+    @State var insertNode = false
     
     var body: some View {
         VStack {
-            Button("Modify container size") {
-                withAnimation(.spring()) {
-                    modifySize.toggle()
+            HStack {
+                Button("Modify size") {
+                    withAnimation(.spring()) {
+                        modifySize.toggle()
+                    }
+                }
+                Button("Insert node") {
+                    withAnimation(.spring()) {
+                        insertNode.toggle()
+                    }
                 }
             }
                     
@@ -24,7 +32,7 @@ struct JustifyContent: View {
                 FlexNode(
                     style: FlexStyle(
                         size: Size(
-                            width: .percent(100),
+                            width: .percent(modifySize ? 50 : 100),
                             height: .percent(50)
                         )
                     )
@@ -37,16 +45,21 @@ struct JustifyContent: View {
                     ) {
                         TestColor(color: .blue)
                     }
+                    
+                    if insertNode {
+                        FlexNode(
+                            style: FlexStyle(
+                                size: Size(width: .auto, height: .auto),
+                                flexGrow: 1
+                            )
+                        ) {
+                            TestColor(color: .blue)
+                        }
+                    }
                 }
             }
             .frame(height: modifySize ? 200 : 100, alignment: .topLeading)
             .background(Color.yellow)
-            
-            Button("Modify container size") {
-                withAnimation(.spring()) {
-                    modifySize.toggle()
-                }
-            }
         }
     }
 }

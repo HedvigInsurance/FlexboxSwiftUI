@@ -10,7 +10,7 @@ import FlexboxSwiftUIObjC
 import SwiftUI
 
 class FlexCoordinator: ObservableObject {
-    var rootTransaction: Transaction? = nil
+    var rootTransaction = Transaction()
     var rootNode: NodeImpl? = nil
     var flexibleAxies: [Axis]? = nil
     var layout: Layout?

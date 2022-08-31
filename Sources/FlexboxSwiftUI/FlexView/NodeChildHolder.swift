@@ -13,7 +13,7 @@ class NodeChildHolder: ObservableObject {
     var isLeafNode: Bool? = nil
     var node = NodeImpl()
     var children: [Int: NodeImpl] = [:]
-    var transaction: Transaction? = nil
+    var pendingNodeUpdate = false
     
     func insertChild(_ offset: Int, node: NodeImpl) {
         children[offset] = node
