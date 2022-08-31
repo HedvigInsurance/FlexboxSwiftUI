@@ -72,9 +72,9 @@ func assertFlex<Content: View>(
             )
             exp.fulfill()
         }
-        
+
         return exp
     }
-    
+
     return [runAssert(root)]
 }

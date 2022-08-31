@@ -20,11 +20,11 @@ class FlexJustifyContentTests: XCTestCase {
                     justifyContent: .center
                 ) {
                     FlexItem(
-                            size: Size(
-                                width: .percent(20),
-                                height: .percent(100)
-                            )
-                        
+                        size: Size(
+                            width: .percent(20),
+                            height: .percent(100)
+                        )
+
                     ) {
                         TestColor(color: .red)
                     }
@@ -39,11 +39,11 @@ class FlexJustifyContentTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                        size: Size(width: .percent(100), height: .percent(100)),
-                        justifyContent: .flexStart
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    justifyContent: .flexStart
                 ) {
                     FlexItem(
-                       size: Size(width: .percent(20), height: .percent(100))
+                        size: Size(width: .percent(20), height: .percent(100))
                     ) {
                         TestColor(color: .red)
                     }
@@ -58,13 +58,13 @@ class FlexJustifyContentTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                        size: Size(width: .percent(100), height: .percent(100)),
-                        justifyContent: .flexEnd
-                    
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    justifyContent: .flexEnd
+
                 ) {
                     FlexItem(
-                            size: Size(width: .percent(20), height: .percent(100))
-                        
+                        size: Size(width: .percent(20), height: .percent(100))
+
                     ) {
                         TestColor(color: .red)
                     }
