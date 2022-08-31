@@ -22,7 +22,6 @@ class FlexPaddingTests: XCTestCase {
                     
                 ) {
                     FlexItem(
-                        style: FlexStyle(
                             size: Size(width: .fixed(1), height: .auto),
                             flexGrow: 1,
                             padding: Edges(
@@ -31,7 +30,7 @@ class FlexPaddingTests: XCTestCase {
                                 top: .auto,
                                 bottom: .auto
                             )
-                        )
+                        
                     ) {
                         ZStack {
                             Text("Padding")
@@ -40,7 +39,6 @@ class FlexPaddingTests: XCTestCase {
                         .background(Color.red)
                     }
                     FlexItem(
-                        style: FlexStyle(
                             size: Size(width: .fixed(1), height: .auto),
                             flexGrow: 1,
                             padding: Edges(
@@ -49,7 +47,7 @@ class FlexPaddingTests: XCTestCase {
                                 top: .auto,
                                 bottom: .auto
                             )
-                        )
+                        
                     ) {
                         ZStack {
                             Text("Padding")

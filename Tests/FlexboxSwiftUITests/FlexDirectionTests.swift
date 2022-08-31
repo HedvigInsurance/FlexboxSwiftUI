@@ -17,23 +17,20 @@ class FlexDirectionTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         flexDirection: .column,
                         justifyContent: .center
-                    )
+                    
                 ) {
                     FlexItem(
-                        style: FlexStyle(
                             size: Size(width: .percent(100), height: .fixed(10))
-                        )
+                        
                     ) {
                         TestColor(color: .red)
                     }
                     FlexItem(
-                        style: FlexStyle(
                             size: Size(width: .percent(100), height: .fixed(40))
-                        )
+                        
                     ) {
                         TestColor(color: .blue)
                     }
@@ -48,23 +45,20 @@ class FlexDirectionTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         flexDirection: .column,
                         justifyContent: .flexStart
-                    )
+                    
                 ) {
                     FlexItem(
-                        style: FlexStyle(
                             size: Size(width: .percent(100), height: .fixed(10))
-                        )
+                        
                     ) {
                         TestColor(color: .red)
                     }
                     FlexItem(
-                        style: FlexStyle(
                             size: Size(width: .percent(100), height: .fixed(40))
-                        )
+                        
                     ) {
                         TestColor(color: .blue)
                     }

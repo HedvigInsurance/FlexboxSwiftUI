@@ -44,6 +44,7 @@
 		EB60553D28AFAD68006AFE77 /* ViewThatChangesHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */; };
 		EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554728B00E15006AFE77 /* TransferEnvironment.swift */; };
 		EB72CD2828BE23D8009AEAE1 /* NodeImplPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72CD2728BE23D8009AEAE1 /* NodeImplPreferenceKey.swift */; };
+		EB72CD2A28BF3D44009AEAE1 /* CIAssertSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72CD2928BF3D44009AEAE1 /* CIAssertSnapshot.swift */; };
 		EB75B1BE28B9343D003E56F9 /* ProposedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */; };
 		EB75B1C928BB9E10003E56F9 /* FlexItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1C828BB9E10003E56F9 /* FlexItem.swift */; };
 		EB75B1CD28BB9F6E003E56F9 /* VaradicFlexItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1CC28BB9F6E003E56F9 /* VaradicFlexItems.swift */; };
@@ -151,6 +152,7 @@
 		EB60553C28AFAD68006AFE77 /* ViewThatChangesHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewThatChangesHeight.swift; sourceTree = "<group>"; };
 		EB60554728B00E15006AFE77 /* TransferEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEnvironment.swift; sourceTree = "<group>"; };
 		EB72CD2728BE23D8009AEAE1 /* NodeImplPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeImplPreferenceKey.swift; sourceTree = "<group>"; };
+		EB72CD2928BF3D44009AEAE1 /* CIAssertSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIAssertSnapshot.swift; sourceTree = "<group>"; };
 		EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposedSize.swift; sourceTree = "<group>"; };
 		EB75B1C828BB9E10003E56F9 /* FlexItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexItem.swift; sourceTree = "<group>"; };
 		EB75B1CC28BB9F6E003E56F9 /* VaradicFlexItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaradicFlexItems.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				EB60549F28AFA166006AFE77 /* FlexButtonTests.swift */,
 				EB6054A028AFA166006AFE77 /* FlexTextTests.swift */,
 				EB38169728B4E6A6009ADBA3 /* TestColor.swift */,
+				EB72CD2928BF3D44009AEAE1 /* CIAssertSnapshot.swift */,
 			);
 			path = FlexboxSwiftUITests;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				EB60550128AFA1BE006AFE77 /* FlexSizeTests.swift in Sources */,
 				EB60550028AFA1BE006AFE77 /* FlexMarginTests.swift in Sources */,
 				EB38169928B4E6B7009ADBA3 /* TestColor.swift in Sources */,
+				EB72CD2A28BF3D44009AEAE1 /* CIAssertSnapshot.swift in Sources */,
 				EB6054FD28AFA1BE006AFE77 /* FlexButtonTests.swift in Sources */,
 				EB60550228AFA1BE006AFE77 /* FlexPaddingTests.swift in Sources */,
 				EB6054FE28AFA1BE006AFE77 /* Inspection.swift in Sources */,

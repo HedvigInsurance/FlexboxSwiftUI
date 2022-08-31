@@ -62,7 +62,7 @@ func assertFlex<Content: View>(
         window.layoutIfNeeded()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            assertSnapshot(
+            ciAssertSnapshot(
                 matching: vc,
                 as: .image,
                 named: "flexNode",
