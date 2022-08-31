@@ -30,28 +30,25 @@ struct JustifyContent: View {
                     
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(
                             width: .percent(modifySize ? 50 : 100),
                             height: .percent(50)
                         )
-                    )
+                    
                 ) {
                     FlexItem(
-                        style: FlexStyle(
                             size: Size(width: .auto, height: .auto),
                             flexGrow: 1
-                        )
+                        
                     ) {
                         TestColor(color: .blue)
                     }
                     
                     if insertNode {
                         FlexItem(
-                            style: FlexStyle(
                                 size: Size(width: .auto, height: .auto),
                                 flexGrow: 1
-                            )
+                            
                         ) {
                             TestColor(color: .blue)
                         }

@@ -17,10 +17,9 @@ class FlexPaddingTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         flexDirection: .row
-                    )
+                    
                 ) {
                     FlexItem(
                         style: FlexStyle(

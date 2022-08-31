@@ -17,25 +17,22 @@ struct DynamicHeightText: View {
     var body: some View {
         FlexStack(flexibleAxies: [.vertical]) {
             FlexItem(
-                style: FlexStyle(
                     size: Size(width: .percent(100), height: .auto),
                     flexDirection: .column
-                )
+                
             ) {
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1
-                    )
+                    
                 ) {
                     Text(loremIpsum)
                         .padding(10)
                 }
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1
-                    )
+                    
                 ) {
                     Text(loremIpsum)
                         .padding(10)

@@ -24,16 +24,14 @@ class FlexDynamicSizingTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(width: .percent(100), height: .auto),
                         flexDirection: .column
-                    )
+                    
                 ) {
                     FlexItem(
-                        style: FlexStyle(
                             size: Size(width: .percent(100), height: .auto),
                             flexGrow: 1
-                        )
+                        
                     ) {
                         Text(self.loremIpsum)
                     }

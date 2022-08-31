@@ -13,13 +13,12 @@ struct Padding: View {
     var body: some View {
         FlexStack {
             FlexItem(
-                style: FlexStyle(
+                
                     size: Size(width: .percent(100), height: .percent(100)),
                     flexDirection: .row
-                )
+                
             ) {
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(width: .fixed(1), height: .auto),
                         flexGrow: 1,
                         padding: Edges(
@@ -28,7 +27,7 @@ struct Padding: View {
                             top: .auto,
                             bottom: .auto
                         )
-                    )
+                    
                 ) {
                     ZStack {
                         Text("Padding")
@@ -37,7 +36,6 @@ struct Padding: View {
                     .background(Color.red)
                 }
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(width: .fixed(1), height: .auto),
                         flexGrow: 1,
                         padding: Edges(
@@ -46,7 +44,7 @@ struct Padding: View {
                             top: .auto,
                             bottom: .auto
                         )
-                    )
+                    
                 ) {
                     ZStack {
                         Text("Padding")

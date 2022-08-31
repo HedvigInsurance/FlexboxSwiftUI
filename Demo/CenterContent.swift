@@ -35,15 +35,13 @@ struct CenterContent: View {
     var body: some View {
         FlexStack {
             FlexItem(
-                style: FlexStyle(
                     size: Size(width: .percent(100), height: .percent(100)),
                     justifyContent: .center
-                )
+                
             ) {
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(width: .percent(20), height: .percent(100))
-                    )
+                    
                 ) {
                     TestColor(color: .red)
                 }

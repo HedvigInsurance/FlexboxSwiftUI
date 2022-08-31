@@ -22,15 +22,15 @@ struct LotsOfNodes: View {
         }
         
         FlexStack(flexibleAxies: [.vertical]) {
-            FlexItem(style: FlexStyle(
+            FlexItem(
                 size: Size(width: .auto, height: .undefined),
                 flexDirection: .column
-            )) {
+            ) {
                 ForEach(Array(Array(repeating: "", count: count).enumerated()), id: \.offset) { offset, _ in
-                    FlexItem(style: FlexStyle(size: .init(width: .percent(50), height: .auto))) {
+                    FlexItem(size: .init(width: .percent(50), height: .auto)) {
                         ViewThatChangesHeight(offset: offset)
                     }
-                    FlexItem(style: FlexStyle(size: .init(width: .percent(50), height: .auto))) {
+                    FlexItem(size: .init(width: .percent(50), height: .auto)) {
                         Text(loremIpsum)
                     }
                 }

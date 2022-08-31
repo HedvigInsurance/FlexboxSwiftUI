@@ -79,21 +79,18 @@ class FlexDirectionTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100))
-                    )
+                    
                 ) {
                     FlexItem(
-                        style: FlexStyle(
                             size: Size(width: .percent(50), height: .fixed(40))
-                        )
+                        
                     ) {
                         TestColor(color: .red)
                     }
                     FlexItem(
-                        style: FlexStyle(
                             size: Size(width: .percent(50), height: .auto)
-                        )
+                        
                     ) {
                         TestColor(color: .blue)
                     }
