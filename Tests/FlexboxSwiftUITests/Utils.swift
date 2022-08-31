@@ -37,6 +37,8 @@ var assertSize: CGSize {
     CGSize(width: 300, height: 300)
 }
 
+let vc = UIHostingController(rootView: AnyView(EmptyView()))
+
 func assertFlex<Content: View>(
     _ root: FlexStack<Content>,
     size: CGSize? = assertSize,
@@ -45,7 +47,17 @@ func assertFlex<Content: View>(
     line: UInt = #line
 ) -> [XCTestExpectation] {
     func runAssert<V: View>(_ view: V) -> XCTestExpectation {
-        let vc = UIHostingController(rootView: root.frame(size))
+        var intrinsicSize: CGSize? = nil
+        
+        func useProxy(_ proxy: GeometryProxy) -> some View {
+            intrinsicSize = proxy.size
+            return Color.clear
+        }
+        
+        let vc = UIHostingController(rootView: root.frame(size).background(GeometryReader { proxy in
+            useProxy(proxy)
+        }).fixedSize(horizontal: false, vertical: true))
+        vc._disableSafeArea = true
 
         let exp = XCTestExpectation(description: "Wait for screen to render")
 
@@ -54,12 +66,21 @@ func assertFlex<Content: View>(
         if let size = size {
             window = UIWindow(frame: .init(origin: .zero, size: size))
         } else {
-            window = UIWindow(frame: UIScreen.main.bounds)
+            window = UIWindow(frame: .init(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIView.layoutFittingExpandedSize.height)))
         }
 
         window.rootViewController = vc
         window.makeKeyAndVisible()
         window.layoutIfNeeded()
+        
+        vc._render(seconds: 0)
+        
+        if size == nil {
+            window.frame.size = intrinsicSize ?? .zero
+            window.layoutIfNeeded()
+        }
+        
+        vc._render(seconds: 0)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             ciAssertSnapshot(
@@ -70,6 +91,9 @@ func assertFlex<Content: View>(
                 testName: testName,
                 line: line
             )
+            
+            window.rootViewController = nil
+            
             exp.fulfill()
         }
 

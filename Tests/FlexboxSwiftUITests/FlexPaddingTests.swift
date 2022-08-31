@@ -56,8 +56,7 @@ class FlexPaddingTests: XCTestCase {
                         .background(Color.red)
                     }
                 }
-            },
-            size: nil
+            }
         )
 
         wait(for: exp, timeout: 1)
