@@ -1,26 +1,19 @@
 //
-//  Node.swift
+//  FlexStyle.swift
 //  FlexboxSwiftUI
 //
-//  Created by Sam Pettersson on 2022-08-18.
+//  Created by Sam Pettersson on 2022-08-28.
 //
 
-import FlexboxSwiftUIObjC
 import Foundation
-import SwiftUI
-import UIKit
 import YogaKit
+import FlexboxSwiftUIObjC
 
-/// Flexbox node.
-/// - https://www.w3.org/TR/css-flexbox/
-/// - https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout
-public struct Node {
+public struct FlexStyle {
     public var size: Size
     public var minSize: Size
     public var maxSize: Size
-    
-    public var children: [Node]
-    
+        
     /// Specifies how flex-items are placed in the flex-container (defining the main-axis).
     /// - Note: Applies to flex-container.
     public var flexDirection: Style.FlexDirection
@@ -77,17 +70,13 @@ public struct Node {
     
     /// facebook/yoga implementation that mostly works as same as `padding`.
     public var border: Edges
-    
-    public var view: AnyView?
-    
+
     /// - Note: See `gYGNodeDefaults.style`.
     public init(
         size: Size = Size(width: .auto, height: .auto),
         minSize: Size = Size(width: .auto, height: .auto),
         maxSize: Size = Size(width: .auto, height: .auto),
-        
-        children: [Node] = [],
-        
+                
         flexDirection: Style.FlexDirection = .row,
         flexWrap: Style.FlexWrap = .nowrap,
         justifyContent: Style.JustifyContent = .flexStart,
@@ -107,16 +96,12 @@ public struct Node {
         position: Edges = .undefined,
         margin: Edges = .undefined,
         padding: Edges = .undefined,
-        border: Edges = .undefined,
-        
-        view: AnyView? = nil
+        border: Edges = .undefined
     ) {
         self.size = size
         self.minSize = minSize
         self.maxSize = maxSize
-        
-        self.children = children
-        
+                
         self.flexDirection = flexDirection
         self.flexWrap = flexWrap
         self.justifyContent = justifyContent
@@ -136,43 +121,10 @@ public struct Node {
         self.position = position
         self.margin = margin
         self.padding = padding
-        self.border = border
-        
-        self.view = view
+        self.border = border        
     }
     
-    /// Lay out the receiver and all its children with an optional `maxSize`.
-    func layout(
-        node: NodeImpl,
-        maxSize: CGSize? = nil
-    ) -> Layout {
-        if let maxSize = maxSize {
-            node.layout(withMaxSize: maxSize)
-        } else {
-            node.layout()
-        }
-        
-        func createLayoutsFromChildren(_ node: NodeImpl) -> [Layout] {
-            return node.children.enumerated()
-                .map { offset, childNode in
-                    return Layout(
-                        frame: childNode.frame,
-                        padding: childNode.padding,
-                        children: createLayoutsFromChildren(childNode),
-                        view: self.children[offset].view
-                    )
-                }
-        }
-        
-        let children = createLayoutsFromChildren(node)
-        
-        return Layout(frame: node.frame, padding: node.padding, children: children, view: self.view)
-    }
-    
-    public func createUnderlyingNode(
-    ) -> NodeImpl {
-        let node = NodeImpl()
-        
+    func updateNodeImpl(_ node: NodeImpl) {
         size.applyToNode(node, kind: .normal)
         maxSize.applyToNode(node, kind: .max)
         minSize.applyToNode(node, kind: .min)
@@ -200,31 +152,21 @@ public struct Node {
         margin.applyToNode(node, kind: .margin)
         padding.applyToNode(node, kind: .padding)
         border.applyToNode(node, kind: .border)
+    }
+    
+    func createUnderlyingNode() -> NodeImpl {
+        let node = NodeImpl()
         
-        if self.view != nil {
-            // Cannot add child: Nodes with measure functions cannot have children
-            // (All children will be ignored).
-            node.children = []
-        } else {
-            node.children = children.map { $0.createUnderlyingNode() }
-        }
+        updateNodeImpl(node)
+        
+        node.children = []
         
         return node
     }
-    
-    var isFlexibleHeight: Bool {
-        [SizeType.auto, SizeType.undefined].contains(size.height)
-    }
 }
 
-extension Node: InoutMutable {
-    public static func emptyInit() -> Node {
-        return self.init()
-    }
-}
-
-extension Node: Equatable {
-    public static func == (l: Node, r: Node) -> Bool {
+extension FlexStyle: Equatable {
+    public static func == (l: FlexStyle, r: FlexStyle) -> Bool {
         if l.size != r.size { return false }
         if l.minSize != r.minSize { return false }
         if l.maxSize != r.maxSize { return false }
@@ -249,11 +191,7 @@ extension Node: Equatable {
         if l.margin != r.margin { return false }
         if l.padding != r.padding { return false }
         if l.border != r.border { return false }
-        
-        if l.children != r.children { return false }
-        
-        if "\(String(describing: l.view.self))" != "\(String(describing: r.view.self))" { return false }
-
+                
         return true
     }
 }

@@ -7,8 +7,7 @@
 
 import Foundation
 
-public protocol InoutMutable
-{
+public protocol InoutMutable {
     /// Alias of `init()` to **not force users to implement extra `init()`**
     /// when techinically-same initializer e.g. `init(x: Int = 0)` is already declared.
     /// (This problem occurs due to Swift compiler not been wise enough.)
@@ -17,16 +16,15 @@ public protocol InoutMutable
     static func emptyInit() -> Self
 }
 
-extension InoutMutable
-{
-    public init(_ closure: (inout Self) -> ())
-    {
+extension InoutMutable {
+    public init(
+        _ closure: (inout Self) -> Void
+    ) {
         self = Self.emptyInit()
         closure(&self)
     }
 
-    public mutating func mutate(_ closure: (inout Self) -> ()) -> Self
-    {
+    public mutating func mutate(_ closure: (inout Self) -> Void) -> Self {
         closure(&self)
         return self
     }

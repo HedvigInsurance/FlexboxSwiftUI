@@ -6,74 +6,101 @@
 //
 
 import Foundation
-import XCTest
-@testable import FlexboxSwiftUI
-import SwiftUI
 import SnapshotTesting
+import SwiftUI
+import XCTest
+
+@testable import FlexboxSwiftUI
 
 class FlexDirectionTests: XCTestCase {
     func testColumn() {
-        let exp = assertFlexView(FlexView(
-            node: Node(
-                size: Size(width: .percent(100), height: .percent(100)),
-                children: [
-                    Node(
-                        size: Size(width: .percent(100), height: .fixed(10)),
-                        view: AnyView(Color.red)
-                    ),
-                    Node(
-                        size: Size(width: .percent(100), height: .fixed(40)),
-                        view: AnyView(Color.blue)
+        let exp = assertFlex(
+            FlexRoot {
+                FlexNode(
+                    style: FlexStyle(
+                        size: Size(width: .percent(100), height: .percent(100)),
+                        flexDirection: .column,
+                        justifyContent: .center
                     )
-                ],
-                flexDirection: .column,
-                justifyContent: .center
-            )
-        ))
-        
-        wait(for: [exp], timeout: 1)
+                ) {
+                    FlexNode(
+                        style: FlexStyle(
+                            size: Size(width: .percent(100), height: .fixed(10))
+                        )
+                    ) {
+                        TestColor(color: .red)
+                    }
+                    FlexNode(
+                        style: FlexStyle(
+                            size: Size(width: .percent(100), height: .fixed(40))
+                        )
+                    ) {
+                        TestColor(color: .blue)
+                    }
+                }
+            }
+        )
+
+        wait(for: exp, timeout: 1)
     }
-    
+
     func testColumnJustify() {
-        let exp = assertFlexView(FlexView(
-            node: Node(
-                size: Size(width: .percent(100), height: .percent(100)),
-                children: [
-                    Node(
-                        size: Size(width: .percent(100), height: .fixed(10)),
-                        view: AnyView(Color.red)
-                    ),
-                    Node(
-                        size: Size(width: .percent(100), height: .fixed(40)),
-                        view: AnyView(Color.blue)
+        let exp = assertFlex(
+            FlexRoot {
+                FlexNode(
+                    style: FlexStyle(
+                        size: Size(width: .percent(100), height: .percent(100)),
+                        flexDirection: .column,
+                        justifyContent: .flexStart
                     )
-                ],
-                flexDirection: .column,
-                justifyContent: .flexStart
-            )
-        ))
-        
-        wait(for: [exp], timeout: 1)
+                ) {
+                    FlexNode(
+                        style: FlexStyle(
+                            size: Size(width: .percent(100), height: .fixed(10))
+                        )
+                    ) {
+                        TestColor(color: .red)
+                    }
+                    FlexNode(
+                        style: FlexStyle(
+                            size: Size(width: .percent(100), height: .fixed(40))
+                        )
+                    ) {
+                        TestColor(color: .blue)
+                    }
+                }
+            }
+        )
+
+        wait(for: exp, timeout: 1)
     }
-    
+
     func testRow() {
-        let exp = assertFlexView(FlexView(
-            node: Node(
-                size: Size(width: .percent(100), height: .percent(100)),
-                children: [
-                    Node(
-                        size: Size(width: .percent(50), height: .fixed(40)),
-                        view: AnyView(Color.red)
-                    ),
-                    Node(
-                        size: Size(width: .percent(50), height: .auto),
-                        view: AnyView(Color.blue)
+        let exp = assertFlex(
+            FlexRoot {
+                FlexNode(
+                    style: FlexStyle(
+                        size: Size(width: .percent(100), height: .percent(100))
                     )
-                ],
-                flexDirection: .row
-            )
-        ))
-        
-        wait(for: [exp], timeout: 1)
+                ) {
+                    FlexNode(
+                        style: FlexStyle(
+                            size: Size(width: .percent(50), height: .fixed(40))
+                        )
+                    ) {
+                        TestColor(color: .red)
+                    }
+                    FlexNode(
+                        style: FlexStyle(
+                            size: Size(width: .percent(50), height: .auto)
+                        )
+                    ) {
+                        TestColor(color: .blue)
+                    }
+                }
+            }
+        )
+
+        wait(for: exp, timeout: 1)
     }
 }

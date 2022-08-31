@@ -6,13 +6,12 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUI
+import UIKit
 
 /// An evaluated Flexbox layout.
 /// - Note: Layouts will not be created manually.
-public struct Layout
-{
+public struct Layout {
     public let frame: CGRect
     public let padding: UIEdgeInsets
     public let children: [Layout]
@@ -22,9 +21,8 @@ public struct Layout
         frame: CGRect,
         padding: UIEdgeInsets,
         children: [Layout],
-        view: AnyView?
-    )
-    {
+        view: AnyView? = nil
+    ) {
         self.frame = frame
         self.padding = padding
         self.children = children
@@ -32,32 +30,51 @@ public struct Layout
     }
 }
 
-extension Layout: CustomStringConvertible
-{
-    public var description: String
-    {
+extension Layout: CustomStringConvertible {
+    public var description: String {
         return _descriptionForDepth(0)
     }
 
-    private func _descriptionForDepth(_ depth: Int) -> String
-    {
-        let selfDescription = "{origin={\(frame.origin.x), \(frame.origin.y)}, size={\(frame.size.width), \(frame.size.height)}}"
+    private func _descriptionForDepth(_ depth: Int) -> String {
+        let selfDescription =
+            "{origin={\(frame.origin.x), \(frame.origin.y)}, size={\(frame.size.width), \(frame.size.height)}}"
         if children.isEmpty {
             return selfDescription
-        }
-        else {
+        } else {
             let indentation = (0...depth).reduce("\n") { accum, _ in accum + "\t" }
-            let childrenDescription = (children.map { $0._descriptionForDepth(depth + 1) }).joined(separator: indentation)
+            let childrenDescription = (children.map { $0._descriptionForDepth(depth + 1) })
+                .joined(
+                    separator: indentation
+                )
             return "\(selfDescription)\(indentation)\(childrenDescription)"
         }
     }
 }
 
-extension Layout: Equatable
-{
-    public static func == (lhs: Layout, rhs: Layout) -> Bool
-    {
-        if lhs.frame != rhs.frame { return false }
+func diff(_ lhs: CGFloat, _ rhs: CGFloat) -> CGFloat {
+    return abs(lhs - rhs)
+}
+
+func compareEquals(_ lhs: CGFloat, _ rhs: CGFloat, tolerance: CGFloat) -> Bool {
+    let difference = diff(lhs, rhs)
+    return difference <= tolerance
+}
+
+extension CGRect {
+    /// Checks if a rect is equal with a given tolerance
+    func equalTo(other rect: CGRect, tolerance: CGFloat = 1) -> Bool {
+        return ![
+            compareEquals(origin.y, rect.origin.y, tolerance: tolerance),
+            compareEquals(origin.x, rect.origin.x, tolerance: tolerance),
+            compareEquals(width, rect.width, tolerance: tolerance),
+            compareEquals(height, rect.height, tolerance: tolerance),
+        ].contains(false)
+    }
+}
+
+extension Layout: Equatable {
+    public static func == (lhs: Layout, rhs: Layout) -> Bool {
+        if !lhs.frame.equalTo(other: rhs.frame) { return false }
         if lhs.children != rhs.children { return false }
 
         return true

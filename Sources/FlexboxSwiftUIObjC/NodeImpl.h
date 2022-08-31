@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, assign) YGNodeRef node;
 
-@property (nonatomic, copy) NSArray *children;
+@property (nonatomic, copy) NSArray<NodeImpl*> *children;
 
 @property (nonatomic, readonly, assign) CGRect frame;
 
@@ -25,9 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) CGSize (^measure)(CGSize size, YGMeasureMode widthMode, YGMeasureMode heightMode);
 
+- (void)removeMeasureFunc;
+
+- (void)markDirty;
+
 - (void)layout;
 
 - (void)layoutWithMaxSize:(CGSize)maxSize;
+
+- (Boolean)isFlexibleHeight;
 
 @end
 

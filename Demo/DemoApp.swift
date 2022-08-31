@@ -5,39 +5,44 @@
 //  Created by Sam Pettersson on 2022-08-19.
 //
 
-import SwiftUI
 import FlexboxSwiftUI
+import SwiftUI
 
 @main
 struct DemoApp: App {
     var body: some Scene {
-        WindowGroup {
-            FlexView(
-                node: Node(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    children: [
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1,
-                            view: AnyView(Color.red)
-                        ),
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1,
-                            view: AnyView(Color.blue)
-                        ),
-                        Node(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1,
-                            view: AnyView(Color.green)
-                        ),
-                    ],
-                    justifyContent: .center
-                )
-            )
+        return WindowGroup {
+            NavigationView {
+                Form {
+                    Section(header: Text("Layouts")) {
+                        NavigationLink("JustifyContent") {
+                            DemoScreen(content: JustifyContent())
+                        }
+                        
+                        NavigationLink("CenterContent") {
+                            DemoScreen(content: CenterContent())
+                        }
+                        
+                        NavigationLink("Padding") {
+                            DemoScreen(content: Padding())
+                        }
+                    }
+                    
+                    Section(header: Text("Content")) {
+                        NavigationLink("LotsOfNodes") {
+                            DemoScreen(content: LotsOfNodes())
+                        }
+                        
+                        NavigationLink("DynamicHeightText") {
+                            DemoScreen(content: DynamicHeightText())
+                        }
+                        
+                        NavigationLink("AnimatedHeightChange") {
+                            DemoScreen(content: AnimatedHeightChange())
+                        }
+                    }
+                }.navigationTitle("FlexboxSwiftUI")
+            }
         }
     }
 }
