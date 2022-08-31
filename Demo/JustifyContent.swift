@@ -5,14 +5,14 @@
 //  Created by Sam Pettersson on 2022-08-22.
 //
 
+import FlexboxSwiftUI
 import Foundation
 import SwiftUI
-import FlexboxSwiftUI
 
 struct JustifyContent: View {
     @State var modifySize = false
     @State var insertNode = false
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -27,31 +27,28 @@ struct JustifyContent: View {
                     }
                 }
             }
-                    
+
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
-                        size: Size(
-                            width: .percent(modifySize ? 50 : 100),
-                            height: .percent(50)
-                        )
+                    size: Size(
+                        width: .percent(modifySize ? 50 : 100),
+                        height: .percent(50)
                     )
+
                 ) {
                     FlexItem(
-                        style: FlexStyle(
-                            size: Size(width: .auto, height: .auto),
-                            flexGrow: 1
-                        )
+                        size: Size(width: .auto, height: .auto),
+                        flexGrow: 1
+
                     ) {
                         TestColor(color: .blue)
                     }
-                    
+
                     if insertNode {
                         FlexItem(
-                            style: FlexStyle(
-                                size: Size(width: .auto, height: .auto),
-                                flexGrow: 1
-                            )
+                            size: Size(width: .auto, height: .auto),
+                            flexGrow: 1
+
                         ) {
                             TestColor(color: .blue)
                         }

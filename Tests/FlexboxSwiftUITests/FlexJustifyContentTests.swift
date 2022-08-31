@@ -15,17 +15,16 @@ class FlexJustifyContentTests: XCTestCase {
     func testCenter() {
         let exp = assertFlex(
             FlexStack {
-                FlexItem(style: FlexStyle(
+                FlexItem(
                     size: Size(width: .percent(100), height: .percent(100)),
                     justifyContent: .center
-                )) {
+                ) {
                     FlexItem(
-                        style: FlexStyle(
-                            size: Size(
-                                width: .percent(20),
-                                height: .percent(100)
-                            )
+                        size: Size(
+                            width: .percent(20),
+                            height: .percent(100)
                         )
+
                     ) {
                         TestColor(color: .red)
                     }
@@ -40,15 +39,11 @@ class FlexJustifyContentTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
-                        size: Size(width: .percent(100), height: .percent(100)),
-                        justifyContent: .flexStart
-                    )
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    justifyContent: .flexStart
                 ) {
                     FlexItem(
-                        style: FlexStyle(
-                            size: Size(width: .percent(20), height: .percent(100))
-                        )
+                        size: Size(width: .percent(20), height: .percent(100))
                     ) {
                         TestColor(color: .red)
                     }
@@ -63,15 +58,13 @@ class FlexJustifyContentTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
-                        size: Size(width: .percent(100), height: .percent(100)),
-                        justifyContent: .flexEnd
-                    )
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    justifyContent: .flexEnd
+
                 ) {
                     FlexItem(
-                        style: FlexStyle(
-                            size: Size(width: .percent(20), height: .percent(100))
-                        )
+                        size: Size(width: .percent(20), height: .percent(100))
+
                     ) {
                         TestColor(color: .red)
                     }

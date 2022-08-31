@@ -17,14 +17,12 @@ class FlexButtonTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
-                        size: Size(width: .percent(100), height: .percent(100))
-                    )
+                    size: Size(width: .percent(100), height: .percent(100))
+
                 ) {
                     FlexItem(
-                        style: FlexStyle(
-                            flexGrow: 1
-                        )
+                        flexGrow: 1
+
                     ) {
                         Button(
                             "Some button text",
@@ -34,9 +32,8 @@ class FlexButtonTests: XCTestCase {
                         )
                     }
                     FlexItem(
-                        style: FlexStyle(
-                            flexGrow: 1
-                        )
+                        flexGrow: 1
+
                     ) {
                         Button(
                             "Some other text",

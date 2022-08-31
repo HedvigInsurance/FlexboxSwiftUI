@@ -23,23 +23,20 @@ class FlexTextTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
-                        size: Size(width: .percent(100), height: .percent(100))
-                    )
+                    size: Size(width: .percent(100), height: .percent(100))
+
                 ) {
                     FlexItem(
-                        style: FlexStyle(
-                            size: Size(width: .percent(50), height: .auto),
-                            flexGrow: 1
-                        )
+                        size: Size(width: .percent(50), height: .auto),
+                        flexGrow: 1
+
                     ) {
                         Text(self.loremIpsum)
                     }
                     FlexItem(
-                        style: FlexStyle(
-                            size: Size(width: .percent(50), height: .auto),
-                            flexGrow: 1
-                        )
+                        size: Size(width: .percent(50), height: .auto),
+                        flexGrow: 1
+
                     ) {
                         Text(self.loremIpsum)
                     }
@@ -54,15 +51,13 @@ class FlexTextTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
-                        size: Size(width: .percent(100), height: .percent(100))
-                    )
+                    size: Size(width: .percent(100), height: .percent(100))
+
                 ) {
                     FlexItem(
-                        style: FlexStyle(
-                            maxSize: Size(width: .auto, height: .fixed(30)),
-                            flexGrow: 1
-                        )
+                        maxSize: Size(width: .auto, height: .fixed(30)),
+                        flexGrow: 1
+
                     ) {
                         Text(self.loremIpsum)
                     }

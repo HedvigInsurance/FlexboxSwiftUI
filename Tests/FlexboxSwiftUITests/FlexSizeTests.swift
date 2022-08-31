@@ -17,18 +17,16 @@ class FlexSizeTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
-                        size: Size(
-                            width: .percent(100),
-                            height: .percent(50)
-                        )
+                    size: Size(
+                        width: .percent(100),
+                        height: .percent(50)
                     )
+
                 ) {
                     FlexItem(
-                        style: FlexStyle(
-                            size: Size(width: .auto, height: .auto),
-                            flexGrow: 1
-                        )
+                        size: Size(width: .auto, height: .auto),
+                        flexGrow: 1
+
                     ) {
                         TestColor(color: .blue)
                     }
@@ -43,15 +41,13 @@ class FlexSizeTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                    style: FlexStyle(
-                        size: Size(width: .percent(50), height: .percent(100))
-                    )
+                    size: Size(width: .percent(50), height: .percent(100))
+
                 ) {
                     FlexItem(
-                        style: FlexStyle(
-                            size: Size(width: .auto, height: .auto),
-                            flexGrow: 1
-                        )
+                        size: Size(width: .auto, height: .auto),
+                        flexGrow: 1
+
                     ) {
                         TestColor(color: .blue)
                     }
