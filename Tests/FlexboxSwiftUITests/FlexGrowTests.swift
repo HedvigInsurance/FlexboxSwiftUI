@@ -16,31 +16,31 @@ class FlexGrowTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                        size: Size(width: .percent(100), height: .percent(100)),
-                        justifyContent: .center
-                    
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    justifyContent: .center
+
                 ) {
                     FlexItem(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1
-                        
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        flexShrink: 1
+
                     ) {
                         TestColor(color: .red)
                     }
                     FlexItem(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1
-                        
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        flexShrink: 1
+
                     ) {
                         TestColor(color: .blue)
                     }
                     FlexItem(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1
-                        
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        flexShrink: 1
+
                     ) {
                         TestColor(color: .green)
                     }
@@ -55,31 +55,31 @@ class FlexGrowTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                        size: Size(width: .percent(100), height: .percent(100)),
-                        justifyContent: .center
-                    
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    justifyContent: .center
+
                 ) {
                     FlexItem(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 2,
-                            flexShrink: 1
-                        
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 2,
+                        flexShrink: 1
+
                     ) {
                         TestColor(color: .red)
                     }
                     FlexItem(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1
-                        
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        flexShrink: 1
+
                     ) {
                         TestColor(color: .blue)
                     }
                     FlexItem(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1,
-                            flexShrink: 1
-                        
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1,
+                        flexShrink: 1
+
                     ) {
                         TestColor(color: .green)
                     }
@@ -94,28 +94,28 @@ class FlexGrowTests: XCTestCase {
         let exp = assertFlex(
             FlexStack {
                 FlexItem(
-                        size: Size(width: .percent(100), height: .percent(100)),
-                        justifyContent: .center
-                    
+                    size: Size(width: .percent(100), height: .percent(100)),
+                    justifyContent: .center
+
                 ) {
                     FlexItem(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 2
-                        
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 2
+
                     ) {
                         TestColor(color: .red)
                     }
                     FlexItem(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 1
-                        
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 1
+
                     ) {
                         TestColor(color: .blue)
                     }
                     FlexItem(
-                            size: Size(width: .fixed(10), height: .auto),
-                            flexGrow: 2
-                        
+                        size: Size(width: .fixed(10), height: .auto),
+                        flexGrow: 2
+
                     ) {
                         TestColor(color: .green)
                     }

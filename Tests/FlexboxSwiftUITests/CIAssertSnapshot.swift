@@ -29,13 +29,13 @@ func snapshotDirectory(
 
     let testsPath = packageRootPath + [testsPathComponent]
 
-    let relativePath = fileURL
+    let relativePath =
+        fileURL
         .deletingPathExtension()
         .pathComponents
         .dropFirst(testsPath.count)
 
-    let snapshotDirectoryPath = packageRootPath + [ciScriptsPathComponent, snapshotsPathComponent] +
-        relativePath
+    let snapshotDirectoryPath = packageRootPath + [ciScriptsPathComponent, snapshotsPathComponent] + relativePath
     return snapshotDirectoryPath.joined(separator: "/")
 }
 
