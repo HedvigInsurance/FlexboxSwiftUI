@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "FlexboxSwiftUI",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v14)
     ],
     products: [
         .library(
@@ -46,8 +46,7 @@ let package = Package(
                 "FlexboxSwiftUIObjC",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
                 .product(name: "ViewInspector", package: "ViewInspector"),
-            ],
-            exclude: ["__Snapshots__"]
+            ]
         ),
     ],
     cxxLanguageStandard: .cxx14
