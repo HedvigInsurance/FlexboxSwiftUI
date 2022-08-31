@@ -15,14 +15,14 @@ struct DynamicHeightText: View {
         """
 
     var body: some View {
-        FlexRoot(flexibleAxies: [.vertical]) {
-            FlexNode(
+        FlexStack(flexibleAxies: [.vertical]) {
+            FlexItem(
                 style: FlexStyle(
                     size: Size(width: .percent(100), height: .auto),
                     flexDirection: .column
                 )
             ) {
-                FlexNode(
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1
@@ -31,7 +31,7 @@ struct DynamicHeightText: View {
                     Text(loremIpsum)
                         .padding(10)
                 }
-                FlexNode(
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1

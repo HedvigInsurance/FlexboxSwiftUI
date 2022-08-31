@@ -15,22 +15,22 @@ import XCTest
 class FlexDirectionTests: XCTestCase {
     func testColumn() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         flexDirection: .column,
                         justifyContent: .center
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .percent(100), height: .fixed(10))
                         )
                     ) {
                         TestColor(color: .red)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .percent(100), height: .fixed(40))
                         )
@@ -46,22 +46,22 @@ class FlexDirectionTests: XCTestCase {
 
     func testColumnJustify() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         flexDirection: .column,
                         justifyContent: .flexStart
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .percent(100), height: .fixed(10))
                         )
                     ) {
                         TestColor(color: .red)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .percent(100), height: .fixed(40))
                         )
@@ -77,20 +77,20 @@ class FlexDirectionTests: XCTestCase {
 
     func testRow() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100))
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .percent(50), height: .fixed(40))
                         )
                     ) {
                         TestColor(color: .red)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .percent(50), height: .auto)
                         )

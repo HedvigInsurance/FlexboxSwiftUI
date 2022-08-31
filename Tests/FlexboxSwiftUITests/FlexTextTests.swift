@@ -21,13 +21,13 @@ class FlexTextTests: XCTestCase {
 
     func testTextContent() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100))
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .percent(50), height: .auto),
                             flexGrow: 1
@@ -35,7 +35,7 @@ class FlexTextTests: XCTestCase {
                     ) {
                         Text(self.loremIpsum)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .percent(50), height: .auto),
                             flexGrow: 1
@@ -52,13 +52,13 @@ class FlexTextTests: XCTestCase {
 
     func testTextContentMaxHeight() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100))
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             maxSize: Size(width: .auto, height: .fixed(30)),
                             flexGrow: 1

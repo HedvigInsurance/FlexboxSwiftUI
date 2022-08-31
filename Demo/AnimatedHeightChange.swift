@@ -11,14 +11,14 @@ import SwiftUI
 
 struct AnimatedHeightChange: View {
     var body: some View {
-        FlexRoot(flexibleAxies: [.vertical]) {
-            FlexNode(
+        FlexStack(flexibleAxies: [.vertical]) {
+            FlexItem(
                 style: FlexStyle(
                     size: Size(width: .percent(100), height: .auto),
                     flexDirection: .column
                 )
             ) {
-                FlexNode(
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1
@@ -26,7 +26,7 @@ struct AnimatedHeightChange: View {
                 ) {
                     ViewThatChangesHeight(offset: 1)
                 }
-                FlexNode(
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1

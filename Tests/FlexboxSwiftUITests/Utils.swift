@@ -38,7 +38,7 @@ var assertSize: CGSize {
 }
 
 func assertFlex<Content: View>(
-    _ root: FlexRoot<Content>,
+    _ root: FlexStack<Content>,
     size: CGSize? = assertSize,
     file: StaticString = #file,
     testName: String = #function,

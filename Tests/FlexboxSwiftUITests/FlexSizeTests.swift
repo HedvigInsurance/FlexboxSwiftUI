@@ -15,8 +15,8 @@ import XCTest
 class FlexSizeTests: XCTestCase {
     func testHalfHeight() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(
                             width: .percent(100),
@@ -24,7 +24,7 @@ class FlexSizeTests: XCTestCase {
                         )
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .auto, height: .auto),
                             flexGrow: 1
@@ -41,13 +41,13 @@ class FlexSizeTests: XCTestCase {
 
     func testHalfWidth() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(50), height: .percent(100))
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .auto, height: .auto),
                             flexGrow: 1

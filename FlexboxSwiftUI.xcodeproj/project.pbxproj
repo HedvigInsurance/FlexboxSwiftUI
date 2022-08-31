@@ -9,13 +9,11 @@
 /* Begin PBXBuildFile section */
 		EB38169928B4E6B7009ADBA3 /* TestColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB38169728B4E6A6009ADBA3 /* TestColor.swift */; };
 		EB38169B28B4FCF9009ADBA3 /* CenterContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB38169A28B4FCF9009ADBA3 /* CenterContent.swift */; };
-		EB60548828AFA162006AFE77 /* InOutMutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547928AFA162006AFE77 /* InOutMutable.swift */; };
 		EB60548928AFA162006AFE77 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547A28AFA162006AFE77 /* Helpers.swift */; };
 		EB60548A28AFA162006AFE77 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547B28AFA162006AFE77 /* Size.swift */; };
 		EB60548B28AFA162006AFE77 /* Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547C28AFA162006AFE77 /* Edges.swift */; };
 		EB60548C28AFA162006AFE77 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547D28AFA162006AFE77 /* Style.swift */; };
 		EB60548D28AFA162006AFE77 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547E28AFA162006AFE77 /* Layout.swift */; };
-		EB60548E28AFA162006AFE77 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60547F28AFA162006AFE77 /* Node.swift */; };
 		EB6054E028AFA183006AFE77 /* FlexboxSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */; platformFilter = ios; };
 		EB6054ED28AFA1A5006AFE77 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6054EC28AFA1A5006AFE77 /* DemoApp.swift */; };
 		EB6054F128AFA1A5006AFE77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB6054F028AFA1A5006AFE77 /* Assets.xcassets */; };
@@ -47,13 +45,13 @@
 		EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60554728B00E15006AFE77 /* TransferEnvironment.swift */; };
 		EB72CD2828BE23D8009AEAE1 /* NodeImplPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72CD2728BE23D8009AEAE1 /* NodeImplPreferenceKey.swift */; };
 		EB75B1BE28B9343D003E56F9 /* ProposedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */; };
-		EB75B1C928BB9E10003E56F9 /* FlexNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1C828BB9E10003E56F9 /* FlexNode.swift */; };
-		EB75B1CD28BB9F6E003E56F9 /* VaradicFlexNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1CC28BB9F6E003E56F9 /* VaradicFlexNodes.swift */; };
+		EB75B1C928BB9E10003E56F9 /* FlexItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1C828BB9E10003E56F9 /* FlexItem.swift */; };
+		EB75B1CD28BB9F6E003E56F9 /* VaradicFlexItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1CC28BB9F6E003E56F9 /* VaradicFlexItems.swift */; };
 		EB75B1CF28BB9FAB003E56F9 /* SizeReadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1CE28BB9FAB003E56F9 /* SizeReadable.swift */; };
 		EB75B1D128BB9FF4003E56F9 /* FlexCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1D028BB9FF4003E56F9 /* FlexCoordinator.swift */; };
 		EB75B1D728BBB6B3003E56F9 /* LayoutViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1D628BBB6B3003E56F9 /* LayoutViewModifier.swift */; };
 		EB75B1D928BBCDC0003E56F9 /* FlexStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1D828BBCDC0003E56F9 /* FlexStyle.swift */; };
-		EB75B1DD28BBDF90003E56F9 /* FlexRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1DC28BBDF90003E56F9 /* FlexRoot.swift */; };
+		EB75B1DD28BBDF90003E56F9 /* FlexStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1DC28BBDF90003E56F9 /* FlexStack.swift */; };
 		EB75B1DF28BBE21B003E56F9 /* SizeReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1DE28BBE21B003E56F9 /* SizeReaderView.swift */; };
 		EB75B1E128BCBDF5003E56F9 /* NodeChildHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB75B1E028BCBDF5003E56F9 /* NodeChildHolder.swift */; };
 		EB93F78A28B37C8D00867768 /* DemoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93F78928B37C8D00867768 /* DemoScreen.swift */; };
@@ -125,13 +123,11 @@
 		EB38169728B4E6A6009ADBA3 /* TestColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColor.swift; sourceTree = "<group>"; };
 		EB38169A28B4FCF9009ADBA3 /* CenterContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterContent.swift; sourceTree = "<group>"; };
 		EB60546C28AFA146006AFE77 /* FlexboxSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexboxSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB60547928AFA162006AFE77 /* InOutMutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InOutMutable.swift; sourceTree = "<group>"; };
 		EB60547A28AFA162006AFE77 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		EB60547B28AFA162006AFE77 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		EB60547C28AFA162006AFE77 /* Edges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edges.swift; sourceTree = "<group>"; };
 		EB60547D28AFA162006AFE77 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		EB60547E28AFA162006AFE77 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
-		EB60547F28AFA162006AFE77 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		EB60548328AFA162006AFE77 /* NodeImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeImpl.h; sourceTree = "<group>"; };
 		EB60548528AFA162006AFE77 /* FlexboxSwiftUIObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexboxSwiftUIObjC.h; sourceTree = "<group>"; };
 		EB60548728AFA162006AFE77 /* NodeImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeImpl.m; sourceTree = "<group>"; };
@@ -156,13 +152,13 @@
 		EB60554728B00E15006AFE77 /* TransferEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferEnvironment.swift; sourceTree = "<group>"; };
 		EB72CD2728BE23D8009AEAE1 /* NodeImplPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeImplPreferenceKey.swift; sourceTree = "<group>"; };
 		EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposedSize.swift; sourceTree = "<group>"; };
-		EB75B1C828BB9E10003E56F9 /* FlexNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexNode.swift; sourceTree = "<group>"; };
-		EB75B1CC28BB9F6E003E56F9 /* VaradicFlexNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaradicFlexNodes.swift; sourceTree = "<group>"; };
+		EB75B1C828BB9E10003E56F9 /* FlexItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexItem.swift; sourceTree = "<group>"; };
+		EB75B1CC28BB9F6E003E56F9 /* VaradicFlexItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaradicFlexItems.swift; sourceTree = "<group>"; };
 		EB75B1CE28BB9FAB003E56F9 /* SizeReadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeReadable.swift; sourceTree = "<group>"; };
 		EB75B1D028BB9FF4003E56F9 /* FlexCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexCoordinator.swift; sourceTree = "<group>"; };
 		EB75B1D628BBB6B3003E56F9 /* LayoutViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewModifier.swift; sourceTree = "<group>"; };
 		EB75B1D828BBCDC0003E56F9 /* FlexStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexStyle.swift; sourceTree = "<group>"; };
-		EB75B1DC28BBDF90003E56F9 /* FlexRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexRoot.swift; sourceTree = "<group>"; };
+		EB75B1DC28BBDF90003E56F9 /* FlexStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexStack.swift; sourceTree = "<group>"; };
 		EB75B1DE28BBE21B003E56F9 /* SizeReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeReaderView.swift; sourceTree = "<group>"; };
 		EB75B1E028BCBDF5003E56F9 /* NodeChildHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeChildHolder.swift; sourceTree = "<group>"; };
 		EB93F78928B37C8D00867768 /* DemoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoScreen.swift; sourceTree = "<group>"; };
@@ -258,13 +254,11 @@
 		EB60547828AFA162006AFE77 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				EB60547928AFA162006AFE77 /* InOutMutable.swift */,
 				EB60547A28AFA162006AFE77 /* Helpers.swift */,
 				EB60547B28AFA162006AFE77 /* Size.swift */,
 				EB60547C28AFA162006AFE77 /* Edges.swift */,
 				EB60547D28AFA162006AFE77 /* Style.swift */,
 				EB60547E28AFA162006AFE77 /* Layout.swift */,
-				EB60547F28AFA162006AFE77 /* Node.swift */,
 				EB75B1BD28B9343D003E56F9 /* ProposedSize.swift */,
 			);
 			path = Utils;
@@ -343,13 +337,13 @@
 		EB8F91C628B4BDCB009A0977 /* FlexView */ = {
 			isa = PBXGroup;
 			children = (
-				EB75B1C828BB9E10003E56F9 /* FlexNode.swift */,
-				EB75B1CC28BB9F6E003E56F9 /* VaradicFlexNodes.swift */,
+				EB75B1C828BB9E10003E56F9 /* FlexItem.swift */,
+				EB75B1CC28BB9F6E003E56F9 /* VaradicFlexItems.swift */,
 				EB75B1CE28BB9FAB003E56F9 /* SizeReadable.swift */,
 				EB75B1D028BB9FF4003E56F9 /* FlexCoordinator.swift */,
 				EB75B1D628BBB6B3003E56F9 /* LayoutViewModifier.swift */,
 				EB75B1D828BBCDC0003E56F9 /* FlexStyle.swift */,
-				EB75B1DC28BBDF90003E56F9 /* FlexRoot.swift */,
+				EB75B1DC28BBDF90003E56F9 /* FlexStack.swift */,
 				EB75B1DE28BBE21B003E56F9 /* SizeReaderView.swift */,
 				EB75B1E028BCBDF5003E56F9 /* NodeChildHolder.swift */,
 				EBB30E5F28BCD1D20044BE84 /* NodeSizeUpdater.swift */,
@@ -556,24 +550,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB75B1CF28BB9FAB003E56F9 /* SizeReadable.swift in Sources */,
-				EB60548828AFA162006AFE77 /* InOutMutable.swift in Sources */,
 				EBB30E6028BCD1D20044BE84 /* NodeSizeUpdater.swift in Sources */,
 				EB75B1BE28B9343D003E56F9 /* ProposedSize.swift in Sources */,
 				EB75B1D128BB9FF4003E56F9 /* FlexCoordinator.swift in Sources */,
 				EB72CD2828BE23D8009AEAE1 /* NodeImplPreferenceKey.swift in Sources */,
 				EB60548A28AFA162006AFE77 /* Size.swift in Sources */,
-				EB75B1CD28BB9F6E003E56F9 /* VaradicFlexNodes.swift in Sources */,
+				EB75B1CD28BB9F6E003E56F9 /* VaradicFlexItems.swift in Sources */,
 				EB75B1DF28BBE21B003E56F9 /* SizeReaderView.swift in Sources */,
 				EB75B1D728BBB6B3003E56F9 /* LayoutViewModifier.swift in Sources */,
 				EB60548B28AFA162006AFE77 /* Edges.swift in Sources */,
 				EB60548928AFA162006AFE77 /* Helpers.swift in Sources */,
-				EB75B1DD28BBDF90003E56F9 /* FlexRoot.swift in Sources */,
+				EB75B1DD28BBDF90003E56F9 /* FlexStack.swift in Sources */,
 				EB75B1D928BBCDC0003E56F9 /* FlexStyle.swift in Sources */,
 				EB60548C28AFA162006AFE77 /* Style.swift in Sources */,
 				EB60548D28AFA162006AFE77 /* Layout.swift in Sources */,
 				EB60554928B00E5D006AFE77 /* TransferEnvironment.swift in Sources */,
-				EB60548E28AFA162006AFE77 /* Node.swift in Sources */,
-				EB75B1C928BB9E10003E56F9 /* FlexNode.swift in Sources */,
+				EB75B1C928BB9E10003E56F9 /* FlexItem.swift in Sources */,
 				EB75B1E128BCBDF5003E56F9 /* NodeChildHolder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -33,14 +33,14 @@ struct TestColor: UIViewRepresentable {
 
 struct CenterContent: View {
     var body: some View {
-        FlexRoot {
-            FlexNode(
+        FlexStack {
+            FlexItem(
                 style: FlexStyle(
                     size: Size(width: .percent(100), height: .percent(100)),
                     justifyContent: .center
                 )
             ) {
-                FlexNode(
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(20), height: .percent(100))
                     )

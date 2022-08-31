@@ -15,14 +15,14 @@ import XCTest
 class FlexPaddingTests: XCTestCase {
     func testPadding() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         flexDirection: .row
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(1), height: .auto),
                             flexGrow: 1,
@@ -40,7 +40,7 @@ class FlexPaddingTests: XCTestCase {
                         .frame(maxWidth: .infinity)
                         .background(Color.red)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(1), height: .auto),
                             flexGrow: 1,

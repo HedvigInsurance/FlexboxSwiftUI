@@ -14,14 +14,14 @@ import XCTest
 class FlexGrowTests: XCTestCase {
     func testEqual() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         justifyContent: .center
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(10), height: .auto),
                             flexGrow: 1,
@@ -30,7 +30,7 @@ class FlexGrowTests: XCTestCase {
                     ) {
                         TestColor(color: .red)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(10), height: .auto),
                             flexGrow: 1,
@@ -39,7 +39,7 @@ class FlexGrowTests: XCTestCase {
                     ) {
                         TestColor(color: .blue)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(10), height: .auto),
                             flexGrow: 1,
@@ -57,14 +57,14 @@ class FlexGrowTests: XCTestCase {
 
     func testNonEqual() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         justifyContent: .center
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(10), height: .auto),
                             flexGrow: 2,
@@ -73,7 +73,7 @@ class FlexGrowTests: XCTestCase {
                     ) {
                         TestColor(color: .red)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(10), height: .auto),
                             flexGrow: 1,
@@ -82,7 +82,7 @@ class FlexGrowTests: XCTestCase {
                     ) {
                         TestColor(color: .blue)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(10), height: .auto),
                             flexGrow: 1,
@@ -100,14 +100,14 @@ class FlexGrowTests: XCTestCase {
 
     func testNonEqualTwo() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         justifyContent: .center
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(10), height: .auto),
                             flexGrow: 2
@@ -115,7 +115,7 @@ class FlexGrowTests: XCTestCase {
                     ) {
                         TestColor(color: .red)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(10), height: .auto),
                             flexGrow: 1
@@ -123,7 +123,7 @@ class FlexGrowTests: XCTestCase {
                     ) {
                         TestColor(color: .blue)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .fixed(10), height: .auto),
                             flexGrow: 2

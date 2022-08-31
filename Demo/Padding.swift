@@ -11,14 +11,14 @@ import SwiftUI
 
 struct Padding: View {
     var body: some View {
-        FlexRoot {
-            FlexNode(
+        FlexStack {
+            FlexItem(
                 style: FlexStyle(
                     size: Size(width: .percent(100), height: .percent(100)),
                     flexDirection: .row
                 )
             ) {
-                FlexNode(
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .fixed(1), height: .auto),
                         flexGrow: 1,
@@ -36,7 +36,7 @@ struct Padding: View {
                     .frame(maxWidth: .infinity)
                     .background(Color.red)
                 }
-                FlexNode(
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .fixed(1), height: .auto),
                         flexGrow: 1,

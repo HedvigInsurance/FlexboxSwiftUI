@@ -14,12 +14,12 @@ import XCTest
 class FlexJustifyContentTests: XCTestCase {
     func testCenter() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(style: FlexStyle(
+            FlexStack {
+                FlexItem(style: FlexStyle(
                     size: Size(width: .percent(100), height: .percent(100)),
                     justifyContent: .center
                 )) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(
                                 width: .percent(20),
@@ -38,14 +38,14 @@ class FlexJustifyContentTests: XCTestCase {
 
     func testStart() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         justifyContent: .flexStart
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .percent(20), height: .percent(100))
                         )
@@ -61,14 +61,14 @@ class FlexJustifyContentTests: XCTestCase {
 
     func testEnd() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         justifyContent: .flexEnd
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .percent(20), height: .percent(100))
                         )

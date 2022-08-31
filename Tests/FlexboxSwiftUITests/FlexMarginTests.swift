@@ -15,14 +15,14 @@ import XCTest
 class FlexMarginTests: XCTestCase {
     func testMargins() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100)),
                         flexDirection: .column
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .auto, height: .fixed(1)),
                             flexGrow: 1,
@@ -36,7 +36,7 @@ class FlexMarginTests: XCTestCase {
                     ) {
                         TestColor(color: .red)
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .auto, height: .fixed(1)),
                             flexGrow: 1

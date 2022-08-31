@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct VaradicFlexNodes: _VariadicView_UnaryViewRoot {
+struct VaradicFlexItems: _VariadicView_UnaryViewRoot {
     var coordinator: FlexCoordinator
     var nodeChildHolder: NodeChildHolder
     

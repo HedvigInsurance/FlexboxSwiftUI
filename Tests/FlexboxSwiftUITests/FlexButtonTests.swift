@@ -15,13 +15,13 @@ import XCTest
 class FlexButtonTests: XCTestCase {
     func testButtonContent() {
         let exp = assertFlex(
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(width: .percent(100), height: .percent(100))
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             flexGrow: 1
                         )
@@ -33,7 +33,7 @@ class FlexButtonTests: XCTestCase {
                             }
                         )
                     }
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             flexGrow: 1
                         )

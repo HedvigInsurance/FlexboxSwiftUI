@@ -28,8 +28,8 @@ struct JustifyContent: View {
                 }
             }
                     
-            FlexRoot {
-                FlexNode(
+            FlexStack {
+                FlexItem(
                     style: FlexStyle(
                         size: Size(
                             width: .percent(modifySize ? 50 : 100),
@@ -37,7 +37,7 @@ struct JustifyContent: View {
                         )
                     )
                 ) {
-                    FlexNode(
+                    FlexItem(
                         style: FlexStyle(
                             size: Size(width: .auto, height: .auto),
                             flexGrow: 1
@@ -47,7 +47,7 @@ struct JustifyContent: View {
                     }
                     
                     if insertNode {
-                        FlexNode(
+                        FlexItem(
                             style: FlexStyle(
                                 size: Size(width: .auto, height: .auto),
                                 flexGrow: 1

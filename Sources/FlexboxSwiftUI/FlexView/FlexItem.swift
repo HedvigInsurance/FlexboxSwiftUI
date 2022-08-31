@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import FlexboxSwiftUIObjC
 
-public struct FlexNode<Content: View>: View {
+public struct FlexItem<Content: View>: View {
     @EnvironmentObject var coordinator: FlexCoordinator
     @StateObject var nodeChildHolder = NodeChildHolder()
     
@@ -27,7 +27,7 @@ public struct FlexNode<Content: View>: View {
     public var body: some View {
         style.updateNodeImpl(nodeChildHolder.node)
         
-        return _VariadicView.Tree(VaradicFlexNodes(
+        return _VariadicView.Tree(VaradicFlexItems(
             coordinator: coordinator,
             nodeChildHolder: nodeChildHolder
         )) {
