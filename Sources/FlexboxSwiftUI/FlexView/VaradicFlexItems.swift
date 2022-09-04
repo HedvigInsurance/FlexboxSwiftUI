@@ -15,10 +15,13 @@ struct VaradicFlexItems: _VariadicView_UnaryViewRoot {
     @ViewBuilder
     func body(children: _VariadicView.Children) -> some View {
         ZStack(alignment: .topLeading) {
-            ForEach(Array(children.enumerated()), id: \.offset) { offset, child in
+            ForEach(children, id: \.id) { child in
+                let offset = children.firstIndex { element in
+                    element.id == child.id
+                }!
+                
                 ZStack(alignment: .topLeading) {
                     NodeSizeUpdater(
-                        offset: offset,
                         content: child
                     )
                     
@@ -35,18 +38,9 @@ struct VaradicFlexItems: _VariadicView_UnaryViewRoot {
                             node: subNode
                         )
                     }
+                }.onDisappear {
+                    nodeChildHolder.removeChild(offset)
                 }
-            }
-        }.onChange(of: children.count) { childCount in
-            if children.count > childCount,
-               nodeChildHolder.children.count > childCount {
-                let numberOfChildrenToRemove = nodeChildHolder.children.count - childCount
-
-                for i in 0..<numberOfChildrenToRemove {
-                    nodeChildHolder.removeChild(childCount - i)
-                }
-                
-                nodeChildHolder.updateChildren()
             }
         }
     }

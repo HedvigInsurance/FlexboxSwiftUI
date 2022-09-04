@@ -11,6 +11,7 @@ import SwiftUI
 
 class NodeChildHolder: ObservableObject {
     var isLeafNode: Bool = true
+    var measuredNodeSize: CGSize? = nil
     var node = NodeImpl()
     var children: [Int: NodeImpl] = [:]
     
@@ -20,7 +21,10 @@ class NodeChildHolder: ObservableObject {
     }
     
     func removeChild(_ offset: Int) {
-        children.removeValue(forKey: offset)
+        if children[offset] != nil {
+            children.removeValue(forKey: offset)
+            updateChildren()
+        }
     }
     
     func updateChildren() {

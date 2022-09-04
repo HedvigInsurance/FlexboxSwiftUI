@@ -69,15 +69,13 @@ static void YGRemoveAllChildren(const YGNodeRef node)
 
 - (void)setIsDirty:(Boolean)isDirty
 {
-    [self willChangeValueForKey:@"isDirty"];
-        
     if (isDirty) {
+        [self willChangeValueForKey:@"isDirty"];
         if (YGNodeHasMeasureFunc(_node)) {
             YGNodeMarkDirty(_node);
         }
+        [self didChangeValueForKey:@"isDirty"];
     }
-    
-    [self didChangeValueForKey:@"isDirty"];
 }
 
 - (void)removeMeasureFunc

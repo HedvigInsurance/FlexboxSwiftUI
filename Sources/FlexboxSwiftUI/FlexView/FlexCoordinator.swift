@@ -13,15 +13,18 @@ import Combine
 extension NodeImpl {
     func observeIsDirty() -> AnyPublisher<Void, Never> {
         return self.publisher(for: \.isDirty)
-            .compactMap { isDirty in
-                isDirty ? () : nil
+            .filter({ isDirty in
+                isDirty
+            })
+            .map { _ in
+                ()
             }
             .eraseToAnyPublisher()
     }
     
     func observeAllChildren() -> AnyPublisher<Void, Never> {
         self.publisher(for: \.children)
-            .flatMap { children in
+            .map { children in
                 Publishers.MergeMany(
                     children.map { node in
                         Publishers.Merge(
@@ -31,6 +34,7 @@ extension NodeImpl {
                     }
                 )
             }
+            .switchToLatest()
             .map { _ in () }
             .eraseToAnyPublisher()
     }
@@ -48,12 +52,13 @@ class FlexCoordinator: ObservableObject {
             .compactMap { _ in
                 self.rootNode
             }
-            .flatMap { rootNode in
+            .map { rootNode in
                 Publishers.Merge(
                     rootNode.observeAllChildren(),
                     rootNode.observeIsDirty()
                 )
             }
+            .switchToLatest()
             .eraseToAnyPublisher()
     }()
     

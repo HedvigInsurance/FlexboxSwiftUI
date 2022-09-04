@@ -46,7 +46,7 @@ struct JustifyContent: View {
                         FlexItem(
                             size: Size(width: .auto, height: .auto),
                             flexGrow: 1
-                        ).background(Color.blue)
+                        ).background(Color.red)
                     }
                 }
             }

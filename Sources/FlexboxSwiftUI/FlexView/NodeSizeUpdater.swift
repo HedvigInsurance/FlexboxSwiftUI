@@ -13,7 +13,6 @@ struct NodeSizeUpdater<Content: View>: View {
     @EnvironmentObject var coordinator: FlexCoordinator
     @EnvironmentObject var nodeChildHolder: NodeChildHolder
     
-    var offset: Int
     var content: Content
     
     func dirtieNode(_ proxy: GeometryProxy) -> some View {
@@ -25,11 +24,11 @@ struct NodeSizeUpdater<Content: View>: View {
     var body: some View {
         if nodeChildHolder.isLeafNode == true {
             SizeReadable(
-                content: content.background(GeometryReader { proxy in
-                    dirtieNode(proxy)
-                }).transaction({ transaction in
+                content: content.transaction({ transaction in
                     coordinator.rootTransaction = transaction
-                })
+                }).background(GeometryReader { proxy in
+                    dirtieNode(proxy)
+                }.animation(nil))
             ) { measure in
                 let node = nodeChildHolder.node
                                                 
@@ -84,6 +83,8 @@ struct NodeSizeUpdater<Content: View>: View {
             .allowsHitTesting(false)
             .onDisappear {
                 nodeChildHolder.node.removeMeasureFunc()
+            }.onAppear {
+                nodeChildHolder.node.isDirty = true
             }
         }
     }
