@@ -24,16 +24,10 @@ class FlexDirectionTests: XCTestCase {
                 ) {
                     FlexItem(
                         size: Size(width: .percent(100), height: .fixed(10))
-
-                    ) {
-                        TestColor(color: .red)
-                    }
+                    ).background(Color.red)
                     FlexItem(
                         size: Size(width: .percent(100), height: .fixed(40))
-
-                    ) {
-                        TestColor(color: .blue)
-                    }
+                    ).background(Color.blue)
                 }
             }
         )
@@ -48,20 +42,13 @@ class FlexDirectionTests: XCTestCase {
                     size: Size(width: .percent(100), height: .percent(100)),
                     flexDirection: .column,
                     justifyContent: .flexStart
-
                 ) {
                     FlexItem(
                         size: Size(width: .percent(100), height: .fixed(10))
-
-                    ) {
-                        TestColor(color: .red)
-                    }
+                    ).background(Color.red)
                     FlexItem(
                         size: Size(width: .percent(100), height: .fixed(40))
-
-                    ) {
-                        TestColor(color: .blue)
-                    }
+                    ).background(Color.blue)
                 }
             }
         )
@@ -74,20 +61,13 @@ class FlexDirectionTests: XCTestCase {
             FlexStack {
                 FlexItem(
                     size: Size(width: .percent(100), height: .percent(100))
-
                 ) {
                     FlexItem(
                         size: Size(width: .percent(50), height: .fixed(40))
-
-                    ) {
-                        TestColor(color: .red)
-                    }
+                    ).background(Color.red)
                     FlexItem(
                         size: Size(width: .percent(50), height: .auto)
-
-                    ) {
-                        TestColor(color: .blue)
-                    }
+                    ).background(Color.blue)
                 }
             }
         )

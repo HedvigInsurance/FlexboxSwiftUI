@@ -18,14 +18,18 @@ struct NodeSizeUpdater<Content: View>: View {
     
     func dirtieNode(_ proxy: GeometryProxy) -> some View {
         let _ = proxy.size
-        nodeChildHolder.pendingNodeUpdate = true
+        nodeChildHolder.node.isDirty = true
         return Color.clear
     }
     
     var body: some View {
         if nodeChildHolder.isLeafNode == true {
             SizeReadable(
-                content: content
+                content: content.background(GeometryReader { proxy in
+                    dirtieNode(proxy)
+                }).transaction({ transaction in
+                    coordinator.rootTransaction = transaction
+                })
             ) { measure in
                 let node = nodeChildHolder.node
                                                 
@@ -75,9 +79,6 @@ struct NodeSizeUpdater<Content: View>: View {
                     return result
                 }
             }
-            .background(GeometryReader { proxy in
-                dirtieNode(proxy)
-            })
             .opacity(0)
             .position()
             .allowsHitTesting(false)

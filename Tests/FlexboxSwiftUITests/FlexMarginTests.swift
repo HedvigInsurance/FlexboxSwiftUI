@@ -19,7 +19,6 @@ class FlexMarginTests: XCTestCase {
                 FlexItem(
                     size: Size(width: .percent(100), height: .percent(100)),
                     flexDirection: .column
-
                 ) {
                     FlexItem(
                         size: Size(width: .auto, height: .fixed(1)),
@@ -30,17 +29,11 @@ class FlexMarginTests: XCTestCase {
                             top: .fixed(10),
                             bottom: .fixed(10)
                         )
-
-                    ) {
-                        TestColor(color: .red)
-                    }
+                    ).background(Color.red)
                     FlexItem(
                         size: Size(width: .auto, height: .fixed(1)),
                         flexGrow: 1
-
-                    ) {
-                        TestColor(color: .blue)
-                    }
+                    ).background(Color.blue)
                 }
             }
         )

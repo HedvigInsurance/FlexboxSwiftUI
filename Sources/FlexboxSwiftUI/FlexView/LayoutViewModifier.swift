@@ -47,7 +47,9 @@ struct LayoutViewModifier: ViewModifier {
                 y: layout.frame.origin.y
             )
         } else {
-            content
+            content.opacity(
+                nodeChildHolder.isLeafNode == true ? 1 : 0
+            )
         }
     }
 }

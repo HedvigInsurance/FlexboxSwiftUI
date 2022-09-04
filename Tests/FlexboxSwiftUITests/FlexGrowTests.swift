@@ -18,32 +18,22 @@ class FlexGrowTests: XCTestCase {
                 FlexItem(
                     size: Size(width: .percent(100), height: .percent(100)),
                     justifyContent: .center
-
                 ) {
                     FlexItem(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
                         flexShrink: 1
-
-                    ) {
-                        TestColor(color: .red)
-                    }
+                    ).background(Color.red)
                     FlexItem(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
                         flexShrink: 1
-
-                    ) {
-                        TestColor(color: .blue)
-                    }
+                    ).background(Color.blue)
                     FlexItem(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
                         flexShrink: 1
-
-                    ) {
-                        TestColor(color: .green)
-                    }
+                    ).background(Color.green)
                 }
             }
         )
@@ -57,32 +47,22 @@ class FlexGrowTests: XCTestCase {
                 FlexItem(
                     size: Size(width: .percent(100), height: .percent(100)),
                     justifyContent: .center
-
                 ) {
                     FlexItem(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 2,
                         flexShrink: 1
-
-                    ) {
-                        TestColor(color: .red)
-                    }
+                    ).background(Color.red)
                     FlexItem(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
                         flexShrink: 1
-
-                    ) {
-                        TestColor(color: .blue)
-                    }
+                    ).background(Color.blue)
                     FlexItem(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1,
                         flexShrink: 1
-
-                    ) {
-                        TestColor(color: .green)
-                    }
+                    ).background(Color.green)
                 }
             }
         )
@@ -96,29 +76,19 @@ class FlexGrowTests: XCTestCase {
                 FlexItem(
                     size: Size(width: .percent(100), height: .percent(100)),
                     justifyContent: .center
-
                 ) {
                     FlexItem(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 2
-
-                    ) {
-                        TestColor(color: .red)
-                    }
+                    ).background(Color.red)
                     FlexItem(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 1
-
-                    ) {
-                        TestColor(color: .blue)
-                    }
+                    ).background(Color.blue)
                     FlexItem(
                         size: Size(width: .fixed(10), height: .auto),
                         flexGrow: 2
-
-                    ) {
-                        TestColor(color: .green)
-                    }
+                    ).background(Color.green)
                 }
             }
         )

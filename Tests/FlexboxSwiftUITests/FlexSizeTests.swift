@@ -21,15 +21,11 @@ class FlexSizeTests: XCTestCase {
                         width: .percent(100),
                         height: .percent(50)
                     )
-
                 ) {
                     FlexItem(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1
-
-                    ) {
-                        TestColor(color: .blue)
-                    }
+                    ).background(Color.blue)
                 }
             }
         )
@@ -47,10 +43,7 @@ class FlexSizeTests: XCTestCase {
                     FlexItem(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1
-
-                    ) {
-                        TestColor(color: .blue)
-                    }
+                    ).background(Color.blue)
                 }
             }
         )

@@ -8,13 +8,54 @@
 import Foundation
 import FlexboxSwiftUIObjC
 import SwiftUI
+import Combine
+
+extension NodeImpl {
+    func observeIsDirty() -> AnyPublisher<Void, Never> {
+        return self.publisher(for: \.isDirty)
+            .compactMap { isDirty in
+                isDirty ? () : nil
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func observeAllChildren() -> AnyPublisher<Void, Never> {
+        self.publisher(for: \.children)
+            .flatMap { children in
+                Publishers.MergeMany(
+                    children.map { node in
+                        Publishers.Merge(
+                            node.observeAllChildren(),
+                            node.observeIsDirty()
+                        )
+                    }
+                )
+            }
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+}
 
 class FlexCoordinator: ObservableObject {
     var rootTransaction = Transaction()
     var rootNode: NodeImpl? = nil
     var flexibleAxies: [Axis]? = nil
     var layout: Layout?
-    var maxSize: CGSize?
+    var readMaxSize: () -> CGSize = { .zero }
+    
+    lazy var nodeObserver: AnyPublisher<Void, Never> = {
+        self.objectWillChange
+            .compactMap { _ in
+                self.rootNode
+            }
+            .flatMap { rootNode in
+                Publishers.Merge(
+                    rootNode.observeAllChildren(),
+                    rootNode.observeIsDirty()
+                )
+            }
+            .eraseToAnyPublisher()
+    }()
     
     func layoutForNode(_ nodeImpl: NodeImpl) -> Layout? {
         guard layout != nil else {
@@ -42,10 +83,12 @@ class FlexCoordinator: ObservableObject {
     }
 
     func updateLayout() {
-        guard let maxSize = maxSize, let rootNode = rootNode, let flexibleAxies = flexibleAxies else {
+        guard let rootNode = rootNode, let flexibleAxies = flexibleAxies else {
             return
         }
-      
+        
+        let maxSize = readMaxSize()
+
         rootNode.layout(
             withMaxSize: CGSize(
                 width: flexibleAxies.contains(.horizontal) ? .nan : maxSize.width,

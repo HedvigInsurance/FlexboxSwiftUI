@@ -24,10 +24,7 @@ class FlexJustifyContentTests: XCTestCase {
                             width: .percent(20),
                             height: .percent(100)
                         )
-
-                    ) {
-                        TestColor(color: .red)
-                    }
+                    ).background(Color.red)
                 }
             }
         )
@@ -44,9 +41,7 @@ class FlexJustifyContentTests: XCTestCase {
                 ) {
                     FlexItem(
                         size: Size(width: .percent(20), height: .percent(100))
-                    ) {
-                        TestColor(color: .red)
-                    }
+                    ).background(Color.red)
                 }
             }
         )
@@ -64,10 +59,7 @@ class FlexJustifyContentTests: XCTestCase {
                 ) {
                     FlexItem(
                         size: Size(width: .percent(20), height: .percent(100))
-
-                    ) {
-                        TestColor(color: .red)
-                    }
+                    ).background(Color.red)
                 }
             }
         )

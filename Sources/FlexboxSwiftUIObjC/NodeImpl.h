@@ -23,11 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, assign) UIEdgeInsets padding;
 
+@property (assign, nonatomic) Boolean isDirty;
+
 @property (nonatomic, copy) CGSize (^measure)(CGSize size, YGMeasureMode widthMode, YGMeasureMode heightMode);
 
 - (void)removeMeasureFunc;
-
-- (void)markDirty;
 
 - (void)layout;
 

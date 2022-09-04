@@ -18,3 +18,10 @@
 #endif
 
 #include "NodeImpl.h"
+#include "YGEnums.h"
+#include "YGMacros.h"
+#include "YGValue.h"
+#include "Yoga.h"
+
+FOUNDATION_EXPORT double yogaVersionNumber;
+FOUNDATION_EXPORT const unsigned char yogaVersionString[];

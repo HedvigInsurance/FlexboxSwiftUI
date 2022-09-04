@@ -22,7 +22,6 @@ class FlexButtonTests: XCTestCase {
                 ) {
                     FlexItem(
                         flexGrow: 1
-
                     ) {
                         Button(
                             "Some button text",
@@ -33,7 +32,6 @@ class FlexButtonTests: XCTestCase {
                     }
                     FlexItem(
                         flexGrow: 1
-
                     ) {
                         Button(
                             "Some other text",

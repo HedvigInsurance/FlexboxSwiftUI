@@ -22,14 +22,7 @@ struct VaradicFlexItems: _VariadicView_UnaryViewRoot {
                         content: child
                     )
                     
-                    child.transaction { transaction in
-                        if nodeChildHolder.pendingNodeUpdate {
-                            withTransaction(transaction) {
-                                nodeChildHolder.node.markDirty()
-                                coordinator.updateLayout()
-                            }
-                        }
-                    }.modifier(
+                    child.modifier(
                         LayoutViewModifier(
                             offset: offset
                         )
@@ -42,17 +35,18 @@ struct VaradicFlexItems: _VariadicView_UnaryViewRoot {
                             node: subNode
                         )
                     }
-                }.onAppear {
-                    withTransaction(coordinator.rootTransaction) {
-                        nodeChildHolder.updateChildren()
-                    }
-                }.onDisappear {
-                    nodeChildHolder.children.removeValue(forKey: offset)
-                    
-                    withTransaction(coordinator.rootTransaction) {
-                        nodeChildHolder.updateChildren()
-                    }
                 }
+            }
+        }.onChange(of: children.count) { childCount in
+            if children.count > childCount,
+               nodeChildHolder.children.count > childCount {
+                let numberOfChildrenToRemove = nodeChildHolder.children.count - childCount
+
+                for i in 0..<numberOfChildrenToRemove {
+                    nodeChildHolder.removeChild(childCount - i)
+                }
+                
+                nodeChildHolder.updateChildren()
             }
         }
     }

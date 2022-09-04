@@ -11,6 +11,7 @@
 static YGSize measureNode(YGNodeRef node, float width, YGMeasureMode widthMode, float height, YGMeasureMode heightMode)
 {
     NodeImpl *self = (__bridge NodeImpl *)YGNodeGetContext(node);
+    self.isDirty = false;
     CGSize size = self.measure(CGSizeMake(width, height), widthMode, heightMode);
     return (YGSize){ size.width, size.height };
 }
@@ -42,7 +43,6 @@ static void YGRemoveAllChildren(const YGNodeRef node)
     YGNodeSetContext(_node, (__bridge void *)self);
     
     YGConfigSetLogger(YGConfigGetDefault(), LogCallback);
-    //YGConfigSetPrintTreeFlag(YGConfigGetDefault(), true);
 
     return self;
 }
@@ -63,11 +63,21 @@ static void YGRemoveAllChildren(const YGNodeRef node)
     [self layoutWithMaxSize:CGSizeMake(NAN, NAN)];
 }
 
-- (void)markDirty
+- (Boolean)isDirty {
+    return YGNodeIsDirty(_node);
+}
+
+- (void)setIsDirty:(Boolean)isDirty
 {
-    if (YGNodeHasMeasureFunc(_node)) {
-        YGNodeMarkDirty(_node);
+    [self willChangeValueForKey:@"isDirty"];
+        
+    if (isDirty) {
+        if (YGNodeHasMeasureFunc(_node)) {
+            YGNodeMarkDirty(_node);
+        }
     }
+    
+    [self didChangeValueForKey:@"isDirty"];
 }
 
 - (void)removeMeasureFunc
@@ -81,9 +91,17 @@ static int LogCallback(YGConfigRef config, YGNodeRef node, YGLogLevel level, con
     return 0;
 }
 
+-(void)unmarkChildrenDirty {
+    for (NodeImpl* child in _children) {
+        [child setIsDirty: false];
+        [child unmarkChildrenDirty];
+    }
+}
+
 - (void)layoutWithMaxSize:(CGSize)maxSize
 {
     YGNodeCalculateLayout(_node, maxSize.width, maxSize.height, YGNodeStyleGetDirection(_node));
+    [self unmarkChildrenDirty];
 }
 
 - (CGRect)frame
@@ -114,9 +132,11 @@ static int LogCallback(YGConfigRef config, YGNodeRef node, YGLogLevel level, con
 
 - (void)setMeasure:(CGSize (^)(CGSize, YGMeasureMode, YGMeasureMode))measure
 {
-    _measure = [measure copy];
-    
-    YGNodeSetMeasureFunc(_node, (_measure != nil ? measureNode : NULL));
+    if (self.children.count == 0) {
+        _measure = [measure copy];
+        
+        YGNodeSetMeasureFunc(_node, (_measure != nil ? measureNode : NULL));
+    }
 }
 
 @end

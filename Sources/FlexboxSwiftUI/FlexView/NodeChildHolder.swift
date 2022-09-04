@@ -10,16 +10,24 @@ import FlexboxSwiftUIObjC
 import SwiftUI
 
 class NodeChildHolder: ObservableObject {
-    var isLeafNode: Bool? = nil
+    var isLeafNode: Bool = true
     var node = NodeImpl()
     var children: [Int: NodeImpl] = [:]
-    var pendingNodeUpdate = false
     
     func insertChild(_ offset: Int, node: NodeImpl) {
         children[offset] = node
+        updateChildren()
+    }
+    
+    func removeChild(_ offset: Int) {
+        children.removeValue(forKey: offset)
     }
     
     func updateChildren() {
+        if children.count > 0 {
+            node.removeMeasureFunc()
+        }
+        
         node.children = children.sorted { a, b in
             a.key < b.key
         }.map { _, value in
@@ -27,7 +35,6 @@ class NodeChildHolder: ObservableObject {
         }
                 
         isLeafNode = node.children.count == 0
-        
         self.objectWillChange.send()
     }
 }

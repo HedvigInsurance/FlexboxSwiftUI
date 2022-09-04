@@ -52,12 +52,10 @@ class FlexTextTests: XCTestCase {
             FlexStack {
                 FlexItem(
                     size: Size(width: .percent(100), height: .percent(100))
-
                 ) {
                     FlexItem(
                         maxSize: Size(width: .auto, height: .fixed(30)),
                         flexGrow: 1
-
                     ) {
                         Text(self.loremIpsum)
                     }

@@ -26,12 +26,10 @@ class FlexDynamicSizingTests: XCTestCase {
                 FlexItem(
                     size: Size(width: .percent(100), height: .auto),
                     flexDirection: .column
-
                 ) {
                     FlexItem(
                         size: Size(width: .percent(100), height: .auto),
                         flexGrow: 1
-
                     ) {
                         Text(self.loremIpsum)
                     }

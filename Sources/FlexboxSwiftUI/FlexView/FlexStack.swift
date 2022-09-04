@@ -25,14 +25,7 @@ public struct FlexStack<Content: View>: View {
         coordinator.flexibleAxies = flexibleAxies
         
         return ZStack(alignment: .topLeading) {
-            SizeReaderView { size in
-                if size != coordinator.maxSize {
-                    withTransaction(coordinator.rootTransaction) {
-                        coordinator.maxSize = size
-                        coordinator.updateLayout()
-                    }
-                }
-            }
+            SizeReaderView()
             
             ZStack(alignment: Alignment(horizontal: .leading, vertical: .flexRootTop)) {
                 Color.clear.frame(
@@ -42,7 +35,6 @@ public struct FlexStack<Content: View>: View {
                 
                 content()
             }
-            .environmentObject(coordinator)
             .onPreferenceChange(NodeImplPreferenceKey.self) { node in
                 coordinator.rootNode = node
             }.position(
@@ -51,6 +43,16 @@ public struct FlexStack<Content: View>: View {
             )
         }.transaction { transaction in
             coordinator.rootTransaction = transaction
+        }.onReceive(coordinator.nodeObserver) { _ in
+            withTransaction(coordinator.rootTransaction) {
+                coordinator.updateLayout()
+            }
+        }
+        .environmentObject(coordinator)
+        .onAppear {
+            withTransaction(coordinator.rootTransaction) {
+                coordinator.updateLayout()
+            }
         }
     }
 }

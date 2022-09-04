@@ -132,6 +132,61 @@ public struct FlexItem<Content: View>: View, FlexStyle {
 
         self.content = content
     }
+    
+    /// - Note: See `gYGNodeDefaults.style`.
+    public init(
+        size: Size = Size(width: .auto, height: .auto),
+        minSize: Size = Size(width: .auto, height: .auto),
+        maxSize: Size = Size(width: .auto, height: .auto),
+
+        flexDirection: Style.FlexDirection = .row,
+        flexWrap: Style.FlexWrap = .nowrap,
+        justifyContent: Style.JustifyContent = .flexStart,
+        alignItems: Style.AlignItems = .stretch,
+        alignContent: Style.AlignContent = .stretch,
+        alignSelf: Style.AlignSelf = .auto,
+
+        flex: CGFloat = .nan,  // CSS default = 0
+        flexGrow: CGFloat = .nan,  // CSS default = 0
+        flexShrink: CGFloat = .nan,  // CSS default = 1
+        flexBasis: CGFloat = .nan,  // CSS default = .auto
+
+        direction: Style.Direction = .inherit,
+        overflow: Style.Overflow = .visible,
+        positionType: Style.PositionType = .relative,
+
+        position: Edges = .undefined,
+        margin: Edges = .undefined,
+        padding: Edges = .undefined,
+        border: Edges = .undefined
+    ) where Content == Color {
+        self.size = size
+        self.minSize = minSize
+        self.maxSize = maxSize
+
+        self.flexDirection = flexDirection
+        self.flexWrap = flexWrap
+        self.justifyContent = justifyContent
+        self.alignItems = alignItems
+        self.alignContent = alignContent
+        self.alignSelf = alignSelf
+
+        self.flex = flex
+        self.flexGrow = flexGrow
+        self.flexShrink = flexShrink
+        self.flexBasis = flexBasis
+
+        self.direction = direction
+        self.overflow = overflow
+        self.positionType = positionType
+
+        self.position = position
+        self.margin = margin
+        self.padding = padding
+        self.border = border
+
+        self.content = { Color.clear }
+    }
 
     public var body: some View {
         self.updateNodeImpl(nodeChildHolder.node)
