@@ -22,13 +22,19 @@ struct VaradicFlexItems: _VariadicView_UnaryViewRoot {
                         content: child
                     )
                     
-                    child
-                }
-                .modifier(
-                    LayoutViewModifier(
-                        offset: offset
+                    child.transaction { transaction in
+                        if nodeChildHolder.pendingNodeUpdate {
+                            withTransaction(transaction) {
+                                nodeChildHolder.node.markDirty()
+                                coordinator.updateLayout()
+                            }
+                        }
+                    }.modifier(
+                        LayoutViewModifier(
+                            offset: offset
+                        )
                     )
-                )
+                }
                 .onPreferenceChange(NodeImplPreferenceKey.self) { subNode in
                     if let subNode = subNode {
                         nodeChildHolder.insertChild(

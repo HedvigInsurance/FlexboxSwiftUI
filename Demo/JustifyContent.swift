@@ -34,21 +34,18 @@ struct JustifyContent: View {
                         width: .percent(modifySize ? 50 : 100),
                         height: .percent(50)
                     )
-
                 ) {
                     FlexItem(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1
-
                     ) {
-                        TestColor(color: .blue)
-                    }
+                        Text("hello")
+                    }.background(Color.blue)
 
                     if insertNode {
                         FlexItem(
                             size: Size(width: .auto, height: .auto),
                             flexGrow: 1
-
                         ) {
                             TestColor(color: .blue)
                         }

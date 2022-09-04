@@ -25,17 +25,7 @@ struct NodeSizeUpdater<Content: View>: View {
     var body: some View {
         if nodeChildHolder.isLeafNode == true {
             SizeReadable(
-                content: content.transaction { transaction in
-                    if nodeChildHolder.pendingNodeUpdate {
-                        nodeChildHolder.pendingNodeUpdate = false
-                        withTransaction(transaction) {
-                            nodeChildHolder.node.markDirty()
-                            coordinator.updateLayout()
-                        }
-                    }
-                }.background(GeometryReader { proxy in
-                    dirtieNode(proxy)
-                })
+                content: content
             ) { measure in
                 let node = nodeChildHolder.node
                                                 
@@ -85,10 +75,12 @@ struct NodeSizeUpdater<Content: View>: View {
                     return result
                 }
             }
+            .background(GeometryReader { proxy in
+                dirtieNode(proxy)
+            })
             .opacity(0)
             .position()
             .allowsHitTesting(false)
-            .animation(nil)
             .onDisappear {
                 nodeChildHolder.node.removeMeasureFunc()
             }
