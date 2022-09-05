@@ -18,7 +18,6 @@ class FlexButtonTests: XCTestCase {
             FlexStack {
                 FlexItem(
                     size: Size(width: .percent(100), height: .percent(100))
-
                 ) {
                     FlexItem(
                         flexGrow: 1
