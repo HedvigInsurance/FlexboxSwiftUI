@@ -38,8 +38,12 @@ struct VaradicFlexItems: _VariadicView_UnaryViewRoot {
                             node: subNode
                         )
                     }
-                }.onDisappear {
-                    nodeChildHolder.removeChild(offset)
+                }
+            }.onChange(of: children.count) { _ in
+                nodeChildHolder.children.forEach { offset, _ in
+                    if !children.indices.contains(offset) {
+                        nodeChildHolder.removeChild(offset)
+                    }
                 }
             }
         }
