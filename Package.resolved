@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Placement",
+        "repositoryURL": "https://github.com/sampettersson/Placement.git",
+        "state": {
+          "branch": null,
+          "revision": "e401105be66563b044e91e3e825ad17ffffba893",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "SnapshotTesting",
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
