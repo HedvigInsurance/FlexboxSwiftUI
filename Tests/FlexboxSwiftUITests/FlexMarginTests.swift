@@ -15,26 +15,24 @@ import XCTest
 class FlexMarginTests: XCTestCase {
     func testMargins() {
         let exp = assertFlex(
-            FlexStack {
-                FlexItem(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    flexDirection: .column
-                ) {
-                    FlexItem(
-                        size: Size(width: .auto, height: .fixed(1)),
-                        flexGrow: 1,
-                        margin: Edges(
-                            leading: .undefined,
-                            trailing: .fixed(10),
-                            top: .fixed(10),
-                            bottom: .fixed(10)
-                        )
-                    ).background(Color.red)
-                    FlexItem(
-                        size: Size(width: .auto, height: .fixed(1)),
-                        flexGrow: 1
-                    ).background(Color.blue)
-                }
+            FlexStack(
+                size: Size(width: .percent(100), height: .percent(100)),
+                flexDirection: .column
+            ) {
+                Color.red.flexStyle(
+                    size: Size(width: .auto, height: .fixed(1)),
+                    flexGrow: 1,
+                    margin: Edges(
+                        leading: .undefined,
+                        trailing: .fixed(10),
+                        top: .fixed(10),
+                        bottom: .fixed(10)
+                    )
+                )
+                Color.blue.flexStyle(
+                    size: Size(width: .auto, height: .fixed(1)),
+                    flexGrow: 1
+                )
             }
         )
 

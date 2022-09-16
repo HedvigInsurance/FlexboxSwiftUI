@@ -14,27 +14,25 @@ import XCTest
 class FlexGrowTests: XCTestCase {
     func testEqual() {
         let exp = assertFlex(
-            FlexStack {
-                FlexItem(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    justifyContent: .center
-                ) {
-                    FlexItem(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 1,
-                        flexShrink: 1
-                    ).background(Color.red)
-                    FlexItem(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 1,
-                        flexShrink: 1
-                    ).background(Color.blue)
-                    FlexItem(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 1,
-                        flexShrink: 1
-                    ).background(Color.green)
-                }
+            FlexStack(
+                size: Size(width: .percent(100), height: .percent(100)),
+                justifyContent: .center
+            ) {
+                Color.red.flexStyle(
+                    size: Size(width: .fixed(10), height: .auto),
+                    flexGrow: 1,
+                    flexShrink: 1
+                )
+                Color.blue.flexStyle(
+                    size: Size(width: .fixed(10), height: .auto),
+                    flexGrow: 1,
+                    flexShrink: 1
+                )
+                Color.green.flexStyle(
+                    size: Size(width: .fixed(10), height: .auto),
+                    flexGrow: 1,
+                    flexShrink: 1
+                )
             }
         )
 
@@ -43,27 +41,25 @@ class FlexGrowTests: XCTestCase {
 
     func testNonEqual() {
         let exp = assertFlex(
-            FlexStack {
-                FlexItem(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    justifyContent: .center
-                ) {
-                    FlexItem(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 2,
-                        flexShrink: 1
-                    ).background(Color.red)
-                    FlexItem(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 1,
-                        flexShrink: 1
-                    ).background(Color.blue)
-                    FlexItem(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 1,
-                        flexShrink: 1
-                    ).background(Color.green)
-                }
+            FlexStack(
+                size: Size(width: .percent(100), height: .percent(100)),
+                justifyContent: .center
+            ) {
+                Color.red.flexStyle(
+                    size: Size(width: .fixed(10), height: .auto),
+                    flexGrow: 2,
+                    flexShrink: 1
+                )
+                Color.blue.flexStyle(
+                    size: Size(width: .fixed(10), height: .auto),
+                    flexGrow: 1,
+                    flexShrink: 1
+                )
+                Color.green.flexStyle(
+                    size: Size(width: .fixed(10), height: .auto),
+                    flexGrow: 1,
+                    flexShrink: 1
+                )
             }
         )
 
@@ -72,24 +68,22 @@ class FlexGrowTests: XCTestCase {
 
     func testNonEqualTwo() {
         let exp = assertFlex(
-            FlexStack {
-                FlexItem(
-                    size: Size(width: .percent(100), height: .percent(100)),
-                    justifyContent: .center
-                ) {
-                    FlexItem(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 2
-                    ).background(Color.red)
-                    FlexItem(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 1
-                    ).background(Color.blue)
-                    FlexItem(
-                        size: Size(width: .fixed(10), height: .auto),
-                        flexGrow: 2
-                    ).background(Color.green)
-                }
+            FlexStack(
+                size: Size(width: .percent(100), height: .percent(100)),
+                justifyContent: .center
+            ) {
+                Color.red.flexStyle(
+                    size: Size(width: .fixed(10), height: .auto),
+                    flexGrow: 2
+                )
+                Color.blue.flexStyle(
+                    size: Size(width: .fixed(10), height: .auto),
+                    flexGrow: 1
+                )
+                Color.green.flexStyle(
+                    size: Size(width: .fixed(10), height: .auto),
+                    flexGrow: 2
+                )
             }
         )
 

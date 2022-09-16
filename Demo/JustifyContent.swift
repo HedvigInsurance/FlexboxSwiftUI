@@ -14,7 +14,7 @@ struct JustifyContent: View {
     @State var insertNode = false
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Button("Modify size") {
                     withAnimation(.spring()) {
@@ -26,31 +26,43 @@ struct JustifyContent: View {
                         insertNode.toggle()
                     }
                 }
-            }
+            }.frame(maxWidth: .infinity)
 
-            FlexStack {
-                FlexItem(
-                    size: Size(
-                        width: .percent(modifySize ? 50 : 100),
-                        height: .percent(50)
-                    )
-                ) {
-                    FlexItem(
+            FlexStack(
+                flexibleAxies: [.vertical],
+                size: Size(
+                    width: .percent(100),
+                    height: .auto
+                ),
+                flexDirection: modifySize ? .column : .row,
+                alignItems: .flexEnd
+            ) {
+                Text("hello")
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .flexStyle(
+                    size: Size(width: .auto, height: .auto),
+                    flexGrow: 1,
+                    flexShrink: 1
+                )
+
+                if insertNode {
+                    Text("test")
+                    .padding(30)
+                    .background(Color.red)
+                    .flexStyle(
                         size: Size(width: .auto, height: .auto),
                         flexGrow: 1
-                    ) {
-                        Text("hello")
-                    }.background(Color.blue)
-
-                    if insertNode {
-                        FlexItem(
-                            size: Size(width: .auto, height: .auto),
-                            flexGrow: 1
-                        ).background(Color.red)
-                    }
+                    )
+                    
+                    Text("test")
+                    .background(Color.red)
+                    .flexStyle(
+                        size: Size(width: .auto, height: .auto),
+                        flexGrow: 1
+                    )
                 }
             }
-            .frame(height: modifySize ? 200 : 100, alignment: .topLeading)
             .background(Color.yellow)
         }
     }

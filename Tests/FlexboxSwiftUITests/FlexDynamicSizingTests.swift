@@ -22,18 +22,14 @@ class FlexDynamicSizingTests: XCTestCase {
 
     func testDynamicHeight() {
         let exp = assertFlex(
-            FlexStack {
-                FlexItem(
+            FlexStack(
+                size: Size(width: .percent(100), height: .auto),
+                flexDirection: .column
+            ) {
+                Text(self.loremIpsum).flexStyle(
                     size: Size(width: .percent(100), height: .auto),
-                    flexDirection: .column
-                ) {
-                    FlexItem(
-                        size: Size(width: .percent(100), height: .auto),
-                        flexGrow: 1
-                    ) {
-                        Text(self.loremIpsum)
-                    }
-                }
+                    flexGrow: 1
+                )
             },
             size: nil
         )

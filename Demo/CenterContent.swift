@@ -37,19 +37,13 @@ struct TestColor: UIViewRepresentable {
 
 struct CenterContent: View {
     var body: some View {
-        FlexStack {
-            FlexItem(
-                size: Size(width: .percent(100), height: .percent(100)),
-                justifyContent: .center
-
-            ) {
-                FlexItem(
-                    size: Size(width: .percent(20), height: .percent(100))
-
-                ) {
-                    TestColor(color: .red)
-                }
-            }
+        FlexStack(
+            size: Size(width: .percent(100), height: .percent(100)),
+            justifyContent: .center
+        ) {
+            TestColor(color: .red).flexStyle(
+                size: Size(width: .percent(20), height: .percent(100))
+            )
         }
         .frame(height: 100)
     }

@@ -21,19 +21,16 @@ struct LotsOfNodes: View {
             count = Int.random(in: 1..<50)
         }
 
-        FlexStack(flexibleAxies: [.vertical]) {
-            FlexItem(
-                size: Size(width: .auto, height: .undefined),
-                flexDirection: .column
-            ) {
-                ForEach(Array(Array(repeating: "", count: count).enumerated()), id: \.offset) { offset, _ in
-                    FlexItem(size: .init(width: .percent(50), height: .auto)) {
-                        ViewThatChangesHeight(offset: offset)
-                    }
-                    FlexItem(size: .init(width: .percent(50), height: .auto)) {
-                        Text(loremIpsum)
-                    }
-                }
+        FlexStack(
+            flexibleAxies: [.vertical],
+            size: Size(width: .auto, height: .undefined),
+            flexDirection: .column
+        ) {
+            ForEach(Array(Array(repeating: "", count: count).enumerated()), id: \.offset) { offset, _ in
+                ViewThatChangesHeight(offset: offset)
+                    .flexStyle(size: .init(width: .percent(50), height: .auto))
+                Text(loremIpsum)
+                    .flexStyle(size: .init(width: .percent(50), height: .auto))
             }
         }
     }

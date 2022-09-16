@@ -39,8 +39,8 @@ var assertSize: CGSize {
 
 let vc = UIHostingController(rootView: AnyView(EmptyView()))
 
-func assertFlex<Content: View>(
-    _ root: FlexStack<Content>,
+func assertFlex<Root: View>(
+    _ root: Root,
     size: CGSize? = assertSize,
     file: StaticString = #file,
     testName: String = #function,

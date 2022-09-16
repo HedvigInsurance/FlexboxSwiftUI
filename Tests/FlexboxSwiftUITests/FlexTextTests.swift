@@ -21,26 +21,18 @@ class FlexTextTests: XCTestCase {
 
     func testTextContent() {
         let exp = assertFlex(
-            FlexStack {
-                FlexItem(
-                    size: Size(width: .percent(100), height: .percent(100))
-
-                ) {
-                    FlexItem(
-                        size: Size(width: .percent(50), height: .auto),
-                        flexGrow: 1
-
-                    ) {
-                        Text(self.loremIpsum)
-                    }
-                    FlexItem(
-                        size: Size(width: .percent(50), height: .auto),
-                        flexGrow: 1
-
-                    ) {
-                        Text(self.loremIpsum)
-                    }
-                }
+            FlexStack(
+                size: Size(width: .percent(100), height: .percent(100))
+            ) {
+                Text(self.loremIpsum).flexStyle(
+                    size: Size(width: .percent(50), height: .auto),
+                    flexGrow: 1
+                )
+                
+                Text(self.loremIpsum).flexStyle(
+                    size: Size(width: .percent(50), height: .auto),
+                    flexGrow: 1
+                )
             }
         )
 
@@ -49,17 +41,13 @@ class FlexTextTests: XCTestCase {
 
     func testTextContentMaxHeight() {
         let exp = assertFlex(
-            FlexStack {
-                FlexItem(
-                    size: Size(width: .percent(100), height: .percent(100))
-                ) {
-                    FlexItem(
-                        maxSize: Size(width: .auto, height: .fixed(30)),
-                        flexGrow: 1
-                    ) {
-                        Text(self.loremIpsum)
-                    }
-                }
+            FlexStack(
+                size: Size(width: .percent(100), height: .percent(100))
+            ) {
+                Text(self.loremIpsum).flexStyle(
+                    maxSize: Size(width: .auto, height: .fixed(30)),
+                    flexGrow: 1
+                )
             }
         )
 

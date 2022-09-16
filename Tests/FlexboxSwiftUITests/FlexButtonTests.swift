@@ -15,31 +15,26 @@ import XCTest
 class FlexButtonTests: XCTestCase {
     func testButtonContent() {
         let exp = assertFlex(
-            FlexStack {
-                FlexItem(
-                    size: Size(width: .percent(100), height: .percent(100))
-                ) {
-                    FlexItem(
-                        flexGrow: 1
-                    ) {
-                        Button(
-                            "Some button text",
-                            action: {
+            FlexStack(
+                size: Size(width: .percent(100), height: .percent(100))
+            ) {
+                Button(
+                    "Some button text",
+                    action: {
 
-                            }
-                        )
                     }
-                    FlexItem(
-                        flexGrow: 1
-                    ) {
-                        Button(
-                            "Some other text",
-                            action: {
+                ).flexStyle(
+                    flexGrow: 1
+                )
+                
+                Button(
+                    "Some other text",
+                    action: {
 
-                            }
-                        )
                     }
-                }
+                ).flexStyle(
+                    flexGrow: 1
+                )
             }
         )
 
