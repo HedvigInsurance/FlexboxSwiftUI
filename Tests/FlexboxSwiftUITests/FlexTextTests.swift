@@ -27,12 +27,12 @@ class FlexTextTests: XCTestCase {
                 Text(self.loremIpsum).flexStyle(
                     size: Size(width: .percent(50), height: .auto),
                     flexGrow: 1
-                )
+                ).fixedSize(horizontal: false, vertical: true)
                 
                 Text(self.loremIpsum).flexStyle(
                     size: Size(width: .percent(50), height: .auto),
                     flexGrow: 1
-                )
+                ).fixedSize(horizontal: false, vertical: true)
             }
         )
 

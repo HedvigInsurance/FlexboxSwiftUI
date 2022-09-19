@@ -30,6 +30,7 @@ struct LotsOfNodes: View {
                 ViewThatChangesHeight(offset: offset)
                     .flexStyle(size: .init(width: .percent(50), height: .auto))
                 Text(loremIpsum)
+                    .fixedSize(horizontal: false, vertical: true)
                     .flexStyle(size: .init(width: .percent(50), height: .auto))
             }
         }

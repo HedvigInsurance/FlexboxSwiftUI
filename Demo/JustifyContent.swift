@@ -38,7 +38,7 @@ struct JustifyContent: View {
                 alignItems: .flexEnd
             ) {
                 Text("hello")
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.blue)
                 .flexStyle(
                     size: Size(width: .auto, height: .auto),

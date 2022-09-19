@@ -21,6 +21,7 @@ struct DynamicHeightText: View {
             flexDirection: .column
         ) {
             Text(loremIpsum)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(10)
                 .flexStyle(
                     size: Size(width: .percent(100), height: .auto),
@@ -28,6 +29,7 @@ struct DynamicHeightText: View {
                 )
             
             Text(loremIpsum)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(10)
                 .flexStyle(
                     size: Size(width: .percent(100), height: .auto),

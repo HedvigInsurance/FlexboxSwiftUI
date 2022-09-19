@@ -146,11 +146,11 @@ public struct FlexStack: PlacementLayout, FlexStyle {
             node.measure = { suggestedSize, widthMode, heightMode in
                 let constrainedWidth =
                 widthMode == .undefined
-                ? UIView.layoutFittingExpandedSize.width
+                ? UIView.layoutFittingCompressedSize.width
                 : suggestedSize.width
                 let constrainedHeight =
                 heightMode == .undefined
-                ? UIView.layoutFittingExpandedSize.height
+                ? UIView.layoutFittingCompressedSize.height
                 : suggestedSize.height
                 
                 func sanitize(
@@ -170,7 +170,7 @@ public struct FlexStack: PlacementLayout, FlexStyle {
                 let sizeThatFits = subview.sizeThatFits(
                     PlacementProposedViewSize(CGSize(width: constrainedWidth, height: constrainedHeight))
                 )
-                
+                                
                 let result = CGSize(
                     width: sanitize(
                         constrainedSize: constrainedWidth,
