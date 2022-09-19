@@ -1138,8 +1138,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sampettersson/Placement.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 1.0.3;
 			};
 		};
 		EB60550828AFA1EA006AFE77 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {

@@ -21,7 +21,7 @@ struct TestColor: UIViewRepresentable {
         in proposedSize: SwiftUI._ProposedSize,
         uiView: UIView
     ) {
-        size = CGSize(width: proposedSize.width, height: proposedSize.height)
+        size = CGSize(width: proposedSize.width ?? 0, height: proposedSize.height ?? 0)
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {

@@ -214,7 +214,7 @@ public struct FlexStack: PlacementLayout, FlexStyle {
             node.isDirty = true
         }
                 
-        let flexibleProposal = ProposedViewSize(
+        let flexibleProposal = PlacementProposedViewSize(
             width: flexibleAxies.contains(.horizontal) ? .nan : proposal.width,
             height: flexibleAxies.contains(.vertical) ? .nan : proposal.height
         )
@@ -238,7 +238,7 @@ public struct FlexStack: PlacementLayout, FlexStyle {
             let node = cache.rootNode.children[offset]
             
             let padding = node.padding
-            
+                        
             let point = CGPoint(
                 x: bounds.origin.x + node.frame.origin.x + padding.left,
                 y: bounds.origin.y + node.frame.origin.y + padding.top
@@ -250,11 +250,14 @@ public struct FlexStack: PlacementLayout, FlexStyle {
                 width: size.width - padding.left - padding.right,
                 height: size.height - padding.top - padding.bottom
             )
-                                                
+                                                                        
             subview.place(
                 at: point,
                 anchor: .topLeading,
-                proposal: PlacementProposedViewSize(sizeWithoutPadding)
+                proposal: PlacementProposedViewSize(CGSize(
+                    width: sizeWithoutPadding.width.isNaN ? 0 : sizeWithoutPadding.width,
+                    height: sizeWithoutPadding.height.isNaN ? 0 : sizeWithoutPadding.height
+                ))
             )
         }
     }
