@@ -5,7 +5,6 @@
 //  Created by Sam Pettersson on 2022-08-28.
 //
 
-import FlexboxSwiftUIObjC
 import Foundation
 
 protocol FlexStyle {

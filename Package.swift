@@ -27,8 +27,12 @@ let package = Package(
         .target(
             name: "FlexboxSwiftUIObjC",
             dependencies: [],
-            cxxSettings: [
-                .headerSearchPath("Sources/FlexboxSwiftUIObjC")
+            path: "Sources/FlexboxSwiftUIObjC",
+            cSettings: [
+                .headerSearchPath("include")
+            ],
+            swiftSettings: [
+                .define("DEFINES_MODULE=YES")
             ]
         )
     ],
