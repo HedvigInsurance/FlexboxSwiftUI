@@ -1,4 +1,4 @@
 module FlexboxSwiftUIObjC {
- header "../FlexboxSwiftUIObjC.h"
+ header "../FlexboxSwiftUIObjC-Umbrella.h"
  export *
 }
