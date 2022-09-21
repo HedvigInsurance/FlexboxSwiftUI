@@ -29,9 +29,8 @@ let package = Package(
             dependencies: [],
             path: "Sources/FlexboxSwiftUIObjC",
             cSettings: [
-                .headerSearchPath("include")
-            ],
-            swiftSettings: [
+                .headerSearchPath("include"),
+                .define("MODULEMAP_FILE", to: "include/module.modulemap"),
                 .define("DEFINES_MODULE=YES")
             ]
         )
