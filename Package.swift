@@ -12,6 +12,10 @@ let package = Package(
         .library(
             name: "FlexboxSwiftUI",
             targets: ["FlexboxSwiftUI"]
+        ),
+        .library(
+            name: "FlexboxSwiftUIObjC",
+            targets: ["FlexboxSwiftUIObjC"]
         )
     ],
     dependencies: [
