@@ -6,3 +6,4 @@
 //
 
 @_exported import FlexboxSwiftUIObjC
+@_exported import Yoga
