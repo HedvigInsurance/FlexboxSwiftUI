@@ -7,7 +7,7 @@
 
 #pragma once
 #include "Yoga-internal.h"
-#include "Yoga.h"
+#include "YogaBase.h"
 
 struct YOGA_EXPORT YGConfig {
   using LogWithContextFn = int (*)(

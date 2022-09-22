@@ -17,7 +17,7 @@
 #include "YGEnums.h"
 #include "YGFloatOptional.h"
 #include "Yoga-internal.h"
-#include "Yoga.h"
+#include "YogaBase.h"
 #include "BitUtils.h"
 
 class YOGA_EXPORT YGStyle {

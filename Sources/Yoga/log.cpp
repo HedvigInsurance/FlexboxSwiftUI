@@ -7,7 +7,7 @@
 
 #include "log.h"
 
-#include "Yoga.h"
+#include "YogaBase.h"
 #include "YGConfig.h"
 #include "YGNode.h"
 

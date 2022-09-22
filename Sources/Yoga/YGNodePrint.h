@@ -9,7 +9,7 @@
 #pragma once
 #include <string>
 
-#include "Yoga.h"
+#include "YogaBase.h"
 
 namespace facebook {
 namespace yoga {
