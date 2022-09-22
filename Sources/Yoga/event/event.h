@@ -13,7 +13,7 @@
 #if SWIFT_PACKAGE || IS_FLUTTER_ANDROID
 #include "../YGEnums.h"
 #else
-#include <yoga/YGEnums.h>
+#include <Yoga/YGEnums.h>
 #endif
 #include <stdint.h>
 

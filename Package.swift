@@ -22,6 +22,7 @@ let package = Package(
             name: "FlexboxSwiftUI",
             dependencies: [
                 "FlexboxSwiftUIObjC",
+                "Yoga",
                 .product(name: "Placement", package: "Placement")
             ]
         ),
