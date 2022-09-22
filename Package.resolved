@@ -5,26 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sampettersson/Placement.git",
       "state" : {
-        "revision" : "9e00210c6172a0242064de5f78449c79d80a5fc8",
-        "version" : "1.1.0"
-      }
-    },
-    {
-      "identity" : "swift-snapshot-testing",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-snapshot-testing.git",
-      "state" : {
-        "revision" : "f8a9c997c3c1dab4e216a8ec9014e23144cbab37",
-        "version" : "1.9.0"
-      }
-    },
-    {
-      "identity" : "viewinspector",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nalexn/ViewInspector.git",
-      "state" : {
-        "revision" : "6b88c4ec1fa20cf38f2138052e63c8e79df5d76e",
-        "version" : "0.9.1"
+        "revision" : "1402d89f277fc73e03969c3e92b578e6d1a4bff3",
+        "version" : "1.1.1"
       }
     }
   ],

@@ -13,18 +13,8 @@ let package = Package(
             type: .dynamic,
             targets: ["FlexboxSwiftUI"]
         ),
-        .library(
-            name: "FlexboxSwiftUIObjC",
-            type: .dynamic,
-            targets: ["FlexboxSwiftUIObjC"]
-        )
     ],
     dependencies: [
-        .package(url: "https://github.com/nalexn/ViewInspector.git", from: "0.9.1"),
-        .package(
-            url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
-            from: "1.9.0"
-        ),
         .package(url: "https://github.com/sampettersson/Placement.git", from: "1.1.0")
     ],
     targets: [
@@ -37,18 +27,18 @@ let package = Package(
         ),
         .target(
             name: "FlexboxSwiftUIObjC",
-            dependencies: [],
+            dependencies: ["Yoga"],
+            publicHeadersPath: "include",
             cxxSettings: [
-                .headerSearchPath("Sources/FlexboxSwiftUIObjC/include")
+                .headerSearchPath(".")
             ]
         ),
-        .testTarget(
-            name: "FlexboxSwiftUITests",
-            dependencies: [
-                "FlexboxSwiftUI",
-                "FlexboxSwiftUIObjC",
-                .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
-                .product(name: "ViewInspector", package: "ViewInspector"),
+        .target(
+            name: "Yoga",
+            dependencies: [],
+            publicHeadersPath: "include",
+            cxxSettings: [
+                .headerSearchPath(".")
             ]
         ),
     ],

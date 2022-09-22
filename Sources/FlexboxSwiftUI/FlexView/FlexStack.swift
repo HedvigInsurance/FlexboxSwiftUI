@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import FlexboxSwiftUIObjC
 import Placement
 
 public struct FlexStack<Content: View>: View, FlexStyle {

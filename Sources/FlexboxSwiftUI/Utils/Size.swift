@@ -5,7 +5,6 @@
 //  Created by Sam Pettersson on 2022-08-19.
 //
 
-import FlexboxSwiftUIObjC
 import Foundation
 
 /// Size types
