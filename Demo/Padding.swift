@@ -12,7 +12,7 @@ import SwiftUI
 struct Padding: View {
     var body: some View {
         FlexStack(
-            flexibleAxies: [.vertical],
+            flexibleAxes: [.vertical],
             size: Size(width: .percent(100), height: .auto),
             flexDirection: .row
         ) {

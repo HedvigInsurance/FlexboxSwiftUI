@@ -12,7 +12,7 @@ import SwiftUI
 struct AnimatedHeightChange: View {
     var body: some View {
         FlexStack(
-            flexibleAxies: [.vertical],
+            flexibleAxes: [.vertical],
             flexDirection: .column
         ) {
             ViewThatChangesHeight(offset: 1)

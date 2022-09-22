@@ -29,7 +29,7 @@ struct JustifyContent: View {
             }.frame(maxWidth: .infinity)
 
             FlexStack(
-                flexibleAxies: [.vertical],
+                flexibleAxes: [.vertical],
                 size: Size(
                     width: .percent(100),
                     height: .auto

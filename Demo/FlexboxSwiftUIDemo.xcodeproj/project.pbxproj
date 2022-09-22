@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EBAAEC8728DC48CC0020D496 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBAAEC8628DC48CB0020D496 /* Preview Assets.xcassets */; };
+		EBAAEC9228DC48D50020D496 /* LotsOfNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC8828DC48D30020D496 /* LotsOfNodes.swift */; };
+		EBAAEC9328DC48D50020D496 /* DynamicHeightText.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC8928DC48D30020D496 /* DynamicHeightText.swift */; };
+		EBAAEC9428DC48D50020D496 /* JustifyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC8A28DC48D30020D496 /* JustifyContent.swift */; };
+		EBAAEC9528DC48D50020D496 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC8B28DC48D40020D496 /* Padding.swift */; };
+		EBAAEC9628DC48D50020D496 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC8C28DC48D40020D496 /* DemoApp.swift */; };
+		EBAAEC9728DC48D50020D496 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBAAEC8D28DC48D40020D496 /* Assets.xcassets */; };
+		EBAAEC9828DC48D50020D496 /* DemoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC8E28DC48D40020D496 /* DemoScreen.swift */; };
+		EBAAEC9928DC48D50020D496 /* AnimatedHeightChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC8F28DC48D50020D496 /* AnimatedHeightChange.swift */; };
+		EBAAEC9A28DC48D50020D496 /* ViewThatChangesHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC9028DC48D50020D496 /* ViewThatChangesHeight.swift */; };
+		EBAAEC9B28DC48D50020D496 /* CenterContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC9128DC48D50020D496 /* CenterContent.swift */; };
+		EBAAECA528DC48DB0020D496 /* DynamicHeightText.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC9C28DC48D90020D496 /* DynamicHeightText.swift */; };
+		EBAAECA628DC48DB0020D496 /* AnimatedHeightChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC9D28DC48D90020D496 /* AnimatedHeightChange.swift */; };
+		EBAAECA728DC48DB0020D496 /* LotsOfNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC9E28DC48DA0020D496 /* LotsOfNodes.swift */; };
+		EBAAECA828DC48DB0020D496 /* CenterContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC9F28DC48DA0020D496 /* CenterContent.swift */; };
+		EBAAECA928DC48DB0020D496 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAECA028DC48DA0020D496 /* DemoApp.swift */; };
+		EBAAECAA28DC48DB0020D496 /* JustifyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAECA128DC48DA0020D496 /* JustifyContent.swift */; };
+		EBAAECAB28DC48DB0020D496 /* ViewThatChangesHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAECA228DC48DB0020D496 /* ViewThatChangesHeight.swift */; };
+		EBAAECAC28DC48DB0020D496 /* DemoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAECA328DC48DB0020D496 /* DemoScreen.swift */; };
+		EBAAECAD28DC48DB0020D496 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAECA428DC48DB0020D496 /* Padding.swift */; };
+		EBAAECB228DC492A0020D496 /* FlexboxSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EBAAECB128DC492A0020D496 /* FlexboxSwiftUI */; };
+		EBAAECB328DC492A0020D496 /* FlexboxSwiftUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = EBAAECB128DC492A0020D496 /* FlexboxSwiftUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EBAAECB428DC492A0020D496 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EBAAECB328DC492A0020D496 /* FlexboxSwiftUI in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EBAAEC7428DC484F0020D496 /* FlexboxSwiftUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexboxSwiftUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBAAEC8628DC48CB0020D496 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EBAAEC8828DC48D30020D496 /* LotsOfNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotsOfNodes.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC8928DC48D30020D496 /* DynamicHeightText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightText.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC8A28DC48D30020D496 /* JustifyContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustifyContent.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC8B28DC48D40020D496 /* Padding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC8C28DC48D40020D496 /* DemoApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC8D28DC48D40020D496 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		EBAAEC8E28DC48D40020D496 /* DemoScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoScreen.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC8F28DC48D50020D496 /* AnimatedHeightChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedHeightChange.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC9028DC48D50020D496 /* ViewThatChangesHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewThatChangesHeight.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC9128DC48D50020D496 /* CenterContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterContent.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC9C28DC48D90020D496 /* DynamicHeightText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightText.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC9D28DC48D90020D496 /* AnimatedHeightChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedHeightChange.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC9E28DC48DA0020D496 /* LotsOfNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotsOfNodes.swift; sourceTree = SOURCE_ROOT; };
+		EBAAEC9F28DC48DA0020D496 /* CenterContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterContent.swift; sourceTree = SOURCE_ROOT; };
+		EBAAECA028DC48DA0020D496 /* DemoApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = SOURCE_ROOT; };
+		EBAAECA128DC48DA0020D496 /* JustifyContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustifyContent.swift; sourceTree = SOURCE_ROOT; };
+		EBAAECA228DC48DB0020D496 /* ViewThatChangesHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewThatChangesHeight.swift; sourceTree = SOURCE_ROOT; };
+		EBAAECA328DC48DB0020D496 /* DemoScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoScreen.swift; sourceTree = SOURCE_ROOT; };
+		EBAAECA428DC48DB0020D496 /* Padding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = SOURCE_ROOT; };
+		EBAAECAF28DC48FA0020D496 /* FlexboxSwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FlexboxSwiftUI; path = ..; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EBAAEC7128DC484F0020D496 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBAAECB228DC492A0020D496 /* FlexboxSwiftUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EBAAEC6B28DC484F0020D496 = {
+			isa = PBXGroup;
+			children = (
+				EBAAECAE28DC48FA0020D496 /* Packages */,
+				EBAAEC8D28DC48D40020D496 /* Assets.xcassets */,
+				EBAAEC8F28DC48D50020D496 /* AnimatedHeightChange.swift */,
+				EBAAEC9D28DC48D90020D496 /* AnimatedHeightChange.swift */,
+				EBAAEC9F28DC48DA0020D496 /* CenterContent.swift */,
+				EBAAECA028DC48DA0020D496 /* DemoApp.swift */,
+				EBAAEC8C28DC48D40020D496 /* DemoApp.swift */,
+				EBAAECA328DC48DB0020D496 /* DemoScreen.swift */,
+				EBAAEC9C28DC48D90020D496 /* DynamicHeightText.swift */,
+				EBAAEC8E28DC48D40020D496 /* DemoScreen.swift */,
+				EBAAEC8928DC48D30020D496 /* DynamicHeightText.swift */,
+				EBAAECA128DC48DA0020D496 /* JustifyContent.swift */,
+				EBAAEC9E28DC48DA0020D496 /* LotsOfNodes.swift */,
+				EBAAECA428DC48DB0020D496 /* Padding.swift */,
+				EBAAEC8B28DC48D40020D496 /* Padding.swift */,
+				EBAAECA228DC48DB0020D496 /* ViewThatChangesHeight.swift */,
+				EBAAEC9128DC48D50020D496 /* CenterContent.swift */,
+				EBAAEC8A28DC48D30020D496 /* JustifyContent.swift */,
+				EBAAEC8828DC48D30020D496 /* LotsOfNodes.swift */,
+				EBAAEC9028DC48D50020D496 /* ViewThatChangesHeight.swift */,
+				EBAAEC8528DC48CB0020D496 /* Preview Content */,
+				EBAAEC7528DC484F0020D496 /* Products */,
+				EBAAECB028DC492A0020D496 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EBAAEC7528DC484F0020D496 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EBAAEC7428DC484F0020D496 /* FlexboxSwiftUIDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EBAAEC8528DC48CB0020D496 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EBAAEC8628DC48CB0020D496 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EBAAECAE28DC48FA0020D496 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				EBAAECAF28DC48FA0020D496 /* FlexboxSwiftUI */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		EBAAECB028DC492A0020D496 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EBAAEC7328DC484F0020D496 /* FlexboxSwiftUIDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBAAEC8228DC48500020D496 /* Build configuration list for PBXNativeTarget "FlexboxSwiftUIDemo" */;
+			buildPhases = (
+				EBAAEC7028DC484F0020D496 /* Sources */,
+				EBAAEC7128DC484F0020D496 /* Frameworks */,
+				EBAAEC7228DC484F0020D496 /* Resources */,
+				EBAAECB428DC492A0020D496 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlexboxSwiftUIDemo;
+			packageProductDependencies = (
+				EBAAECB128DC492A0020D496 /* FlexboxSwiftUI */,
+			);
+			productName = FlexboxSwiftUIDemo;
+			productReference = EBAAEC7428DC484F0020D496 /* FlexboxSwiftUIDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EBAAEC6C28DC484F0020D496 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					EBAAEC7328DC484F0020D496 = {
+						CreatedOnToolsVersion = 14.0;
+						LastSwiftMigration = 1400;
+					};
+				};
+			};
+			buildConfigurationList = EBAAEC6F28DC484F0020D496 /* Build configuration list for PBXProject "FlexboxSwiftUIDemo" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EBAAEC6B28DC484F0020D496;
+			productRefGroup = EBAAEC7528DC484F0020D496 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EBAAEC7328DC484F0020D496 /* FlexboxSwiftUIDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EBAAEC7228DC484F0020D496 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBAAEC9728DC48D50020D496 /* Assets.xcassets in Resources */,
+				EBAAEC8728DC48CC0020D496 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EBAAEC7028DC484F0020D496 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBAAEC9228DC48D50020D496 /* LotsOfNodes.swift in Sources */,
+				EBAAECAA28DC48DB0020D496 /* JustifyContent.swift in Sources */,
+				EBAAEC9628DC48D50020D496 /* DemoApp.swift in Sources */,
+				EBAAEC9828DC48D50020D496 /* DemoScreen.swift in Sources */,
+				EBAAECAB28DC48DB0020D496 /* ViewThatChangesHeight.swift in Sources */,
+				EBAAECA528DC48DB0020D496 /* DynamicHeightText.swift in Sources */,
+				EBAAECAC28DC48DB0020D496 /* DemoScreen.swift in Sources */,
+				EBAAEC9928DC48D50020D496 /* AnimatedHeightChange.swift in Sources */,
+				EBAAECA628DC48DB0020D496 /* AnimatedHeightChange.swift in Sources */,
+				EBAAECA928DC48DB0020D496 /* DemoApp.swift in Sources */,
+				EBAAEC9A28DC48D50020D496 /* ViewThatChangesHeight.swift in Sources */,
+				EBAAECAD28DC48DB0020D496 /* Padding.swift in Sources */,
+				EBAAEC9428DC48D50020D496 /* JustifyContent.swift in Sources */,
+				EBAAECA728DC48DB0020D496 /* LotsOfNodes.swift in Sources */,
+				EBAAECA828DC48DB0020D496 /* CenterContent.swift in Sources */,
+				EBAAEC9328DC48D50020D496 /* DynamicHeightText.swift in Sources */,
+				EBAAEC9528DC48D50020D496 /* Padding.swift in Sources */,
+				EBAAEC9B28DC48D50020D496 /* CenterContent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EBAAEC8028DC48500020D496 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EBAAEC8128DC48500020D496 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EBAAEC8328DC48500020D496 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Preview Content\"";
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.FlexboxSwiftUIDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EBAAEC8428DC48500020D496 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Preview Content\"";
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.FlexboxSwiftUIDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EBAAEC6F28DC484F0020D496 /* Build configuration list for PBXProject "FlexboxSwiftUIDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBAAEC8028DC48500020D496 /* Debug */,
+				EBAAEC8128DC48500020D496 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBAAEC8228DC48500020D496 /* Build configuration list for PBXNativeTarget "FlexboxSwiftUIDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBAAEC8328DC48500020D496 /* Debug */,
+				EBAAEC8428DC48500020D496 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EBAAECB128DC492A0020D496 /* FlexboxSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FlexboxSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = EBAAEC6C28DC484F0020D496 /* Project object */;
+}

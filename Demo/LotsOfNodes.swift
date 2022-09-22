@@ -22,7 +22,7 @@ struct LotsOfNodes: View {
         }
 
         FlexStack(
-            flexibleAxies: [.vertical],
+            flexibleAxes: [.vertical],
             size: Size(width: .auto, height: .undefined),
             flexDirection: .column
         ) {
