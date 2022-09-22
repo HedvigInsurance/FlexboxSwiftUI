@@ -39,7 +39,7 @@ let package = Package(
             name: "FlexboxSwiftUIObjC",
             dependencies: [],
             cxxSettings: [
-                .headerSearchPath("Sources/FlexboxSwiftUIObjC")
+                .headerSearchPath("Sources/FlexboxSwiftUIObjC/include")
             ]
         ),
         .testTarget(
