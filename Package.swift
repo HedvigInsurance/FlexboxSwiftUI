@@ -10,7 +10,6 @@ let package = Package(
     products: [
         .library(
             name: "FlexboxSwiftUI",
-            type: .dynamic,
             targets: ["FlexboxSwiftUI"]
         ),
     ],
