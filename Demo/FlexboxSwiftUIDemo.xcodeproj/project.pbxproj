@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB8BDAB728EC12E0009B672B /* FlexboxSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EB8BDAB628EC12E0009B672B /* FlexboxSwiftUI */; };
 		EBAAEC8728DC48CC0020D496 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBAAEC8628DC48CB0020D496 /* Preview Assets.xcassets */; };
 		EBAAEC9228DC48D50020D496 /* LotsOfNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC8828DC48D30020D496 /* LotsOfNodes.swift */; };
 		EBAAEC9328DC48D50020D496 /* DynamicHeightText.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAEC8928DC48D30020D496 /* DynamicHeightText.swift */; };
@@ -27,8 +28,6 @@
 		EBAAECAB28DC48DB0020D496 /* ViewThatChangesHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAECA228DC48DB0020D496 /* ViewThatChangesHeight.swift */; };
 		EBAAECAC28DC48DB0020D496 /* DemoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAECA328DC48DB0020D496 /* DemoScreen.swift */; };
 		EBAAECAD28DC48DB0020D496 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAECA428DC48DB0020D496 /* Padding.swift */; };
-		EBAAECB228DC492A0020D496 /* FlexboxSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EBAAECB128DC492A0020D496 /* FlexboxSwiftUI */; };
-		EBAAECB328DC492A0020D496 /* FlexboxSwiftUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = EBAAECB128DC492A0020D496 /* FlexboxSwiftUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,7 +37,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EBAAECB328DC492A0020D496 /* FlexboxSwiftUI in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EB8BDAB528EC12C6009B672B /* FlexboxSwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FlexboxSwiftUI; path = ..; sourceTree = "<group>"; };
 		EBAAEC7428DC484F0020D496 /* FlexboxSwiftUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexboxSwiftUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBAAEC8628DC48CB0020D496 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EBAAEC8828DC48D30020D496 /* LotsOfNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotsOfNodes.swift; sourceTree = SOURCE_ROOT; };
@@ -67,7 +66,6 @@
 		EBAAECA228DC48DB0020D496 /* ViewThatChangesHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewThatChangesHeight.swift; sourceTree = SOURCE_ROOT; };
 		EBAAECA328DC48DB0020D496 /* DemoScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoScreen.swift; sourceTree = SOURCE_ROOT; };
 		EBAAECA428DC48DB0020D496 /* Padding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = SOURCE_ROOT; };
-		EBAAECAF28DC48FA0020D496 /* FlexboxSwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FlexboxSwiftUI; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,17 +73,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBAAECB228DC492A0020D496 /* FlexboxSwiftUI in Frameworks */,
+				EB8BDAB728EC12E0009B672B /* FlexboxSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB8BDAB428EC12C6009B672B /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				EB8BDAB528EC12C6009B672B /* FlexboxSwiftUI */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		EBAAEC6B28DC484F0020D496 = {
 			isa = PBXGroup;
 			children = (
-				EBAAECAE28DC48FA0020D496 /* Packages */,
+				EB8BDAB428EC12C6009B672B /* Packages */,
 				EBAAEC8D28DC48D40020D496 /* Assets.xcassets */,
 				EBAAEC8F28DC48D50020D496 /* AnimatedHeightChange.swift */,
 				EBAAEC9D28DC48D90020D496 /* AnimatedHeightChange.swift */,
@@ -127,14 +133,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		EBAAECAE28DC48FA0020D496 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				EBAAECAF28DC48FA0020D496 /* FlexboxSwiftUI */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		EBAAECB028DC492A0020D496 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +158,7 @@
 			);
 			name = FlexboxSwiftUIDemo;
 			packageProductDependencies = (
-				EBAAECB128DC492A0020D496 /* FlexboxSwiftUI */,
+				EB8BDAB628EC12E0009B672B /* FlexboxSwiftUI */,
 			);
 			productName = FlexboxSwiftUIDemo;
 			productReference = EBAAEC7428DC484F0020D496 /* FlexboxSwiftUIDemo.app */;
@@ -440,7 +438,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EBAAECB128DC492A0020D496 /* FlexboxSwiftUI */ = {
+		EB8BDAB628EC12E0009B672B /* FlexboxSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FlexboxSwiftUI;
 		};
