@@ -14,7 +14,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/sampettersson/Placement.git", from: "1.3.4")
+        .package(url: "https://github.com/sampettersson/Placement.git", from: "1.3.6")
     ],
     targets: [
         .target(
