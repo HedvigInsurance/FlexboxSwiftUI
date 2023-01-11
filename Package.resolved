@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sampettersson/Placement.git",
       "state" : {
-        "revision" : "95a87bd86bf54a812f3041ab46e9caf4c3853cae",
-        "version" : "1.4.0"
+        "revision" : "2dc510fb7d36dd49dc3857c95d69653cc3836a40",
+        "version" : "1.4.1"
       }
     }
   ],
